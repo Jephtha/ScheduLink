@@ -1,5 +1,6 @@
 # ScheduLink
 MUN ScheduLink
+
 A project for COMP 4768: Intro to Software Development for Mobile Devices
 
 This software provides a platform that generates a schedule for students of MUN after inputting their
