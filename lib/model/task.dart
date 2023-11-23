@@ -6,7 +6,7 @@ class DeadlineTask {
   final String course;
   final DateTime dueDate;
   final String description;
-  final int priority;
+  final String priority;
   final String status;
 
   DeadlineTask({
@@ -38,8 +38,8 @@ class DeadlineTask {
       course: map['course'] ?? '',
       dueDate: map['dueDate'].toDate() ?? DateTime.now(),
       description: map['description'] ?? '',
-      priority: map['priority'] ?? 1,
-      status: map['status'] ?? '',
+      priority: map['priority'] ?? 'low',
+      status: map['status'] ?? 'incomplete',
     );
   }
 }
