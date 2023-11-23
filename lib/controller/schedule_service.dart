@@ -1,11 +1,89 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide UserInfo;
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:schedulink/model/task.dart';
 import 'dart:io';
 
 import '../model/user_info.dart';
 import '../model/course.dart';
+
+class ScheduleService {
+  final currentUser = FirebaseAuth.instance.currentUser;
+
+  final CollectionReference courseCollection;
+  final CollectionReference deadlineCollection;
+  final DocumentReference userInfoDocument;
+
+  ScheduleService()
+      :
+        courseCollection = FirebaseFirestore.instance.collection('courses'),
+
+        userInfoDocument = FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser!.uid),
+
+        deadlineCollection = FirebaseFirestore.instance
+            .collection('users')
+            .doc(FirebaseAuth.instance.currentUser!.uid)
+            .collection('deadlineTasks');
+
+  Future<DocumentReference<Object?>> addCourse(Course course) async {
+    return await courseCollection.add(course.toMap());
+  }
+
+  Future<void> addUser(UserInfo userInfo) async {
+    await userInfoDocument.set(userInfo.toMap()).then((_){
+      print("success adding user");
+    });
+  }
+
+  Future<void> addCoursesList2User(List courseList) async {
+     await userInfoDocument.set({'courseTasks': courseList}, SetOptions(merge: true)).then((_){
+      print("success adding courses to user");
+    });
+  }
+
+  Future<List<String>> getUserCourseList() async {
+    return await userInfoDocument.get().then((snapshot) => snapshot.get('courseTasks'));
+  }
+
+  Future<void > addCourse2User(String course) async {
+    List<String> courses = await getUserCourseList();
+    courses.add(course);
+    await addCoursesList2User(courses);
+  }
+
+  Future<void > removeCourseFromUser(String course) async {
+    List<String> courses = await getUserCourseList();
+    courses.remove(course);
+    await addCoursesList2User(courses);
+  }
+
+  Future<DocumentReference<Object?>> addDeadline(DeadlineTask deadline) async {
+    return await deadlineCollection.add(deadline.toMap());
+  }
+
+  Future<DeadlineTask> getDeadlineTask(DeadlineTask deadline) async {
+    return deadlineCollection.doc(deadline.id).get().then((value) => DeadlineTask.fromMap(value));
+  }
+
+  Future<void> updateDeadlineTask(DeadlineTask deadline, String id) async {
+    return await deadlineCollection.doc(id).update(deadline.toMap());
+  }
+
+  Future<void> deleteDiary(DeadlineTask deadline) async {
+    return await deadlineCollection.doc(deadline.id).delete();
+  }
+
+  Future<List<DeadlineTask>> getDeadlineTaskList() async {
+    QuerySnapshot snapshot = await deadlineCollection.get();
+    List<DeadlineTask> diaryList = snapshot.docs.map((doc) => DeadlineTask.fromMap(doc)).toList();
+
+    return diaryList;
+  }
+
+}
 
 // class ScheduleService {
 //   final currentUser = FirebaseAuth.instance.currentUser;
