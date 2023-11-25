@@ -1,0 +1,28 @@
+Subject: French                        
+
+FREN 1500 Intro University French I   001 64587 03   M   W   F     1000 1050 SN 2041  LEC   IP                  Y Y  Y   Y                3    3  Primary - B Sheppard         
+                                      002 64590 04   M   W   F     1100 1150 C  4002  LEC   IP                  Y Y  Y   Y                3    3  Primary - G Young            
+                                      003 70985 05   M   W   F     1200 1250 C  4036  LEC   IP                  Y Y  Y   Y                3    3  Primary - B Thistle          
+                                      004 98754 07   M   W   F     1400 1450 A  1045  LEC   IP                  Y Y  Y   Y                3    3  Primary - B Sheppard         
+FREN 1501 Intro University French II  002 64593 03   M   W   F     1000 1050 ED 4015  LEC   IP                  Y Y  Y   N                3    3  Primary - B Thistle          
+                                      003 64595 04   M   W   F     1100 1150 SN 4073  LEC   IP                  Y Y  Y   N                3    3  Primary - D Gamble           
+                                      004 64596 05   M   W   F     1200 1250 SN 3042  LEC   IP                  Y Y  Y   N                3    3  Primary - D Gamble           
+                                      056 64592 G35    T   R       1900 2015 SN 4073  LEC   IP                  Y Y  Y   N                3    3  Primary - A Soumastre        
+FREN 1502 Intro University French III 001 64608 03   M   W   F     1000 1050 C  2033  LEC   IP                  Y Y  Y   N                3    3  Primary - G Young            
+                                      002 64610 18     T   R       1030 1145 SN 2041  LEC   IP                  Y Y  Y   N                3    3  Primary - S Martin           
+                                      003 86572 19     T   R       1400 1515 SN 4073  LEC   IP                  Y Y  Y   N                3    3  Primary - S Martin           
+FREN 2100 Intermediate French I       001 66317 03   M   W   F     1000 1050 EN 1052  LEC   IP                  Y Y  Y   Y                3    3  Primary - H Koo              
+                                      002 92246 08   M   W   F     1500 1550 SN 2041  LEC   IP                  Y Y  Y   Y                3    3  Primary - D Gamble           
+FREN 2101 Intermediate French II      001 90968 06   M T   R       1300 1350 SN 4073  LEC   IP                  Y Y  Y   Y        W       3    3  Primary - P Bouchard         
+                                      002 92836 03   M   W   F     1000 1050 SN 4073  LEC   IP                  Y Y  Y   Y        W       3    3  Primary - V Harger-Grin      
+FREN 2300 Phonetics                   001 92803 20     T   R       1530 1645 SN 4063  LEC   IP                  Y Y  Y   Y                3    3  Primary - S Martin           
+FREN 2601 Grammar & Reading           001 95246 11   M   W         1030 1145 ED 4011  LEC   IP                  Y Y  Y   Y        W       3    3  Primary - A Graham           
+FREN 2602 Reading Practice            001 96797 19     T   R       1400 1515 A  3020  LEC   IP                  Y Y  Y   Y        W       3    3  Primary - K Attikpoe         
+FREN 2900 Survey Francophone Cultures 001 90972 17     T   R       0900 1015 SN 4073  LEC   IP                  Y Y  Y   Y                3    3  Primary - A Thareau          
+FREN 3100 Grammar & Textual Analysis  001 80943 05   M   W   F     1200 1250 SN 3060  LEC   IP                  Y Y  Y   Y        W       3    3  Primary - H Koo              
+FREN 3101 Stylistics & Textual Analys 001 98855 05   M   W   F     1200 1250 SN 4068  LEC   IP                  Y Y  Y   Y        W       3    3  Primary - V Harger-Grin      
+FREN 3500 Intro Prose Lit French      001 98173 20     T   R       1530 1645 SN 4068  LEC   IP                  Y Y  Y   Y                3    3  Primary - K Attikpoe         
+FREN 3506 French Cinema               056 99940 30   M             1900 2130 A  1046  LEC   IP                  Y Y  Y   Y                3    3  Primary - K Abadie           
+FREN 4620 Literary Movement II        001 99941 13   M   W         1400 1515 C  2026  LEC   IP                  Y Y  Y   Y                3    3  Primary - A Graham           
+FREN 4640 Literary Genre II           001 99942 14   M   W         1530 1645 SN 4063  LEC   IP                  Y Y  Y   Y                3    3  Primary - K Abadie           
+FREN 4811 Le Roman Hist au XXe Siecle 001 96685 16     T   R       1200 1250 SN 4073  LEC   IP                  Y Y  Y   N                3    3  Primary - P Bouchard

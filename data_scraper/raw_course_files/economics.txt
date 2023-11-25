@@ -1,0 +1,19 @@
+Subject: Economics                     
+
+ECON 1010 Intro to Microeconomics     001 88339 13   M   W         1400 1515 ED 2018B LEC   IP                  Y Y  Y   N        Q       3    3  Primary - A Coffin           
+                                      002 88341 10   M   W         0900 1015 SN 2109  LEC   IP                  Y Y  Y   N        Q       3    3  Primary - A Coffin           
+                                      003 96646 18     T   R       1030 1145 ED 3034B LEC   IP                  Y Y  Y   N        Q       3    3  Primary - M Doyle            
+ECON 1020 Intro to Macroeconomics     001 88348 03   M   W   F     1000 1050 ED 3034B LEC   IP                  Y Y  Y   N        Q       3    3  Primary - D Moore            
+                                      002 88350 07   M   W   F     1400 1450 ED 3034B LEC   IP                  Y Y  Y   N        Q       3    3  Primary - S Khattab          
+                                      003 20494 19     T   R       1400 1515 ED 2018B LEC   IP                  Y Y  Y   N        Q       3    3  Primary - S Khattab          
+ECON 2550 Economic Stat & Data Analys 001 99873 23     T   R       1230 1345 SN 3058  LEC   IP                  Y Y  Y   Y                3    3  Primary - H Mariathas                                                                                             
+ECON 3001 Intermed Micro Theory II    001 87304 13   M   W         1400 1515 EN 1051  LEC   IP                  Y Y  Y   Y                3    3                               
+ECON 3011 Intermed Macro Theory II    001 78518 10   M   W         0900 1015 ED 1005  LEC   IP                  Y Y  Y   Y                3    3  Primary - K Chu              
+ECON 3030 International Economics     001 20496 19     T   R       1400 1515 SN 3058  LEC   IP                  Y Y  Y   Y                3    3  Primary - T Fang             
+ECON 3140 Economic Analysis Health Ca 001 99875 17     T   R       0900 1015 A  2065  LEC   IP                  Y Y  Y   Y                3    3  Primary - L Gambin           
+ECON 3150 Money / Banking             001 99876 12   M   W         1230 1345 ED 1005  LEC   IP                  Y Y  Y   Y        Q       3    3  Primary - K Chu              
+ECON 3551 Mathematical Economics II   001 99874 18     T   R       1030 1145 SN 4073  LEC   IP                  Y Y  Y   Y                3    3  Primary - B Dart                                                                                               
+ECON 4025 Public Expenditure          001 20498 11   M   W         1030 1145 ED 3048  LEC   IP                  Y Y  Y   Y                3    3  Primary - D Messacar         
+ECON 4085 Advanced Environmental Econ 001 20500 23     T   R       1230 1345 A  1045  LEC   IP                  Y Y  Y   Y                3    3  Primary - R Martinez-Es      
+ECON 4120 App Welfare Econ/Cost Be    001 95987 19     T   R       1400 1515 ED 4034  LEC   IP                  Y Y  Y   Y                3    3  Primary - R Martinez-Es      
+ECON 4551 Econometrics 2              001 99214 13   M   W         1400 1515 A  2071  LEC   IP                  Y Y  Y   Y                3    3  Primary - D Messacar 

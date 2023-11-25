@@ -1,0 +1,332 @@
+Subject: Business Administration       
+
+BUSI 1000 Intro to Business in Societ 001 96652 11   M   W         1030 1145 BN 3007  LEC   IP                  Y Y  Y   N    Y           3    3  Primary - T Jones            
+                                          RESERVED  FOR: DEGREE               BBA    BCN    CBAD   DBA    IBBA                                                                 
+                                                         MAJOR         MUBU                                                                                                    
+                                                         MINOR  BUSI                                                                                                           
+                                          Course is restricted to specific programs.                                                                                           
+                                      002 99778              F     0930 1200 BN 3007  LEC   IP                  Y Y  Y   N    Y           3    3  Primary - T Jones            
+                                          RESERVED  FOR: DEGREE               BBA    BCN    CBAD   DBA    IBBA                                                                 
+                                                         MAJOR         MUBU                                                                                                    
+                                                         MINOR  BUSI                                                                                                           
+                                          Course is restricted to specific programs.                                                                                           
+                                      056 99776 30   M             1900 2130 BN 3007  LEC   IP                  Y Y  Y   N    Y           3    3  Primary - C Clouston         
+                                          RESERVED  FOR: DEGREE               BBA    BCN    CBAD   DBA    IBBA                                                                 
+                                                         MAJOR         MUBU                                                                                                    
+                                                         MINOR  BUSI                                                                                                           
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 2011 Business Writing            001 99782 10   M   W         0900 1015 BN 2015  LEC   IP                  Y Y  Y   Y    Y           3    3  Primary - C Clouston         
+                                          RESERVED  FOR: DEGREE               BBA    BC     BCN    CBAD   DBA    IBBA                                                          
+                                                         MAJOR         MUBU                                                                                                    
+                                                         MINOR  BUSI                                                                                                           
+                                          Course is restricted to specific programs.                                                                                           
+                                      002 99784 11   M   W         1030 1145 BN 2015  LEC   IP                  Y Y  Y   Y    Y           3    3  Primary - C Clouston         
+                                          RESERVED  FOR: DEGREE               BBA    BC     BCN    CBAD   DBA                                                                  
+                                                         MAJOR         MUBU                                                                                                    
+                                                         MINOR  BUSI                                                                                                           
+                                          Open to non-business students once reserves lifted.         Course is restricted to specific programs.                               
+                                      003 99780 17     T   R       0900 1015 BN 3008  LEC   IP                  Y Y  Y   Y    Y           3    3  Primary - A Kim              
+                                          RESERVED  FOR: DEGREE               BBA    BC     BCN    CBAD   DBA    IBBA                                                          
+                                                         MAJOR         MUBU                                                                                                    
+                                                         MINOR  BUSI                                                                                                           
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 2012 Business Professionalism    001 99793      M   W R       1230 1345 BN 3007  LEC   IP                  Y Y  Y   Y    Y           3    3  Primary - J Bartlett         
+                                          RESERVED  FOR: DEGREE               BBA    BC     BCN    CBAD   DBA    IBBA                                                          
+                                                         MAJOR         MUBU                                                                                                    
+                                                         MINOR  BUSI                                                                                                           
+                                          Course is restricted to specific programs.                                                                                           
+                                      002 99796 19     T   R       1400 1515 BN 1010  LEC   IP                  Y Y  Y   Y    Y           3    3  Primary - T Hunt             
+                                          RESERVED  FOR: DEGREE               BBA    BC     BCN    CBAD   DBA    IBBA                                                          
+                                                         MAJOR         MUBU                                                                                                    
+                                                         MINOR  BUSI                                                                                                           
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 2111 Intro Financial Accounting  001 98048 23     T   R       1230 1345 BN 2028  LEC   IP                  Y Y  Y   Y    Y   Q       3    3  Primary - D King             
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA    IBBA                                                   
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 2112 Intro Management Account    001 98051 14   M   W         1530 1645 BN 3007  LEC   IP                  Y Y  Y   Y    Y   Q       3    3                               
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA                                                           
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+                                      002 98499 20     T   R       1530 1645 BN 2028  LEC   IP                  Y Y  Y   Y    Y   Q       3    3  Primary - R Negi             
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA                                                           
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+                                      056 99798 30   M             1900 2130 BN 2028  LEC   IP                  Y Y  Y   Y    Y   Q       3    3  Primary - J Pittman          
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA                                                           
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 2205 Intro to Marketing          001 99801 17     T   R       0900 1015 BN 3007  LEC   IP                  Y Y  Y   Y    Y           3    3  Primary - K Shannahan        
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA                                                           
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+                                      002 99803 18     T   R       1030 1145 BN 3007  LEC   IP                  Y Y  Y   Y    Y           3    3  Primary - K Shannahan        
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA                                                           
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+                                      003 99807 13   M   W         1400 1515 BN 2028  LEC   IP                  Y Y  Y   Y    Y           3    3  Primary - R Preston          
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA                                                           
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 2400 Decision Modeling           001 77377 14   M   W         1530 1645 BN 2028  LEC   IP                  Y Y  Y   Y    Y           3    3  Primary - D Ghahremanlo      
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA                                                           
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 2600 Entrepren Think/Behaviour   001 98055 10   M   W         0900 1015 BN 3008  LEC   IP                  Y Y  Y   N    Y           3    3  Primary - C Paterson         
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA                                                           
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+                                      002 98057 11   M   W         1030 1145 BN 3008  LEC   IP                  Y Y  Y   N    Y           3    3  Primary - M Mishkat          
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA                                                           
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+                                      003 99809 19     T   R       1400 1515 BN 2015  LEC   IP                  Y Y  Y   N    Y           3    3  Primary - A Stewart          
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA                                                           
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+                                      056 98059 G25  M   W         1730 1845 BN 2015  LEC   IP                  Y Y  Y   N    Y           3    3                               
+                                          RESERVED  FOR: DEGREE                      BBA    BC     BCN    CBAD   DBA                                                           
+                                                         MAJOR                MUBU                                                                                             
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 2710 Modeling & Impl Busi Proces 001 77387 17     T   R       0900 1015 BN 1010  LEC   IP                  Y Y  Y   Y    Y           3    3                               
+                                          RESERVED  FOR: DEGREE                                    BBA    BC     BCN    CBAD   DBA                                             
+                                                         MAJOR                MUBC   MUBP   MUBU                                                                               
+                                                         MINOR  BUSI   INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 3005 Business Law I              001 98501 10   M   W         0900 1015 BN 3007  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - D Bennett          
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA                                                           
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 3160 Cost Accounting             001 98064 17     T   R       0900 1015 BN 2028  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - N Wans             
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA                                                           
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 3310 Organizational Behaviour    001 20438 17     T   R       0900 1015 BN 2015  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - D Ford             
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         BUSI                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 3325 Human Resource Mgmt         001 98066 20     T   R       1530 1645 BN 1010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - D Ford             
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+                                      056 99817 30   M             1900 2130 BN 1010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - F Ajayi            
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 3335 Labour Relations            001 98068 20     T   R       1530 1645 BN 3008  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - C Thomas           
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+                                      002 99819 13   M   W         1400 1515 BN 3008  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - J Peters           
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+                                      056 99821 33         R       1900 2130 BN 3008  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - R Lee              
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 3401 Operations Management       056 99823 G26    T   R       1730 1845 BN 1010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - Y Song             
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 3550 Financial Management I      001 98076 18     T   R       1030 1145 BN 2028  LEC   IP                  Y Y  Y   Y    N   Q       3    3  Primary - N Willcott         
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+                                      056 99825 32       W         1900 2130 BN 2028  LEC   IP                  Y Y  Y   Y    N   Q       3    3  Primary - Y Xu               
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 3630 Venture Creation            001 98503 19     T   R       1400 1515 BN 3010  LEC   IP                  Y Y  Y   N    N           3    3  Primary - C Bazan            
+                                          AVAILABLE  TO:          B3   B4   B5   B6                                                                                            
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 3700 Information Systems         001 98628 10   M   W         0900 1015 BN 1010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - C Lake             
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 399W Work Term I                 001 60163 99                                    WRK   IP                  A A  N   Y    N           0   NA  Primary - L Murphy      H Ska
+                                          AVAILABLE  TO:          BA                                                                                                           
+                                          RESERVED  FOR: DEGREE BC                                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4005 Business Law II             002 20629 G25  M   W         1730 1845 BN 3007  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - D Worsfold         
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA                                                           
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4006 International Business Law  056 20446 G26    T   R       1730 1845 BN 2015  LEC   IP                  Y Y  Y   Y    N           3    3                               
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         BUSI                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4050 Strategic Management I      001 99829 23     T   R       1230 1345 BN 3007  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - M Furey            
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA                                                           
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4101 Intermediate Accounting I   001 98082 10   M   W         0900 1015 BN 2028  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - J Cumby            
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4217 Professional Selling        001 98084 23     T   R       1230 1345 BN 3010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - K Shannahan        
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA    IBBA                                                   
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4221 Marketing Research          001 20450 11   M   W         1030 1145 BN 1010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - R Shannahan        
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         BUSI                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4305 New Direction Organ Behavio 001 20452        T           1300 1530 BN 3008  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - D Ford             
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         BUSI                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4306 International Business      001 99831 20     T   R       1530 1645 BN 3007  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - C Park             
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA                                                           
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4315 Organizational Theory       001 98088 19     T   R       1400 1515 BN 3007  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - F Ajayi            
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA                                                           
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+                                      056 99841 G26    T   R       1730 1845 BN 3007  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - F Ajayi            
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA                                                           
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4415 Supply Chain Management     001 98092 13   M   W         1400 1515 BN 3010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - T Williams         
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA                                                           
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 450W Busi Mthds Practice I       001 60168 99                                    IND   IS                  Y Y  Y   N    N           0    3                               
+                                          RESERVED  FOR: DEGREE DBA                                                                                                            
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4540 Investments                 056 98096 31     T           1900 2130 BN 3007  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - Y Xu               
+                                          CROSS LISTED:    BUSI 9320-056                                                                                                       
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4545 Options & Futures           001 99843 23     T   R       1230 1345 BN 3009  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - E Haven            
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4550 Financial Management II     001 98100 13   M   W         1400 1515 BN 3007  LEC   IP                  Y Y  Y   Y    N           3    3                               
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4560 International Finance       001 99845 14   M   W         1530 1645 BN 3008  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - M Jain             
+                                          CROSS LISTED:    BUSI 9326-001                                                                                                       
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4605 Small Business Consulting   001 98102 18     T   R       1030 1145 BN 3010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - B Winsor           
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         BUSI                                                                                                    
+BUSI 4615 Small Enrpr Reg Dvlpmnt     056 99847 30   M             1900 2130 BN 3008  LEC   IP                  Y Y  Y   N    N           3    3  Primary - C Corcoran         
+                                          CROSS LISTED:    BUSI 9011-056                                                                                                       
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA                                                           
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 4720 Business Analytics          001 99849 14   M   W         1530 1645 BN 1010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - J Evermann         
+                                          RESERVED  FOR: DEGREE BCN                         BBA    BC     CBAD   DBA                                                           
+                                                         MAJOR  BUSI                 MUBU                                                                                      
+                                                         MINOR         BUSI   INBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 499W Work Term 2                 001 75288 99                                    WRK   IS                  N N  N   Y    N           0   NA                               
+                                          RESERVED  FOR: DEGREE BC                                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5001 Strategic Management        001 99851 18     T   R       1030 1145 BN 1010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - M Furey            
+                                          CROSS LISTED:    BUSI 5002-001                                                                                                       
+                                          RESERVED  FOR: DEGREE BCN    BBA    BC                                                                                               
+                                                         MAJOR  BUSI                                                                                                           
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5002 Strat Mgmnt Music Industry  001 20448 18     T   R       1030 1145 BN 1010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - M Furey            
+                                          CROSS LISTED:    BUSI 5001-001                                                                                                       
+                                          RESERVED  FOR: MAJOR  MUBC   MUBP   MUBU                                                                                             
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5120 Adv Financial Accounting    001 98106 12   M   W         1230 1345 BN 2028  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - P Downer           
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA    IBBA                                                          
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5125 Accounting Capstone         001 98110 11   M   W         1030 1145 BN 2028  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - J Cumby       P Dow
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5165 Adv Tpcs Manage Accounting  056 98112 31     T           1900 2130 BN 2028  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - J Button           
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5230 Strat Marketing Mgmt        001 98114 12   M   W         1230 1345 BN 3010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - L Wetsch           
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5320 HR Management Training      002 20557 20     T   R       1530 1645 BN 2015  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - S Mahdavi          
+                                          RESERVED  FOR: DEGREE BCN                                BBA    BC     CBAD   DBA    IBBA                                            
+                                                         MAJOR  BUSI          MUBC   MUBP   MUBU                                                                               
+                                                         MINOR         BUSI                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5325 Sem in Human Resource Mgmt  056 20559 G25  M   W         1730 1845 BN 2028  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - J Adeniyi          
+                                          RESERVED  FOR: DEGREE BCN                                BBA    BC     CBAD   DBA    IBBA                                            
+                                                         MAJOR  BUSI          MUBC   MUBP   MUBU                                                                               
+                                                         MINOR         BUSI                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5332 Labour Law                  056 20442 30   M             1900 2130 BN 3010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - M Cooper           
+                                          CROSS LISTED:    BUSI 9329-057                                                                                                       
+                                          RESERVED  FOR: DEGREE BCN                                BBA    BC     CBAD   DBA                                                    
+                                                         MAJOR  BUSI          MUBC   MUBP   MUBU                                                                               
+                                                         MINOR         BUSI                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5335 Collect Agrmnt Adm/Arb      001 20571                S   0900 1700 BN 3010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - G Williams         
+                                          CROSS LISTED:    BUSI 9013-001                                                                                                       
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5550 Advanced Finance            056 98118 32       W         1900 2130 BN 3010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - L Nash             
+                                          RESERVED  FOR: DEGREE BCN                  BBA    BC     CBAD   DBA                                                                  
+                                                         MAJOR  BUSI          MUBU                                                                                             
+                                                         MINOR         INBU                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BUSI 5720 Data Management             001 20434 20     T   R       1530 1645 BN 3010  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - J Parsons 
