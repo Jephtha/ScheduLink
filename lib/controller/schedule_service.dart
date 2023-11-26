@@ -1,12 +1,12 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide UserInfo;
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:schedulink/model/task.dart';
-import 'dart:io';
+// import 'package:firebase_storage/firebase_storage.dart';
+// import 'dart:io';
 
 import '../model/user_info.dart';
 import '../model/course.dart';
+import '../model/task.dart';
 
 class ScheduleService {
   final currentUser = FirebaseAuth.instance.currentUser;
