@@ -35,29 +35,33 @@ class ScheduleService {
     });
   }
 
-  Future<void> addCoursesList2User(List courseList) async {
+  Future<void> addCoursesList2User(Map courseMap) async {
     await userInfoDocument
-        .set({'courseTasks': courseList}, SetOptions(merge: true)).then((_) {
+        .set({'userCourses': courseMap}, SetOptions(merge: true)).then((_) {
       print("success adding courses to user");
     });
   }
 
-  Future<List<String>> getUserCourseList() async {
+  Future<Map<String, dynamic>> getUserCourseMap() async {
     return await userInfoDocument
         .get()
-        .then((snapshot) => snapshot.get('courseTasks'));
+        .then((snapshot) => snapshot.get('userCourses'));
   }
 
-  Future<void> addCourse2User(String course) async {
-    List<String> courses = await getUserCourseList();
-    courses.add(course);
+  Future<void> addCourse2User(String course, String section) async {
+    Map<String, dynamic> courses = await getUserCourseMap();
+    courses[course] = section;
     await addCoursesList2User(courses);
   }
 
   Future<void> removeCourseFromUser(String course) async {
-    List<String> courses = await getUserCourseList();
+    Map<String, dynamic> courses = await getUserCourseMap();
     courses.remove(course);
     await addCoursesList2User(courses);
+  }
+
+  Future<void> updateUserInfo (UserInfo user) async {
+    return await userInfoDocument.update(user.toMap());
   }
 
   Future<DocumentReference<Object?>> addDeadline(DeadlineTask deadline) async {
@@ -81,10 +85,10 @@ class ScheduleService {
 
   Future<List<DeadlineTask>> getDeadlineTaskList() async {
     QuerySnapshot snapshot = await deadlineCollection.get();
-    List<DeadlineTask> diaryList =
+    List<DeadlineTask> deadlineList =
         snapshot.docs.map((doc) => DeadlineTask.fromMap(doc)).toList();
 
-    return diaryList;
+    return deadlineList;
   }
 }
 

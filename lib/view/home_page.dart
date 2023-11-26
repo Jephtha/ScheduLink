@@ -64,31 +64,25 @@ class AddCarDialog extends StatefulWidget {
   _AddCarDialogState createState() => _AddCarDialogState();
 }
 class _AddCarDialogState extends State<AddCarDialog> {
-// Key to identify and validate the form.
   final _formKey = GlobalKey<FormState>();
-// Instance of CarService to interact with Firestore for CRUD operations on cars.
   final ScheduleService scheduleService = ScheduleService();
-// Variables to hold the values from the form.
   String make = '';
   String model = '';
-  int year = DateTime.now().year; // Default the year to the current year.
-  /// Asynchronously adds the car to Firestore.
+  int year = DateTime.now().year;
+
   Future<void> _addCar() async {
-// Validates the form's current state.
     if (_formKey.currentState!.validate()) {
-// Saves the form's current state.
       _formKey.currentState!.save();
-// Creates a new Car instance with the form data.
       final newUser = UserInfo(profileImg: make, contactInfo: model, );
-// Uses the CarService instance to add the new car to Firestore.
-      await scheduleService.addUser(newUser);
-// Closes the dialog.
+      //await scheduleService.addUser(newUser);
+      //await scheduleService.addCourse2User("COMP4768", "Computer Science");
+      //await scheduleService.removeCourseFromUser("COMP4768");
+      await scheduleService.updateUserInfo(UserInfo(profileImg: 'image', contactInfo: 'contact', userCourses: {"COMP4768": "Computer Science"}));
       Navigator.of(context).pop();
     }
   }
   @override
   Widget build(BuildContext context) {
-// Returns an AlertDialog widget to collect car details from the user.
     return AlertDialog(
       title: Text('Add Car'),
       content: Form(
@@ -96,7 +90,6 @@ class _AddCarDialogState extends State<AddCarDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-// Text form field to collect the car's make.
             TextFormField(
               decoration: InputDecoration(labelText: 'Make'),
               validator: (value) {
@@ -109,7 +102,6 @@ class _AddCarDialogState extends State<AddCarDialog> {
                 make = value!;
               },
             ),
-// Text form field to collect the car's model.
             TextFormField(
               decoration: InputDecoration(labelText: 'Model'),
               validator: (value) {
@@ -122,7 +114,6 @@ class _AddCarDialogState extends State<AddCarDialog> {
                 model = value!;
               },
             ),
-// Text form field to collect the car's year.
             TextFormField(
               decoration: InputDecoration(labelText: 'Year'),
               keyboardType: TextInputType.number,
@@ -143,12 +134,10 @@ class _AddCarDialogState extends State<AddCarDialog> {
         ),
       ),
       actions: [
-// Elevated button to trigger the _addCar method when clicked.
         ElevatedButton(
           onPressed: _addCar,
           child: Text('Add'),
         ),
-// Text button to close the dialog without adding a car.
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();

@@ -4,20 +4,21 @@ class UserInfo {
   final String? id;
   final String profileImg;
   final String contactInfo;
-  final List<String>? courses;
+  //final List<String>? userCourses;
+  final Map<String, dynamic>? userCourses;
 
   UserInfo({
     this.id,
     required this.profileImg,
     required this.contactInfo,
-    this.courses,
+    this.userCourses,
   });
 
-  Map<String, dynamic> toMap() {
+   Map<String, dynamic> toMap() {
     return {
       'profileImg': profileImg,
       'contactInfo': contactInfo,
-      'courses': courses ?? []
+      'userCourses': userCourses ?? {}
     };
   }
 
@@ -27,7 +28,7 @@ class UserInfo {
       id: doc.id,
       profileImg: map['profileImg'] ?? '',
       contactInfo: map['contactInfo'] ?? '',
-      courses: map['courses'] ?? [],
+      userCourses: map['userCourses'] ?? {},
     );
   }
 }
