@@ -25,16 +25,16 @@ class Course {
 
   factory Course.fromJson(Map<String, dynamic> json) {
     return Course(
-      subject: json['subject'] as String ?? '',
-      course: json['course'] as String ?? '',
-      description: json['description'] as String ?? '',
-      section: json['section'] as String ?? '',
-      crn: json['crn'] as String ?? '',
-      slot: json['slot'] as String ?? '',
-      daysOfWeek: json['daysOfWeek'] as String ?? '',
-      startTime: json['startTime'] as String ?? '',
-      endTime: json['endTime'] as String ?? '',
-      location: json['location'] as String ?? '',
+      subject: json['subject'] as String,
+      course: json['course'] as String,
+      description: json['description'] as String,
+      section: json['section'] as String,
+      crn: json['crn'] as String,
+      slot: json['slot'] as String,
+      daysOfWeek: json['daysOfWeek'] as String,
+      startTime: json['startTime'] as String,
+      endTime: json['endTime'] as String,
+      location: json['location'] as String,
     );
   }
 }

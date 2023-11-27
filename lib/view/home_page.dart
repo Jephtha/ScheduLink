@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => scheduleService.addUser2Course("PSYC1000", "byvujhuj647856"),
+        onPressed: _incrementCounter,//() => scheduleService.addUser2Course("PSYC1000", "byvujhuj647856"),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
