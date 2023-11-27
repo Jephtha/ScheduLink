@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 
-import 'home_page.dart';
+import 'homepage.dart';
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
@@ -25,7 +25,15 @@ class AuthGate extends StatelessWidget {
             ],
           );
         } else {
-          return HomePage(title: 'Course Schedule');
+          return MaterialApp(
+              title: 'Class Schedule',
+              theme: ThemeData(
+                  useMaterial3: true,
+                  colorScheme:
+                  ColorScheme.fromSeed(seedColor: Colors.lightGreen.shade400)),
+              home: const HomePage(),
+          );
+
         }
       },
     );
