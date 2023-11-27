@@ -1,0 +1,37 @@
+Subject: Biochemistry                  
+
+BIOC 3105 Physical Biochemistry       001 60136 05   M   W   F     1200 1250 ED 3034A LEC   IP      002         Y Y  Y   Y                3    3  Primary - K Wilson      J Par
+BIOC 3105 Laboratory                  002 97998          W         1400 1600 ED 3034A LAB   IP      001         Y Y  N   Y                0   NA  Primary - K Wilson      J Par
+BIOC 3108 Molecular Bioc of the Cell  001 67713 06   M T   R       1300 1350 A  1046  LEC   IP                  Y Y  Y   Y                3    3  Primary - A Todd             
+BIOC 3203 Fundamentals Human Nutritio 001 77156 05   M   W   F     1200 1250 C  2004  LEC   IP                  Y Y  Y   Y                3    3  Primary - S Mayengbam   Z Far
+BIOC 3402 Food Chemistry              001 20423      M             1400 1630          LEC   IP                  Y Y  Y   Y                3    3  Primary - F Shahidi          
+BIOC 3906 Nutr. Biochem. Metabolism L 001 95972 17     T   R       0900 1015 ED 1014  LEC   IP      002 004 003 Y D  Y   Y    N   L       3    3  Primary - J Brunton     S May
+                                          RESERVED  FOR: MAJOR  BIOC   BNTR                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BIOC 3906 Laboratory                  002 95973 63       W         1400 1650 CSF4203  LAB   IP      001         Y D  N   Y                0   NA  Primary - J Brunton     S May
+                                      003 95974 64         R       1400 1650 CSF4203  LAB   IP      001         Y D  N   Y                0   NA  Primary - J Brunton     S May
+                                      004 97543 65           F     1400 1650 CSF4203  LAB   IP      001         Y D  N   Y                0   NA  Primary - J Brunton     S May
+BIOC 4102 Current Topics in Biochemis 001 61246 20     T   R       1530 1645 C  3053  LEC   IP                  Y Y  Y   N    N           3    3  Primary - F Shahidi     P Kak
+                                          AVAILABLE  TO:          Y4   Y5                                                                                                      
+                                          RESERVED  FOR: DEGREE BSH                                                                                                            
+                                                         MAJOR  BIOC                                                                                                           
+                                          Course is restricted to specific programs.                                                                                           
+BIOC 4105 Immunology                  001 79114 02   M   W   F     0900 0950 ED 1020  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - S Christian        
+                                          CROSS LISTED:    PHAR 3006-001 BIOL 4200-001                                                                                         
+                                          RESERVED  FOR: MAJOR  BIOC          BNTR                                                                                             
+                                                         MINOR         BIOC                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BIOC 4200 Bioenerg/Blgcl Oxd          001 99773 19     T   R       1400 1515 C  4011  LEC   IP                  Y D  Y   Y                3    3  Primary - F Shahidi     R Bro
+                                          AVAILABLE  TO:          Y4   Y5                                                                                                      
+BIOC 4230 Lipid & Lipoprotein Metabol 001 99774 18     T   R       1030 1145 A  2065  LEC   IP                  Y D  Y   Y                3    3  Primary - R Brown            
+                                          AVAILABLE  TO:          Y4   Y5                                                                                                      
+BIOC 4300 Advanced Nutrition          001 95977 20     T   R       1530 1645 SN 3058  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - R Bertolo     Z Far
+                                          RESERVED  FOR: MAJOR         BNTR                                                                                                    
+                                                         MINOR  BIOC                                                                                                           
+                                          Course is restricted to specific programs.                                                                                           
+BIOC 499A Dissertation                001 95978        T   R       1200 1250 SN 2098  DST   IP                  Y D  Y   Y    N           0    3                               
+                                          AVAILABLE  TO:          Y4   Y5                                                                                                      
+                                          RESERVED  FOR: DEGREE BSH    BSH                                                                                                     
+                                                         MAJOR  BIOC   BNTR                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+BIOC 499B Dissertation                001 60148        T   R       1200 1250 SN 2098  DST   IP                  Y D  Y   Y    N           6    3  Primary - V Booth       K Wil

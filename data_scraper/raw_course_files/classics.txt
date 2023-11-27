@@ -1,0 +1,19 @@
+Subject: Classics                      
+
+CLAS 1001 CRW: Classics in Pop Cultur 001 88775 05   M   W   F     1200 1250 A  1049  LEC   IP                  Y Y  Y   N                3    3                               
+CLAS 1052 Heroes in Classical Mytholo 001 90371 04   M   W   F     1100 1150 A  1046  LEC   IP                  Y Y  Y   N                3    3  Primary - J Howard           
+CLAS 1121 Introductory Latin II       001 99832 07   M   W   F     1400 1450 A  1049  LEC   IP                  Y Y  Y   Y        W       3    3  Primary - J Howard           
+                                          CROSS LISTED:    MEMS 1121-001                                                                                                       
+CLAS 1131 Intro Ancient Greek II      001 81582 F02  M T W   F     0900 0950 A  1049  LEC   IP                  Y Y  Y   Y                3    3  Primary - K Simonsen         
+                                          CROSS LISTED:    MEMS 1131-001                                                                                                       
+CLAS 2902 Greek and Roman Environment 001 99834 03   M   W   F     1000 1050 A  2071  LEC   IP                  Y Y  Y   N                3    3  Primary - M Nikolic          
+CLAS 3200 Advanced Latin              001 88445 06   M T   R       1300 1350 A  2073  LEC   IP                  Y Y  Y   Y                3    3  Primary - C Lougheed         
+                                          CROSS LISTED:    MEMS 3200-001 CLAS 4225-001                                                                                         
+CLAS 3270 Christianity & Roman Empire 001 99835 18     T   R       1030 1145 A  1046  LEC   IP                  Y Y  Y   N                3    3  Primary - C Lougheed         
+                                          CROSS LISTED:    MEMS 3270-001 RELS 3270-001 HIST 3270-001                                                                           
+CLAS 3300 Advanced Ancient Greek      001 82927 99                                    LEC   IP                  Y Y  Y   Y                3    3  Primary - K Simonsen         
+                                          CROSS LISTED:    MEMS 3300-001 CLAS 4320-001                                                                                         
+CLAS 4000 Seminar in Greek Hist/Socie 001 99866 19     T   R       1400 1515 A  2073  SEM   IP                  Y Y  Y   N                3    3                               
+CLAS 4225 Latin Epistolography        001 99839 06   M T   R       1300 1350 A  2073  SEM   IP                  Y Y  Y   Y                3    3  Primary - C Lougheed         
+                                          CROSS LISTED:    CLAS 3200-001 MEMS 3200-001                                                                                         
+CLAS 4320 Greek Lyric Poetry          001 99865 99                                    SEM   IP                  Y Y  Y   Y                3    3  Primary - K Simonsen  

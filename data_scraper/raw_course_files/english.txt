@@ -1,0 +1,66 @@
+Subject: English                       
+
+ENGL 1020 Writing Second Lang Stdnts  001 91117 11   M   W         1030 1145 ED 2002  LEC   IP                  Y Y  Y   N                3    3  Primary - E Pittman          
+                                          This course is for students who first lang. is not English & who have attained a standard acceptable to the Uni. on an               
+                                      002 99872 19     T   R       1400 1515 SN 2041  LEC   IP                  Y Y  Y   N                3    3  Primary - G Pevlin           
+                                          The course is for students whose first lang. is not English & who have attained a standard acceptable to the uni. on an              
+                                      003 98733 99                                    LEC   R                   Y Y  Y   N                3    3  Primary - D Skinner          
+                                          This course is for students whose first lang. is not English& who have attained a standard acceptable to the Uni. on an              
+ENGL 1021 Writing Second Lang Stud II 001 67380 13   M   W         1400 1515 ED 2002  LEC   IP                  Y Y  Y   Y                3    3  Primary - G Pevlin           
+ENGL 1090 CRW: Telling Stories        001 96486 23     T   R       1230 1345 A  3020  LEC   IP                  Y Y  Y   N                3    3  Primary - W Schipper         
+                                      002 96489 19     T   R       1400 1515 A  3017  LEC   IP                  Y Y  Y   N                3    3  Primary - D Lynde            
+                                      003 96492 03   M   W   F     1000 1050 A  3020  LEC   IP                  Y Y  Y   N                3    3  Primary - N Farrell          
+                                      004 96495 04   M   W   F     1100 1150 A  3017  LEC   IP                  Y Y  Y   N                3    3  Primary - M Madiou           
+                                      005 20800 17     T   R       0900 1015 ED 1005  LEC   IP                  A A  Y   N                3    3  Primary - M Wells            
+                                      006 20802 18     T   R       1030 1145 ED 1005  LEC   IP                  A A  Y   N                3    3  Primary - M Wells            
+                                      056 99879 G26    T   R       1730 1845 A  3017  LEC   IP                  Y Y  Y   N                3    3                               
+ENGL 1110 Crtcl Rdng & Wrtng in Rheto 001 96508 05   M   W   F     1200 1250 A  3017  LEC   IP                  Y Y  Y   Y                3    3  Primary - Y Hann             
+                                      002 96518 07   M   W   F     1400 1450 ED 4034  LEC   IP                  Y Y  Y   Y                3    3  Primary - Y Hann             
+                                      004 96532 12   M   W         1230 1345 C  4011  LEC   IP                  Y Y  Y   Y                3    3  Primary - T Karnas           
+                                      005 96534 18     T   R       1030 1145 A  3017  LEC   IP                  Y Y  Y   Y                3    3  Primary - J Rowe             
+                                      006 96538 20     T   R       1530 1645 A  3020  LEC   IP                  Y Y  Y   Y                3    3  Primary - T Karnas           
+                                      007 96546 08   M   W   F     1500 1550 A  3017  LEC   IP                  Y Y  Y   Y                3    3  Primary - E Kavanagh         
+                                      056 99895 G26    T   R       1730 1845 A  3020  LEC   IP                  Y Y  Y   Y                3    3  Primary - F Murphy           
+                                      057 96564 G25  M   W         1730 1845 A  3017  LEC   IP                  Y Y  Y   Y                3    3  Primary - F Murphy           
+ENGL 1191 CRW: Self and Society       001 99897 04   M   W   F     1100 1150 SN 3060  LEC   IP                  Y Y  Y   Y                3    3  Primary - M Nolan            
+                                      002 99899 05   M   W   F     1200 1250 A  3020  LEC   IP                  Y Y  Y   Y                3    3  Primary - M Nolan            
+ENGL 1192 CRW: Imagined Places        001 96490 05   M   W   F     1200 1250 ED 2003  LEC   IP                  Y Y  Y   Y                3    3  Primary - J Citrome          
+                                      002 96493 08   M   W   F     1500 1550 A  3020  LEC   IP                  Y Y  Y   Y                3    3  Primary - J Citrome          
+                                      003 96500 03   M   W   F     1000 1050 A  3017  LEC   IP                  Y Y  Y   Y                3    3  Primary - C Colbert          
+                                      004 96503 18     T   R       1030 1145 C  3053  LEC   IP                  Y Y  Y   Y                3    3  Primary - D Hallett          
+                                      005 96506 04   M   W   F     1100 1150 A  3020  LEC   IP                  Y Y  Y   Y                3    3  Primary - C Colbert          
+ENGL 2000 Major Writers To 1800       001 96523 19     T   R       1400 1515 SN 4063  LEC   IP                  Y Y  Y   Y                3    3  Primary - D Hallett          
+                                      002 20733 17     T   R       0900 1015 ED 4034  LEC   IP                  A A  Y   Y                3    3  Primary - J Citrome          
+ENGL 2001 Major Writers From 1800     001 96738 07   M   W   F     1400 1450 SN 4063  LEC   IP                  Y Y  Y   Y                3    3  Primary - M Nolan            
+ENGL 2004 Short Fiction               001 99884 03   M   W   F     1000 1050 ED 4008  LEC   IP                  Y Y  Y   Y                3    3  Primary - B Clissold         
+                                      002 99886 04   M   W   F     1100 1150 ED 4008  LEC   IP                  Y Y  Y   Y                3    3  Primary - B Clissold         
+ENGL 2122 Intro to World Lit in Engli 001 99888 18     T   R       1030 1145 SN 3060  LEC   IP                  Y Y  Y   Y                3    3  Primary - W Schipper         
+ENGL 2218 American Lit since 1945     001 99893 02   M   W   F     0900 0950 SN 2036  LEC   IP                  Y Y  Y   Y                3    3  Primary - C Lockett          
+ENGL 2390 Intro Mod Engl Structure    001 97630 19     T   R       1400 1515 SN 2067  LEC   IP                  Y Y  Y   Y                3    3  Primary - D Skinner          
+ENGL 2600 Intro Middle English        001 97632 11   M   W         1030 1145 SN 4063  LEC   IP                  Y Y  Y   Y                3    3  Primary - J Geck             
+                                          CROSS LISTED:    MEMS 2600-001                                                                                                       
+ENGL 2850 What is Film?               001 86590 07   M   W   F     1400 1450 A  3017  LEC   IP                  Y Y  Y   Y                3    3  Primary - C Colbert          
+ENGL 2870 Children's Literature       001 81136 23     T   R       1230 1345 SN 3042  LEC   IP                  Y Y  Y   Y                3    3  Primary - H Staveley         
+ENGL 2905 Intro to Creative Writing   056 96725 30   M             1900 2130 SN 3060  LEC   IP                  Y Y  Y   N                3    3  Primary - E Kavanagh         
+ENGL 3006 Mediev/Early Mod Women Writ 001 99901 18     T   R       1030 1145 C  4011  LEC   IP                  Y Y  Y   N                3    3  Primary - A Juhasz-Orms      
+                                          CROSS LISTED:    MEMS 3006-001 GNDR 3001-001                                                                                         
+ENGL 3021 Medieval and Tudor Drama    001 99903 12   M   W         1230 1345 ED 2002  LEC   IP                  Y Y  Y   Y                3    3  Primary - J Geck             
+                                          CROSS LISTED:    MEMS 3021-001                                                                                                       
+ENGL 3156 Modern Canadian Drama       001 97638 18     T   R       1030 1145 A  1045  LEC   IP                  Y Y  Y   Y                3    3  Primary - D Lynde            
+ENGL 3159 Cont. Afri-Can. Lit         001 99905 05   M   W   F     1200 1250 ED 4011  LEC   IP                  Y Y  Y   Y                3    3  Primary - J Deshaye          
+ENGL 3200 Shakespeare                 001 96535 17     T   R       0900 1015 A  3020  LEC   IP                  Y Y  Y   Y                3    3  Primary - R Ormsby           
+ENGL 3819 The Gothic                  001 99907 07   M   W   F     1400 1450 SN 2067  LEC   IP                  Y Y  Y   Y                3    3  Primary - D Loman            
+ENGL 3843 Introduction to Comics      001 96542 03   M   W   F     1000 1050 SN 2064  LEC   IP                  Y Y  Y   Y                3    3  Primary - D Loman            
+ENGL 3846 Special Topics              056 99909 31     T           1900 2130 A  3033  LEC   IP                  N N  Y   Y                3    3  Primary - L Moore            
+                                          Admission by portfolio submission.                                                                                                   
+ENGL 3906 Intro Creative Wrtng:Oral S 001 99910            R       1300 1530 C  4002  LEC   IP                  N N  Y   N                3    3  Primary - M Porter           
+                                          Admission by portfolio submission.                                                                                                   
+ENGL 4101 Critical Theory II          001 88998 07   M   W   F     1400 1450 A  3018  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - D Farquharson      
+                                          RESERVED  FOR: DEGREE BAH                                                                                                            
+                                                         MAJOR  ENGL                                                                                                           
+                                          Course is restricted to specific programs.                  Restricted to Honours students only.                                     
+ENGL 4272 Tpcs Contemporary Amer Lit  001 99912 04   M   W   F     1100 1150 A  3018  SEM   IP                  Y Y  Y   Y                3    3  Primary - C Lockett          
+ENGL 4400 Directing                   056 96555 G36  M   W         2030 2145 A  3017  LEC   IP                  Y Y  Y   Y                3    3  Primary - R Lawrence                                                                                                                     
+ENGL 4822 Cdn Lit: Making it New      001 20641 03   M   W   F     1000 1050 A  3018  LEC   IP                  Y Y  Y   Y                3    3  Primary - J Deshaye          
+ENGL 4900 Book History & Print Cultur 001 99916 19     T   R       1400 1515 A  3018  LEC   IP                  Y Y  Y   Y                3    3  Primary - A Juhasz-Orms      
+ENGL 4910 Adv Creative Writing:Fictio 056 99918 32       W         1900 2130 A  3033  LEC   IP                  N N  Y   N                3    3  Primary - L Moore

@@ -1,0 +1,24 @@
+Subject: History                       
+
+HIST 1005 CRW Indigenous Studies      001 89262 04   M   W   F     1100 1150 A  2071  LEC   IP                  Y Y  Y   N                3    3  Primary - J Van Den Sco      
+                                          CROSS LISTED:    ARCH 1005-001                                                                                                       
+HIST 1010 CRW: The Americas           001 99718 03   M   W   F     1000 1050 A  1049  LEC   IP                  Y Y  Y   N        R       3    3  Primary - S Cadigan          
+HIST 1011 CRW: Modern Europe          001 99720 02   M   W   F     0900 0950 A  3020  LEC   IP                  Y Y  Y   N        R       3    3  Primary - S Lawrence         
+HIST 1013 CRW: Canada                 001 98198 03   M   W   F     1000 1050 A  2065  LEC   IP                  Y Y  Y   N                3    3  Primary - S Eaton            
+HIST 2130 Seafarng Place&Seafarng Peo 001 99726 05   M   W   F     1200 1250 SN 2036  LEC   IP                  Y Y  Y   N                3    3  Primary - S Cadigan          
+HIST 2210 Canadian History since 1867 001 96582 07   M   W   F     1400 1450 SN 3042  LEC   IP                  Y Y  Y   N                3    3  Primary - J Sandlos          
+HIST 2330 Med Eur Since Eleventh Cent 001 99736 04   M   W   F     1100 1150 SN 3042  LEC   IP                  Y Y  Y   N                3    3  Primary - S Rossignol        
+                                          CROSS LISTED:    MEMS 2002-001                                                                                                       
+HIST 2600 History of the USA to 1865  001 99724 06   M T   R       1300 1350 A  2071  LEC   IP                  Y Y  Y   N                3    3  Primary - J Stryker          
+HIST 2800 Indigenous Peoples/Colonial 001 96584 07   M   W   F     1400 1450 SN 3058  LEC   IP                  Y Y  Y   N                3    3  Primary - J Van Den Sco      
+HIST 3120 Modern Nfld Since 1815      001 99738 03   M   W   F     1000 1050 SN 2067  LEC   IP                  Y Y  Y   N                3    3  Primary - K Korneski         
+HIST 3270 Christianity & Roman Empire 001 99838 18     T   R       1030 1145 A  1046  LEC   IP                  Y Y  Y   N                3    3  Primary - C Lougheed         
+                                          CROSS LISTED:    CLAS 3270-001 MEMS 3270-001 RELS 3270-001                                                                           
+HIST 3525 Indigenous History from 176 001 90343 14   M   W         1530 1645 A  1049  LEC   IP                  Y Y  Y   N                3    3  Primary - J Van Den Sco      
+                                          CROSS LISTED:    ARCH 3525-001                                                                                                       
+HIST 3780 Women/Medieval Europe 500-1 001 99740 08   M   W   F     1500 1550 C  4002  LEC   IP                  Y Y  Y   N                3    3  Primary - S Rossignol        
+HIST 3790 US History Films 1895-1945  001 99742 20     T   R       1530 1645 A  1045  LEC   IP                  Y Y  Y   N                3    3  Primary - D Bregent-Hea                                                                                                
+HIST 4212 The North American Frontier 001 94263 13   M   W         1400 1515 A  4004  LEC   IP                  Y Y  Y   N                3    3  Primary - K Korneski         
+HIST 4216 Tpcs in US Cultural History 001 99745 11   M   W         1030 1145 A  4004  LEC   IP                  Y Y  Y   N                3    3  Primary - D Bregent-Hea      
+HIST 4231 Topics Nfld&Lab Hist II     001 99749 18     T   R       1030 1145 A  4004  LEC   IP                  Y Y  Y   N                3    3                               
+HIST 4568 Holocaust in Hist Perspecti 001 99747 11   M   W         1030 1145 EN 1003  LEC   IP                  Y Y  Y   N                3    3  Primary - J Murphy 
