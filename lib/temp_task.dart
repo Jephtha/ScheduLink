@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-class TempTask{
+class TempTask {
   String name;
   String courseName;
   String description;
@@ -8,5 +8,6 @@ class TempTask{
   int priority;
   bool isComplete;
 
-  TempTask(this.name, this.courseName, this.description, this.dueDate, this.priority, this.isComplete);
+  TempTask(this.name, this.courseName, this.description, this.dueDate,
+      this.priority, this.isComplete);
 }
