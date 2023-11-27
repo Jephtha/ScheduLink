@@ -1,0 +1,13 @@
+Subject: Archaeology                   
+
+ARCH 1005 CRW Indigenous Studies      001 89260 04   M   W   F     1100 1150 A  2071  LEC   IP                  Y Y  Y   N                3    3  Primary - J Van Den Sco      
+                                          CROSS LISTED:    HIST 1005-001                                                                                                       
+ARCH 2450 Principles of Archlgcl Scie 001 97584 13   M   W         1400 1515 QC 2013  LEC   IP                  Y Y  Y   N                3    3  Primary - P Ledger           
+ARCH 3290 First Peoples of NL & Lab   001 98672 14   M   W         1530 1645 QC 2013  SEM   IP                  Y Y  Y   Y                3    3  Primary - J Hogan            
+                                          Course being taught remotely from Labrador campus.                                                                                   
+ARCH 3525 Indigenous History from 176 001 92789 14   M   W         1530 1645 A  1049  LEC   IP                  Y Y  Y   N                3    3  Primary - J Van Den Sco      
+                                          CROSS LISTED:    HIST 3525-001                                                                                                       
+ARCH 3651 Arch of Explor/Inter/Settle 001 99728 11   M   W         1030 1145 QC 2013  LEC   IP                  Y Y  Y   Y                3    3  Primary - C Losier           
+ARCH 3682 Studies Archaeology & Prehi 001 99730 45           F     0900 1150 C  3053  SEM   IP                  Y Y  Y   Y                3    3  Primary - L da Costa Ma      
+ARCH 3688 Coastal Archaeology         001 99732 23     T   R       1230 1345 QC 2013  LEC   IP                  Y Y  Y   Y                3    3  Primary - N Leclerc          
+ARCH 4411 Archaeological Theory       001 70957 18     T   R       1030 1145 QC 2013  SEM   IP                  Y D  Y   Y    Y           3    3  Primary - P Whitridge 

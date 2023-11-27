@@ -1,0 +1,33 @@
+Subject: Anthropology                  
+
+ANTH 1031 Introduction to Anthropolog 001 81797 20     T   R       1530 1645 C  3033  LEC   IP                  Y Y  Y   N                3    3  Primary - K Gordon           
+                                      002 99707 18     T   R       1030 1145 A  1043  LEC   IP                  Y Y  Y   N                3    3  Primary - A Seto             
+ANTH 2413 Culture, Soc & Globalizatio 001 92013 19     T   R       1400 1515 C  2033  LEC   IP                  Y Y  Y   N    Y           3    3  Primary - K Gordon           
+                                          RESERVED  FOR: MAJOR  ANTH                                                                                                           
+                                                         MINOR         ANTH                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+ANTH 2414 Indigenous Peoples North Am 001 20127 10   M   W         0900 1015 QC 4028  LEC   IP                  Y Y  Y   N    Y   W       3    3  Primary - C Tytelman         
+                                          RESERVED  FOR: MAJOR  ANTH                                                                                                           
+                                                         MINOR         ANTH                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+ANTH 2415 Anthropology of Food        001 99710 11   M   W         1030 1145 QC 4028  LEC   IP                  Y Y  Y   N    Y           3    3  Primary - C Tytelman         
+                                          RESERVED  FOR: MAJOR  ANTH                                                                                                           
+                                                         MINOR         ANTH                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+ANTH 3061 Cult & Social Inequality    001 98184 63       W         1400 1650 QC 4001  SEM   IP                  Y Y  Y   N    Y           3    3  Primary - J Clark            
+                                          RESERVED  FOR: MAJOR  ANTH                                                                                                           
+                                                         MINOR         ANTH                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+ANTH 3404 Visual Anthropology         002 99167 71   M             1500 1750 QC 4028  SEM   IP                  Y Y  Y   N    Y           3    3  Primary - D Castro           
+                                          RESERVED  FOR: MAJOR  ANTH                                                                                                           
+                                                         MINOR         ANTH                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+ANTH 4073 Studies in Underclass Life  001 98186 51   M             1200 1450 QC 4001  SEM   IP                  Y Y  Y   N    Y           3    3  Primary - J Clark            
+                                          RESERVED  FOR: MAJOR  ANTH                                                                                                           
+                                                         MINOR         ANTH                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+ANTH 4412 Contemp Theory in Anthropol 002 98868 72     T           1500 1750 QC 4028  SEM   IP                  Y Y  Y   N    Y           3    3  Primary - S Roseman          
+                                          RESERVED  FOR: MAJOR  ANTH                                                                                                           
+                                                         MINOR         ANTH                                                                                                    
+                                          Course is restricted to specific programs.                                                                                           
+ANTH 6089 Anth of Underclass Life     002 99704 64         R       1400 1650 QC 4001  SEM   IP                  Y N  Y   N    N           3    3  Primary - J Clark 

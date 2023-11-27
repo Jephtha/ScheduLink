@@ -1,0 +1,12 @@
+Subject: Linguistics                   
+
+LING 1100 Intro to Linguistics        001 66840 05   M   W   F     1200 1250 SN 2098  LEC   IP                  Y Y  Y   N                3    3  Primary - S Ulfsbjornin      
+LING 1103 Intro Ling Analysis: Syntax 001 67583 04   M   W   F     1100 1150 SN 2098  LEC   IP                  Y Y  Y   N                3    3  Primary - P Branigan         
+LING 1104 Intro Ling Analysis: Phonol 001 67584 03   M   W   F     1000 1050 ED 3030  LEC   IP                  Y Y  Y   N                3    3  Primary - S Ulfsbjornin      
+LING 3104 Phonetics                   001 99714 06   M T   R       1300 1350 C  3053  LEC   IP                  Y Y  Y   Y                3    3  Primary - S Mackenzie        
+LING 3951 Lang Endgrmnt & Revitalizat 001 99716 17     T   R       0900 1015 SN 3060  LEC   IP                  Y Y  Y   N                3    3  Primary - N Welch            
+LING 4100 Morphosyntactic Analysis    001 99712 07   M   W   F     1400 1450 C  2033  LEC   IP                  Y Y  Y   Y                3    3  Primary - P Branigan         
+                                          Cross-Listed with LING 6100-001                                                                                                      
+LING 4203 Advanced Phonology          001 98024 18     T   R       1030 1145 SN 3058  LEC   IP                  Y Y  Y   Y                3    3  Primary - S Ulfsbjornin      
+                                          Cross-Listed with LING 6203-001                                                                                                      
+LING 4500 Introduction to Field Metho 001 90574 19     T   R       1400 1515 SN 3060  LEC   IP                  Y Y  Y   Y    N           3    3  Primary - N Welch  

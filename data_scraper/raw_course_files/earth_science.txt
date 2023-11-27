@@ -1,0 +1,38 @@
+Subject: Earth Sciences                
+
+EASC 1000 Earth Systems               001 96607 02   M   W   F     0900 0950 ER 3010B LEC   IP      003 005 004 Y Y  Y   Y                3    3  Primary - S Denyszyn    D Mci
+                                      002 65929 05   M   W   F     1200 1250 ER 3010B LEC   IP      003 005 004 Y Y  Y   Y                3    3  Primary - T Cheng       E Thi
+EASC 1000 Laboratory                  003 71335 61   M             1400 1650 ER 3006A LAB   IP      001 002     Y Y  N   N                0   NA  Primary - A Haley            
+                                      004 71342 44         R       0900 1150 ER 3006A LAB   IP      001 002     Y Y  N   N                0   NA  Primary - A Haley            
+                                      005 96608 64         R       1400 1650 ER 3006  LAB   IP      001 002     Y Y  N   N                0   NA  Primary - A Haley            
+EASC 1002 Cncpts/Mthds in Earth Scien 001 65283 04   M   W   F     1100 1150 ER 3010B LEC   IP      003 002     Y Y  Y   Y                3    3  Primary - S Deemer           
+EASC 1002 Laboratory                  002 65940 62     T           1400 1650 ER 3006  LAB   IP      001         Y Y  N   N                0   NA  Primary - A Haley            
+                                      003 96609 63       W         1400 1650 ER 3006  LAB   IP      001         Y Y  N   N                0   NA  Primary - A Haley            
+EASC 2031 Mineralogy & Petrography    001 60630 17     T   R       0900 1015 ER 3007C LEC   IP      002         Y Y  Y   Y                3    3  Primary - A Indares          
+EASC 2031 Laboratory                  002 97601 62     T           1400 1650 ER 3007B LAB   IP      001         Y Y  N   N                0   NA  Primary - A Indares          
+EASC 2100 Sub GeoSc for Env and Hum C 001 20585 05   M   W   F     1200 1250 ER 3005B LEC   IP                  Y Y  Y   Y                3    3  Primary - J Welford     A Lei
+EASC 2401 Structural Geology          001 72181 04   M   W   F     1100 1150 ER 3005B LEC   IP      002         Y Y  Y   Y                3    3  Primary - E Thiessen         
+EASC 2401 Laboratory                  002 97602 65           F     1400 1650 ER 3005B LAB   IP      001         Y Y  N   N                0   NA  Primary - E Thiessen         
+EASC 2919 Introduction to Marine Geol 002 98847 02   M   W   F     0900 0950 A  3017  LEC   IP                  Y Y  Y   Y                3    3                               
+                                          CROSS LISTED:    OCSC 2200-002                                                                                                       
+EASC 3055 Thrmdynmcs/Metamorphic Petr 001 99931 04   M   W   F     1100 1150 ER 3007C LEC   IP      002         Y Y  Y   Y                3    3  Primary - A Indares          
+EASC 3055 Laboratory                  002 99932 65           F     1400 1650 ER 3007B LAB   IP      001         Y Y  Y   N                0   NA  Primary - A Indares          
+EASC 3170 Geophys for Nat Resource Se 001 67736 18     T   R       1030 1145 ER 3005B LEC   IP      002         Y Y  Y   Y                3    3  Primary - A Malcolm          
+EASC 3170 Laboratory                  002 97603 64         R       1400 1650 ER 3005B LAB   IP      001         Y Y  N   N                0   NA  Primary - A Malcolm          
+EASC 3179 Math Mthds for Geophysics   001 61453 03   M   W   F     1000 1050 ER 3005B LEC   IP      002         Y Y  Y   Y                3    3  Primary - C Farquharson A Mal
+EASC 3179 Laboratory                  002 97604 63       W         1400 1650 ER 3005  LAB   IP      001         Y Y  N   N                0   NA  Primary - C Farquharson A Mal
+EASC 3610 Hydrogeology                001 84853 02   M   W   F     0900 0950 ER 3005B LEC   IP      002         Y Y  Y   Y                3    3  Primary - T Cheng            
+EASC 3610 Laboratory                  002 97605 61   M             1400 1650 ER 3010B LAB   IP      001         Y Y  N   N                0   NA  Primary - T Cheng            
+EASC 3811 Paleontology                001 92377 03   M   W   F     1000 1050 ER 3009B LEC   IP      002         Y Y  Y   Y                3    3  Primary - H Corlett          
+                                          CROSS LISTED:    BIOL 3811-001                                                                                                       
+EASC 3811 Laboratory                  002 97609 63       W         1400 1650 ER 3010B LAB   IP      001         Y Y  N   N                0   NA  Primary - H Corlett          
+EASC 4171 Exploration Geophys III     001 60643 03   M   W   F     1000 1050 ER 4054  LEC   IP      002         Y Y  Y   Y                3    3  Primary - J Welford          
+EASC 4171 Laboratory                  002 97614 63       W         1400 1650 ER 4042  LAB   IP      001         Y Y  N   N                0   NA  Primary - J Welford          
+EASC 4173 Adv Elec/Electmgntc&Pot Fld 001 63337 18     T   R       1030 1145 ER 4054  LEC   IP      002         Y Y  Y   Y                3    3  Primary - C Farquharson      
+EASC 4173 Laboratory                  002 97615 64         R       1400 1650 ER 4042  LAB   IP      001         Y Y  N   N                0   NA  Primary - C Farquharson      
+EASC 4211 Economic Geology            001 95070 02   M   W   F     0900 0950 ER 4054  LEC   IP      002         Y Y  Y   Y                3    3  Primary - J Jamieson         
+EASC 4211 Laboratory                  002 97616 61   M             1400 1650 ER 3005B LAB   IP      001         Y Y  N   N                0   NA  Primary - J Jamieson         
+EASC 4502 Advanced Geochemistry       001 97618 17     T   R       0900 1015 ER 3005B LEC   IP      002         Y Y  Y   Y                3    3  Primary - M Babechuk         
+EASC 4502 Laboratory                  002 97619 62     T           1400 1650 ER 3005B LAB   IP      001         Y Y  N   N                0   NA  Primary - M Babechuk         
+EASC 4702 Laboratory                  002 97620 64         R       1400 1650 ER 3007C LAB   IP      003         Y Y  N   N                0   NA  Primary - L Beranek          
+EASC 4702 Sediment Basins&Hydrocarbon 003 98760 18     T   R       1030 1145 ER 3007C LEC   IP      002         Y Y  Y   Y                3    3  Primary - L Beranek 
