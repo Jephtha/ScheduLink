@@ -44,6 +44,10 @@ dependencies:
   flutter_to_pdf: ^0.1.1
   screenshot: ^2.1.0
   open_file: ^3.3.2
+  cloud_firestore: ^4.13.2
+  firebase_auth: ^4.14.1
+  firebase_ui_auth: ^1.10.0
+  firebase_storage: ^11.5.2
 
 dev_dependencies:
   flutter_test:
