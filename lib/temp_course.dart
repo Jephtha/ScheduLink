@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Course {
+class TempCourse {
   String name;
   int section;
   String description;
@@ -8,5 +8,5 @@ class Course {
   List<List<int>> classSections;
   Color color;
 
-  Course(this.name, this.section, this.description, this.location, this.classSections, this.color);
+  TempCourse(this.name, this.section, this.description, this.location, this.classSections, this.color);
 }

@@ -25,3 +25,10 @@ doc/api/
 
 .flutter-plugins
 .flutter-plugins-dependencies
+
+.DS_Store
+.idea/.DS_Store
+android/.DS_Store
+ios/.DS_Store
+ios/Podfile
+ios/Podfile.lock
