@@ -1,41 +1,40 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Course {
-  final String? id;
-  final String name;
-  final DateTime startTime;
-  final DateTime endTime;
+  final String subject;
+  final String course;
   final String description;
-  final List<String> userIds;
+  final String section;
+  final String crn;
+  final String slot;
+  final String daysOfWeek;
+  final String startTime;
+  final String endTime;
+  final String location;
 
-  Course({
-    this.id,
-    required this.name,
+  const Course({
+    required this.subject,
+    required this.course,
+    required this.description,
+    required this.section,
+    required this.crn,
+    required this.slot,
+    required this.daysOfWeek,
     required this.startTime,
     required this.endTime,
-    required this.description,
-    required this.userIds,
+    required this.location,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': name,
-      'startTime': startTime,
-      'endTime': endTime,
-      'description': description,
-      'userIds': userIds
-    };
-  }
-
-  static Course fromMap(DocumentSnapshot doc) {
-    Map<String, dynamic> map = doc.data() as Map<String, dynamic>;
+  factory Course.fromJson(Map<String, dynamic> json) {
     return Course(
-      id: doc.id,
-      name: map['description'] ?? '',
-      startTime: map['startTime'].toDate() ?? DateTime.now(),
-      endTime: map['endTime'].toDate() ?? DateTime.now(),
-      description: map['description'] ?? '',
-      userIds: map['userIds'] ?? [],
+      subject: json['subject'] as String ?? '',
+      course: json['course'] as String ?? '',
+      description: json['description'] as String ?? '',
+      section: json['section'] as String ?? '',
+      crn: json['crn'] as String ?? '',
+      slot: json['slot'] as String ?? '',
+      daysOfWeek: json['daysOfWeek'] as String ?? '',
+      startTime: json['startTime'] as String ?? '',
+      endTime: json['endTime'] as String ?? '',
+      location: json['location'] as String ?? '',
     );
   }
 }

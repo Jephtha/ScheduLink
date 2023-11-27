@@ -4,8 +4,7 @@ class UserInfo {
   final String? id;
   final String profileImg;
   final String contactInfo;
-  //final List<String>? userCourses;
-  final Map<String, dynamic>? userCourses;
+  final List<String>? userCourses;
 
   UserInfo({
     this.id,
@@ -18,17 +17,17 @@ class UserInfo {
     return {
       'profileImg': profileImg,
       'contactInfo': contactInfo,
-      'userCourses': userCourses ?? {}
+      'userCourses': userCourses ?? []
     };
   }
 
-  UserInfo fromMap(DocumentSnapshot doc) {
+  static UserInfo fromMap(DocumentSnapshot doc) {
     Map<String, dynamic> map = doc.data() as Map<String, dynamic>;
     return UserInfo(
       id: doc.id,
       profileImg: map['profileImg'] ?? '',
       contactInfo: map['contactInfo'] ?? '',
-      userCourses: map['userCourses'] ?? {},
+      userCourses: map['userCourses'].cast<String>() ?? [],
     );
   }
 }
