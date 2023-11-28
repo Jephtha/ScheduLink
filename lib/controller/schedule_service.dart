@@ -46,30 +46,29 @@ class ScheduleService {
   }
 
   Future<List<String>> getCourseUserList(String id) async {
-   final DocumentSnapshot doc = await courseCollection.doc(id).get();
-   if (doc.exists) {
-     print("yes");
-     return CourseUserList.fromMap(doc).userIds!;
-   }
-   else {
-     CourseUserList u = CourseUserList(id: id);
-     await courseCollection.doc(id).set(u.toMap());
-     print("no");
-     return [];
-   }
+    final DocumentSnapshot doc = await courseCollection.doc(id).get();
+    if (doc.exists) {
+      print("yes");
+      return CourseUserList.fromMap(doc).userIds!;
+    }
+    else {
+       CourseUserList u = CourseUserList(id: id);
+       await courseCollection.doc(id).set(u.toMap());
+       print("no");
+       return [];
+     }
   }
 
-  Future<String> addUser2Course(String course, String user) async {
-    // CourseUserList cl = await getCourseUserList(course);
-    // List<String> users = cl.userIds!;
-    List<String> users = await getCourseUserList(course);
+  Future<String> addUser2Course(String course, String section, String user) async {
+    String courseId = "$course-$section";
+    List<String> users = await getCourseUserList(courseId);
     if (!users.contains(user)) {
       users.add(user);
     }
     else {
       return "failure";
     }
-    CourseUserList courseusers = CourseUserList(id: course, userIds: users);
+    CourseUserList courseusers = CourseUserList(id: courseId, userIds: users);
     await addUserListToCourse(courseusers);
     return "success";
   }
@@ -100,11 +99,12 @@ class ScheduleService {
         .then((value) => UserInfo.fromMap(value));
   }
 
-  Future<String> addCourse2User(String course) async {
+  Future<String> addCourse2User(String course, String section) async {
     UserInfo userInfo = await getUserCourseList();
     List<String> courses = userInfo.userCourses!;
-    if (!courses.contains(course)) {
-      courses.add(course);
+    String courseId = "$course-$section";
+    if (!courses.contains(courseId)) {
+      courses.add(courseId);
     }
     else {
       return "failure";
@@ -114,10 +114,11 @@ class ScheduleService {
     return "success";
   }
 
-  Future<void> removeCourseFromUser(String course) async {
+  Future<void> removeCourseFromUser(String course, String section) async {
     UserInfo userInfo = await getUserCourseList();
     List<String> courses = userInfo.userCourses!;
-    courses.remove(course);
+    String courseId = "$course-$section";
+    courses.remove(courseId);
     await addCoursesList2User(courses);
   }
 
