@@ -36,10 +36,6 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
     setState(() => selectedStatusValue = value);
   }
 
-  static const String MIN_DATETIME = '2010-05-15 00:00:00';
-  static const String MAX_DATETIME = '2024-12-31 00:00:00';
-  static const String DATE_FORMAT = 'yyyy-MM-dd';
-
   Future<void> _addDeadline() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
@@ -49,7 +45,7 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
 
       await scheduleService.addDeadline(newDeadline);
 
-      Navigator.of(context).pop();
+      //Navigator.of(context).pop();
 
     }
   }
@@ -233,7 +229,10 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
               SizedBox(height: 30,),
               Center(
                 child: ElevatedButton(
-                  onPressed: _addDeadline,
+                  onPressed: () {
+                    _addDeadline;
+                    Navigator.of(context).pop();
+                  },
                   child: Text('Save'),
                 ),
               ),
