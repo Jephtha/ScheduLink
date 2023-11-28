@@ -52,6 +52,8 @@ dependencies:
   firebase_storage: ^11.5.2
   firebase_core: ^2.23.0
   http: ^1.1.0
+  choice: ^2.3.0
+  bottom_picker: ^2.3.2
 
 dev_dependencies:
   flutter_test:

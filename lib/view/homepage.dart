@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'schedule.dart';
 import 'task_list.dart';
+import 'add_deadline_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -52,7 +54,10 @@ class _HomePageState extends State<HomePage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           fixedSize: const Size(150, 180)),
-                      onPressed: () {},
+                      onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddDeadlineView()),
+                      ),
                       child: const Text('Add Task',
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 20)),
