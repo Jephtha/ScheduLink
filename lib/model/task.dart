@@ -43,37 +43,3 @@ class DeadlineTask {
     );
   }
 }
-
-// class CourseTask {
-//   final String id;
-//   final String name;
-//   final DateTime startTime;
-//   final DateTime endTime;
-//   final String description;
-//
-//   CourseTask({
-//     required this.id,
-//     required this.name,
-//     required this.startTime,
-//     required this.endTime,
-//     required this.description,
-//   });
-//
-//   Map<String, dynamic> toMap() {
-//     return {
-//       'startTime': startTime,
-//       'endTime': endTime,
-//       'description': description,
-//     };
-//   }
-//
-//   static CourseTask fromMap(Map<dynamic, dynamic> map) {
-//     return CourseTask(
-//       id: map['id'] ?? '',
-//       name: map['name'] ?? '',
-//       startTime: map['startTime'].toDate() ?? DateTime.now(),
-//       endTime: map['endTime'].toDate() ?? DateTime.now(),
-//       description: map['description'] ?? '',
-//     );
-//   }
-// }

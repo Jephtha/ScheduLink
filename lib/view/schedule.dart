@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:schedulink/temp_course.dart';
+import 'temp_course.dart';
 import 'package:time_planner/time_planner.dart';
 import 'package:pdf/widgets.dart' as pw;
 

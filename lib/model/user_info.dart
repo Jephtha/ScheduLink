@@ -4,30 +4,30 @@ class UserInfo {
   final String? id;
   final String profileImg;
   final String contactInfo;
-  final List<String>? courseTasks;
+  final List<String>? userCourses;
 
   UserInfo({
     this.id,
     required this.profileImg,
     required this.contactInfo,
-    this.courseTasks,
+    this.userCourses,
   });
 
-  Map<String, dynamic> toMap() {
+   Map<String, dynamic> toMap() {
     return {
       'profileImg': profileImg,
       'contactInfo': contactInfo,
-      'courseTasks': courseTasks ?? []
+      'userCourses': userCourses ?? []
     };
   }
 
-  UserInfo fromMap(DocumentSnapshot doc) {
+  static UserInfo fromMap(DocumentSnapshot doc) {
     Map<String, dynamic> map = doc.data() as Map<String, dynamic>;
     return UserInfo(
       id: doc.id,
       profileImg: map['profileImg'] ?? '',
       contactInfo: map['contactInfo'] ?? '',
-      courseTasks: map['courseTasks'] ?? [],
+      userCourses: map['userCourses'].cast<String>() ?? [],
     );
   }
 }

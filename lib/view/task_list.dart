@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:schedulink/temp_task.dart';
+import 'temp_task.dart';
 
 class TaskList extends StatefulWidget {
   const TaskList({super.key});

@@ -1,17 +1,13 @@
 import json
 import pandas as pd
-from os import listdir
-from os.path import isfile, join
+from os import getcwd
 from glob import glob
-from openpyxl import load_workbook
-
-# deleted rows in excel: classics, business_admin, 
-# deleted rows in source txt: cs, history
 
 columns = ['course', 'description', 'section', 'crn', 'slot',
            'daysOfWeek', 'startTime', 'endTime', 'location']
 
 jason = {}
+courses = []
 header = ''
 course = ''
 description = ''
@@ -29,19 +25,19 @@ secondary_description = ''
 
 
 def main():
+    directory = getcwd()
     # Get all files and directories ending with .txt and that don't begin with a dot
-    file_list = glob("/Users/jefang/Documents/mun/raw_course_files/*.txt")
-    #print(file_list)
-     
+    file_list = glob(directory + "/raw_course_files/*.txt")
+
     # write csv headers in output file
     with open('parsed_course_list.txt', 'w') as out:
         out.write('course, description, section, crn, slot, daysOfWeek, startTime, endTime, location\n')
-    
+
     for file in file_list:
         parse_txt(file)
         create_excel_sheet()
         reset_global_vars()
-    
+
     txt_to_json()
 
 def reset_global_vars():
@@ -56,7 +52,7 @@ def reset_global_vars():
     startTime = 0
     endTime = 0
     location = ''
-    
+
 def reset_sec_global_vars():
     global secondary_course, secondary_description
 
@@ -64,18 +60,19 @@ def reset_sec_global_vars():
     secondary_description = ''
 
 def txt_to_json():
-    global jason
-    
+    global jason, courses
+
+    jason = {"courses": courses}
     with open('courses.json', 'w', encoding='utf-8') as f:
         json.dump(jason, f, ensure_ascii=False, indent=4)
 
 def parse_txt(path):
-    global jason, header, course, description, section, crn, slot, daysOfWeek, startTime, endTime, location
+    global jason, courses, header, course, description, section, crn, slot, daysOfWeek, startTime, endTime, location
     global secondary_course, secondary_description
-              
+
     with open('test_output.txt', 'w') as out:
-        out.write('course, description, section, crn, slot, daysOfWeek, startTime, endTime, location\n') 
-              
+        out.write('course, description, section, crn, slot, daysOfWeek, startTime, endTime, location\n')
+
     with open(path, 'r') as file:
         lines = file.readlines()
         for line in lines:
@@ -83,20 +80,20 @@ def parse_txt(path):
             line.strip()
             item = line.split(" ")
             str_list = list(filter(None, item))
-            
+
             for i in range(len(str_list)):
                 if str_list[i].isdigit() : str_list[i] = int(str_list[i])
                 if str_list[i] == '\n': str_list.pop(i)
-            
-            if not str_list: continue    
-            
+
+            if not str_list: continue
+
             iterate = True
             iterator = iter(str_list)
-            
+
             while iterate == True:
                 first = next(iterator)
                 second = next(iterator)
-                
+
                 if (isinstance(first, str)):
                     reset_sec_global_vars
                     if 'Subject' in first:
@@ -104,28 +101,26 @@ def parse_txt(path):
                         header += " "
                         maybe = next(iterator, None)
                         if maybe != None: header += maybe
-                        
-                        jason[header] = {}
+
                         iterate = False
                         break
                     elif (len(first) == 4 and isinstance(second, int)):
                         course = first + str(second)
                         nextelem = next(iterator)
-                        while isinstance(nextelem, str):   
+                        while isinstance(nextelem, str):
                             description += nextelem
                             description += " "
                             nextelem = next(iterator)
-                            
+
                         unsure = nextelem
                         if unsure > 10 and unsure != 56 and unsure != 57:
                             unsure = str(unsure)
                             description += unsure
-                            #print(unsure)
                             section = str(next(iterator)).zfill(3)
                         else:
                             section = str(unsure).zfill(3)
                         crn = next(iterator)
-                    else: 
+                    else:
                         iterate = False
                         break
                 elif (isinstance(first, int)):
@@ -137,11 +132,11 @@ def parse_txt(path):
                         description = secondary_description
                         section = str(first).zfill(3)
                         crn = second
-    
+
                 else:
                     iterate = False
                     break
-                
+
                 nextelem = next(iterator)
                 if isinstance(nextelem, int):
                     slot = nextelem
@@ -156,28 +151,22 @@ def parse_txt(path):
                             nextelem = next(iterator)
                         daysOfWeek += nextelem
                         nextelem = next(iterator)
-                
-                #nextelem = next(iterator)
-                # while isinstance(nextelem, str):
-                #     daysOfWeek += nextelem
-                #     nextelem = next(iterator)
-                    
+
                 startTime = str(nextelem).zfill(4)
                 endTime = str(next(iterator)).zfill(4)
-                
+
                 first_loc = next(iterator)
                 if "CSF" not in first_loc and "IIC" not in first_loc:
                     location += first_loc
                     location += str(next(iterator))
                 else:
                     location += first_loc
-        
-        
+
+
                 description = str(description).replace(',', '')
-                #print(description)
                 secondary_course = course
                 secondary_description = description
-            
+
                 with open('parsed_course_list.txt', 'a') as out:
                     out.write(course + ",")
                     out.write(description + ",")
@@ -188,9 +177,9 @@ def parse_txt(path):
                     out.write(str(startTime) + ",")
                     out.write(str(endTime) + ",")
                     out.write(location + ",")
-                    out.write("\n") 
-                    
-                with open('test_output.txt', 'a') as out:  
+                    out.write("\n")
+
+                with open('test_output.txt', 'a') as out:
                     out.write(course + ",")
                     out.write(description + ",")
                     out.write(str(section) + ",")
@@ -201,36 +190,33 @@ def parse_txt(path):
                     out.write(str(endTime) + ",")
                     out.write(location + ",")
                     out.write("\n")
-                
+
                 data = {
+                    "subject": header.strip(),
                     "course": course,
-                    "description": description,
+                    "description": description.strip(),
                     "section": section,
-                    "crn": crn,
-                    "slot": slot,
+                    "crn": str(crn),
+                    "slot": str(slot),
                     "daysOfWeek": daysOfWeek,
                     "startTime": startTime,
                     "endTime": endTime,
                     "location": location
                 }
-                
-                #print(data)
-                #print(description)
-                
-                jason[header][course] = data        
-            
+
+                courses.append(data)
+
 
 def create_excel_sheet():
     global header
     df = pd.read_csv('test_output.txt', sep=",", header=0, index_col=False)
     df.columns = columns
-    df['section'] = df['section'].apply(str).apply(lambda x: x.zfill(3)) #.str.zfill(3)
-    df['startTime'] = df['startTime'].apply(str).apply(lambda x: x.zfill(4)) #.str.zfill(4)
-    df['endTime'] = df['endTime'].apply(str).apply(lambda x: x.zfill(4)) #.str.zfill(4)
-    #print(df.head(5))
-    
-    
-    with pd.ExcelWriter('course_list.xlsx', engine='openpyxl', mode='a', if_sheet_exists='replace') as writer:  
+    df['section'] = df['section'].apply(str).apply(lambda x: x.zfill(3))
+    df['startTime'] = df['startTime'].apply(str).apply(lambda x: x.zfill(4))
+    df['endTime'] = df['endTime'].apply(str).apply(lambda x: x.zfill(4))
+
+
+    with pd.ExcelWriter('course_list.xlsx', engine='openpyxl', mode='a', if_sheet_exists='replace') as writer:
         df.to_excel(writer, sheet_name=header)
 
 

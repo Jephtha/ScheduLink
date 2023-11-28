@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:schedulink/schedule.dart';
-import 'package:schedulink/task_list.dart';
+import 'schedule.dart';
+import 'task_list.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

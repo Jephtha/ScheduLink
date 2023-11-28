@@ -1,35 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:schedulink/homepage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'view/auth_gate.dart';
 
-void main() {
-  runApp(const MyApp());
+import '../model/course.dart';
+import '../controller/schedule_service.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // load course data before running App.
+  getCourses().then((value) {
+    print(value.length);
+    runApp(const MainApp());
+  });
+
+  // runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MainApp(),
-    );
-  }
+Future<List<Course>> getCourses() async{
+  ScheduleService scheduleService = ScheduleService();
+  return await scheduleService.fetchCourses();
 }
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
-
   @override
-  Widget build(BuildContext context) => MaterialApp(
-      title: 'Class Schedule',
-      theme: ThemeData(
-          useMaterial3: true,
-          colorScheme:
-              ColorScheme.fromSeed(seedColor: Colors.lightGreen.shade400)),
-      home: const HomePage());
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: AuthGate(),
+    );
+  }
 }
