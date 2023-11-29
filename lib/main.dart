@@ -3,8 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'view/auth_gate.dart';
 
-import '../model/course.dart';
-import '../controller/schedule_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
