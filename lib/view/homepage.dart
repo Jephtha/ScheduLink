@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'schedule.dart';
 import 'task_list.dart';
 import 'add_deadline_view.dart';
+import 'add_course_view.dart';
+
+import '../model/course.dart';
+import '../controller/schedule_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,6 +16,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  Future<List<Course>> getCourses() async {
+    ScheduleService scheduleService = ScheduleService();
+    return await scheduleService.fetchCourses();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,7 +55,17 @@ class _HomePageState extends State<HomePage> {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           fixedSize: const Size(150, 180)),
-                      onPressed: () {},
+                      onPressed: () {
+                        // load course data before opening page.
+                        getCourses().then((value) {
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context) => AddCourseView(courses: value,)),
+                          );
+                        });
+                        // Navigator.push(context, MaterialPageRoute(
+                        //     builder: (context) => AddCourseView()),
+                        // );
+                      },
                       child: const Text('Add Course',
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 20)),

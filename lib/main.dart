@@ -3,8 +3,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'view/auth_gate.dart';
 
-import '../model/course.dart';
-import '../controller/schedule_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,18 +11,17 @@ Future<void> main() async {
   );
 
   // load course data before running App.
-  getCourses().then((value) {
-    print(value.length);
-    runApp(const MainApp());
-  });
+  // getCourses().then((value) {
+  //   runApp(const MainApp());
+  // });
 
-  // runApp(const MainApp());
+  runApp(const MainApp());
 }
 
-Future<List<Course>> getCourses() async{
-  ScheduleService scheduleService = ScheduleService();
-  return await scheduleService.fetchCourses();
-}
+// Future<List<Course>> getCourses() async{
+//   ScheduleService scheduleService = ScheduleService();
+//   return await scheduleService.fetchCourses();
+// }
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});

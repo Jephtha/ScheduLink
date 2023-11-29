@@ -1238,18 +1238,6 @@
         },
         {
             "subject": "Classics",
-            "course": "CLAS3300",
-            "description": "Advanced Ancient Greek",
-            "section": "001",
-            "crn": "82927",
-            "slot": "99",
-            "daysOfWeek": "LECIPYYYY",
-            "startTime": "0003",
-            "endTime": "0003",
-            "location": "Primary-"
-        },
-        {
-            "subject": "Classics",
             "course": "CLAS4000",
             "description": "Seminar in Greek Hist/Socie",
             "section": "001",
@@ -1271,18 +1259,6 @@
             "startTime": "1300",
             "endTime": "1350",
             "location": "A2073"
-        },
-        {
-            "subject": "Classics",
-            "course": "CLAS4320",
-            "description": "Greek Lyric Poetry",
-            "section": "001",
-            "crn": "99865",
-            "slot": "99",
-            "daysOfWeek": "SEMIPYYYY",
-            "startTime": "0003",
-            "endTime": "0003",
-            "location": "Primary-"
         },
         {
             "subject": "Communication Studies",
@@ -2377,30 +2353,6 @@
             "location": "ED4034"
         },
         {
-            "subject": "Economics",
-            "course": "ECON4551",
-            "description": "Econometrics",
-            "section": "002",
-            "crn": "1",
-            "slot": "99214",
-            "daysOfWeek": "",
-            "startTime": "0013",
-            "endTime": "000M",
-            "location": "W1400"
-        },
-        {
-            "subject": "Economics",
-            "course": "ECON4551",
-            "description": "Econometrics",
-            "section": "1515",
-            "crn": "A",
-            "slot": "2071",
-            "daysOfWeek": "LECIPYYYY",
-            "startTime": "0003",
-            "endTime": "0003",
-            "location": "W1400Primary-"
-        },
-        {
             "subject": "English",
             "course": "ENGL1020",
             "description": "Writing Second Lang Stdnts",
@@ -2423,18 +2375,6 @@
             "startTime": "1400",
             "endTime": "1515",
             "location": "SN2041"
-        },
-        {
-            "subject": "English",
-            "course": "ENGL1020",
-            "description": "Writing Second Lang Stdnts",
-            "section": "003",
-            "crn": "98733",
-            "slot": "99",
-            "daysOfWeek": "LECRYYYN",
-            "startTime": "0003",
-            "endTime": "0003",
-            "location": "Primary-"
         },
         {
             "subject": "English",
