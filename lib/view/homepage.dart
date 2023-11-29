@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage> {
                       style: ElevatedButton.styleFrom(
                           fixedSize: const Size(150, 180)),
                       onPressed: () {
+                        // load course data before opening page.
                         getCourses().then((value) {
                           Navigator.push(context, MaterialPageRoute(
                               builder: (context) => AddCourseView(courses: value,)),

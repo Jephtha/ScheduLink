@@ -4,7 +4,7 @@ class UserInfo {
   final String? id;
   final String profileImg;
   final String contactInfo;
-  final List<String>? userCourses;
+  final List<Map<String, dynamic>>? userCourses;
 
   UserInfo({
     this.id,
@@ -27,7 +27,7 @@ class UserInfo {
       id: doc.id,
       profileImg: map['profileImg'] ?? '',
       contactInfo: map['contactInfo'] ?? '',
-      userCourses: map['userCourses'].cast<String>() ?? [],
+      userCourses: map['userCourses'].cast<Map<String, dynamic>>() ?? [],
     );
   }
 }

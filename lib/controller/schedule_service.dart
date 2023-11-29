@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide UserInfo;
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:firebase_storage/firebase_storage.dart';
 // import 'dart:io';
@@ -48,13 +49,11 @@ class ScheduleService {
   Future<List<String>> getCourseUserList(String id) async {
     final DocumentSnapshot doc = await courseCollection.doc(id).get();
     if (doc.exists) {
-      print("yes");
       return CourseUserList.fromMap(doc).userIds!;
     }
     else {
        CourseUserList u = CourseUserList(id: id);
        await courseCollection.doc(id).set(u.toMap());
-       print("no");
        return [];
      }
   }
@@ -86,7 +85,7 @@ class ScheduleService {
     });
   }
 
-  Future<void> addCoursesList2User(List<String> courseList) async {
+  Future<void> addCoursesList2User(List<Map<String, dynamic>> courseList) async {
     await userInfoDocument
         .set({'userCourses': courseList}, SetOptions(merge: true)).then((_) {
       print("success adding courses to user");
@@ -99,12 +98,15 @@ class ScheduleService {
         .then((value) => UserInfo.fromMap(value));
   }
 
-  Future<String> addCourse2User(String course, String section) async {
+  Future<String> addCourse2User(String course, String section, MaterialColor color) async {
     UserInfo userInfo = await getUserCourseList();
-    List<String> courses = userInfo.userCourses!;
+    List<Map<String, dynamic>> courses = userInfo.userCourses!;
     String courseId = "$course-$section";
-    if (!courses.contains(courseId)) {
-      courses.add(courseId);
+    if (!courses.any((element) => element['course'] == courseId)) {
+      courses.add({
+        "course": courseId,
+        "color": color
+      });
     }
     else {
       return "failure";
@@ -116,9 +118,9 @@ class ScheduleService {
 
   Future<void> removeCourseFromUser(String course, String section) async {
     UserInfo userInfo = await getUserCourseList();
-    List<String> courses = userInfo.userCourses!;
+    List<Map<String, dynamic>> courses = userInfo.userCourses!;
     String courseId = "$course-$section";
-    courses.remove(courseId);
+    courses.removeWhere((element) => element['course'] == courseId);
     await addCoursesList2User(courses);
   }
 

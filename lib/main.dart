@@ -13,18 +13,17 @@ Future<void> main() async {
   );
 
   // load course data before running App.
-  getCourses().then((value) {
-    print(value.length);
-    runApp(const MainApp());
-  });
+  // getCourses().then((value) {
+  //   runApp(const MainApp());
+  // });
 
-  // runApp(const MainApp());
+  runApp(const MainApp());
 }
 
-Future<List<Course>> getCourses() async{
-  ScheduleService scheduleService = ScheduleService();
-  return await scheduleService.fetchCourses();
-}
+// Future<List<Course>> getCourses() async{
+//   ScheduleService scheduleService = ScheduleService();
+//   return await scheduleService.fetchCourses();
+// }
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
