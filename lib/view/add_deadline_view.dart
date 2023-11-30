@@ -59,6 +59,13 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
           title: const Text(
             'Add Deadline',
           ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            tooltip: 'Back',
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
         ),
         body: Form(
           key: _formKey,

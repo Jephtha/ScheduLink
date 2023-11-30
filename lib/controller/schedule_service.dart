@@ -98,6 +98,30 @@ class ScheduleService {
         .then((value) => UserInfo.fromMap(value));
   }
 
+  Future<List<Map<Course, dynamic>>> getUserSchedule() async {
+
+    UserInfo userInfo = await getUserCourseList();
+    List<Map<Course, dynamic>> userCourseList = [];
+
+    List<Map<String, dynamic>>? courses = userInfo.userCourses;
+    if(courses != null){
+      List<Course> fullCourseList = await fetchCourses();
+
+      for(var i=0; i < courses.length; i++){
+        for (var element in courses) {
+          String courseName = element['course'];
+          var color = element['color'];
+          Course course = fullCourseList.firstWhere(
+            (course) => "${course.course}-${course.section}".toLowerCase() == courseName.toLowerCase());
+          userCourseList.add({
+            course: color,
+            });
+        }
+      }
+    }
+    return userCourseList;
+  }
+
   Future<String> addCourse2User(String course, String section, MaterialColor color) async {
     UserInfo userInfo = await getUserCourseList();
     List<Map<String, dynamic>> courses = userInfo.userCourses!;

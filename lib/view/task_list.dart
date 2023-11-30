@@ -59,23 +59,41 @@ class _TaskListState extends State<TaskList> {
   ListTile createTask(TempTask task) {
     Color priorityColor = Colors.green;
     Color backgroundColor = Colors.white;
-    if (task.priority == 1) {
-      priorityColor = Colors.amber;
-    }
-    if (task.priority == 2) {
-      priorityColor = Colors.red;
-    }
-    if (task.isComplete) {
-      backgroundColor = Colors.grey.shade400;
+    if (task.priority == 1) { priorityColor = Colors.amber; }
+    if (task.priority == 2) { priorityColor = Colors.red; }
+    if (task.isComplete) { backgroundColor = Colors.grey.shade400; }
+
+        Text titleText = Text.rich(TextSpan(children: <TextSpan>[
+
+      // add flag for assignments due in < 24 hours
+      if (0 < task.dueDate.difference(DateTime.now()).inHours && task.dueDate.difference(DateTime.now()).inHours < 24 && !task.isComplete)
+        TextSpan(text: "DUE SOON!\n", style: TextStyle(color: Colors.red)),
+
+      // task name and course 
+      TextSpan(text: "${task.name} - ${task.courseName}", style: TextStyle(fontWeight: FontWeight.bold))]
+    ),);
+
+    // the "body" text - includes task due date and descrption 
+    Text taskText = Text.rich(TextSpan(
+      children: <TextSpan>[
+        TextSpan(text: "Due: ${DateFormat('LLLL').format(task.dueDate)} ${task.dueDate.day}, ${task.dueDate.year} at ${task.dueDate.hour}:${task.dueDate.minute}"),
+        if (task.description.isNotEmpty) 
+          TextSpan(text: "\n${task.description}"),]
+    ));
+
+    // highlight missed deadlines/overdue tasks  
+    if (DateTime.now().isAfter(task.dueDate) && !task.isComplete) {
+      backgroundColor = Colors.red.shade100;
     }
 
     return ListTile(
       tileColor: backgroundColor,
-      title: Text("${task.name} - ${task.courseName}"),
-      subtitle: Text(
-          "Due: ${DateFormat('LLLL').format(task.dueDate)} ${task.dueDate.day}, ${task.dueDate.year} at ${task.dueDate.hour}:${task.dueDate.minute}"),
-      trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-        Icon(Icons.warning, color: priorityColor),
+      title: titleText,
+      subtitle: taskText,
+      
+      leading: Icon(Icons.warning, color: priorityColor), // priority icon
+      
+      trailing: Row(mainAxisSize: MainAxisSize.min, children: [ // checkbox
         Checkbox(
           value: task.isComplete,
           onChanged: (bool? value) {
@@ -90,12 +108,13 @@ class _TaskListState extends State<TaskList> {
 }
 
 List<TempTask> getTaskList() {
-  final task1 = TempTask("Final Project", "CS1000", "Finish final project",
-      DateTime(2023, 12, 10, 23, 59), 3, false);
+  final task1 = TempTask("Final Project", "CS1000",
+  "Description of the task will go here. This is what it will look like if the user chooses to add a longer description or make more notes about a deadline",
+      DateTime(2023, 11, 10, 23, 59), 3, false);
   final task2 = TempTask("Review Notes", "Math1000", "Review notes for exam",
       DateTime(2023, 12, 08, 11, 59), 1, false);
   final task3 = TempTask("Online Quiz", "CS1001", "Do online quiz",
-      DateTime(2023, 12, 08, 23, 59), 2, false);
+      DateTime(2023, 11, 29, 23, 59), 2, false);
   late List<TempTask> tasksList = [task1, task2, task3];
   tasksList.sort((a, b) => a.dueDate.compareTo(b.dueDate));
   return tasksList;
