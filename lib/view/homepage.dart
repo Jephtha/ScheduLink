@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schedulink/model/task.dart';
 import 'package:schedulink/view/daily_timetable.dart';
 
 import 'schedule.dart';
@@ -11,21 +12,25 @@ import '../controller/schedule_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+  
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  ScheduleService scheduleService = ScheduleService();
 
   Future<List<Course>> getCourses() async {
-    ScheduleService scheduleService = ScheduleService();
     return await scheduleService.fetchCourses();
   }
 
   Future<List<Map<Course, dynamic>>> getScheduleInfo() async {
-    ScheduleService scheduleService = ScheduleService();
     return await scheduleService.getUserSchedule();
+  }
+
+  Future<List<DeadlineTask>> getDeadlineList() async {
+    return await scheduleService.getDeadlineTaskList();
   }
 
   @override
@@ -103,10 +108,11 @@ class _HomePageState extends State<HomePage> {
                     style: ElevatedButton.styleFrom(
                       fixedSize: const Size(180, 50)),
                     onPressed: () {
-                      Navigator.push(context,
-                        MaterialPageRoute(
-                          builder: (context) => const TaskList()),
-                      );
+                      getDeadlineList().then((value) {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => TaskList(userDeadlines: value,)),
+                        );
+                      });
                     },
                     child: const Text('Upcoming \nDue Dates',
                       textAlign: TextAlign.center,
