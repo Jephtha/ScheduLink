@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'schedule.dart';
@@ -32,19 +34,30 @@ class _HomePageState extends State<HomePage> {
               // ------- LOGOUT BUTTON
               leading: IconButton(
                 icon: const Icon(Icons.logout),
-                onPressed: () {/* logout */},
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  if (context.mounted) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<ProfileScreen>(
+                        builder: (context) => const ProfileScreen(),
+                      ),
+                    );
+                  }
+                },
               ),
               actions: [
                 // ------- PROFILE BUTTON
                 IconButton(
                   icon: const Icon(Icons.person),
-                  onPressed: () {/* view user profile */},
-                ),
-
-                // ------- MESSAGE BUTTON
-                IconButton(
-                  icon: const Icon(Icons.mail),
-                  onPressed: () {/* go to messages */},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<ProfileScreen>(
+                        builder: (context) => const ProfileScreen(),
+                      ),
+                    );
+                  }
                 ),
               ]),
           body: Center(

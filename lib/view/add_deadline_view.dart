@@ -46,7 +46,7 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
 
       await scheduleService.addDeadline(newDeadline);
 
-      Navigator.of(context).pop();
+      if (context.mounted) Navigator.of(context).pop();
 
     }
     else {
