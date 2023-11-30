@@ -14,7 +14,7 @@ class AddDeadlineView extends StatefulWidget {
 }
 
 class _AddDeadlineViewState extends State<AddDeadlineView> {
-  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final ScheduleService scheduleService = ScheduleService();
 
   String name = '';
@@ -37,6 +37,7 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
   }
 
   Future<void> _addDeadline() async {
+    final FormState form = _formKey.currentState!;
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       final newDeadline = DeadlineTask(name: name, course: course, dueDate: dueDate,
@@ -45,8 +46,11 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
 
       await scheduleService.addDeadline(newDeadline);
 
-      //Navigator.of(context).pop();
+      Navigator.of(context).pop();
 
+    }
+    else {
+      print("Form is invalid");
     }
   }
 
@@ -230,8 +234,8 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    _addDeadline;
-                    Navigator.of(context).pop();
+                    _addDeadline();
+                    //Navigator.of(context).pop();
                   },
                   child: Text('Save'),
                 ),
