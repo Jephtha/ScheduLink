@@ -85,6 +85,20 @@ class ScheduleService {
     });
   }
 
+  Future<void> addProfileImg2User(String profileImgPath) async {
+    await userInfoDocument
+        .set({'profileImg': profileImgPath}, SetOptions(merge: true)).then((_) {
+      print("success adding profile image path to user");
+    });
+  }
+
+  Future<void> addContactInfo2User(String contactInfo) async {
+    await userInfoDocument
+        .set({'contactInfo': contactInfo}, SetOptions(merge: true)).then((_) {
+      print("success adding contact info to user");
+    });
+  }
+
   Future<void> addCoursesList2User(List<Map<String, dynamic>> courseList) async {
     await userInfoDocument
         .set({'userCourses': courseList}, SetOptions(merge: true)).then((_) {
