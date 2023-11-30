@@ -92,9 +92,8 @@ class _ScheduleState extends State<Schedule> {
   }
 
   List<TimePlannerTask> getCourseInfo() {
-    List<TimePlannerTask> listOfTasks = [];
-    print(widget.userCourses);
 
+    List<TimePlannerTask> listOfTasks = [];
       for (var element in widget.userCourses) {
         element.forEach((key, value) {
           String daysOfWeek = key.daysOfWeek;

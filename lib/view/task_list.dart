@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:schedulink/view/add_deadline_view.dart';
 import '../controller/schedule_service.dart';
 import '../model/task.dart';
 
@@ -26,7 +27,10 @@ class _TaskListState extends State<TaskList> {
           icon: const Icon(Icons.add),
           tooltip: 'Add Task',
           iconSize: 35.0,
-          onPressed: ()  {/* will direct to "Add Task" page */},
+          onPressed: () => Navigator.push(context,
+            MaterialPageRoute(
+              builder: (context) => const AddDeadlineView()),
+            ),
         ),
       ]),
       body: SingleChildScrollView(
@@ -86,7 +90,7 @@ class _TaskListState extends State<TaskList> {
     // the "body" text - includes task due date and descrption 
     Text taskText = Text.rich(TextSpan(
       children: <TextSpan>[
-        TextSpan(text: "Due: ${DateFormat('LLLL').format(task.dueDate)} ${task.dueDate.day}, ${task.dueDate.year} at ${task.dueDate.hour}:${task.dueDate.minute}"),
+        TextSpan(text: "Due: ${DateFormat.yMMMMd().format(task.dueDate)} at ${DateFormat.jm().format(task.dueDate)}"),
         if (task.description.isNotEmpty) 
           TextSpan(text: "\n${task.description}"),]
     ));
