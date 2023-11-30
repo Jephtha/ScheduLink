@@ -44,7 +44,7 @@ class _TimetableState extends State<Timetable> {
           ),
           startHour: 0, 
           endHour: 23, 
-          currentTimeAnimation: true,
+          currentTimeAnimation: false,
           use24HourFormat: true,
           headers: [TimePlannerTitle(title: DateFormat.yMMMMd().format(DateTime.now()), date: DateFormat.jm().format(DateTime.now()))],
             tasks: tasks,
