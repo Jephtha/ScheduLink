@@ -46,7 +46,7 @@ class ScheduleService {
     return parsedCourses.map<Course>((json) => Course.fromJson(json)).toList();
   }
 
-  Future<List<String>> getUserInfo(String id) async {
+  Future<List<String>> getCourseUserList(String id) async {
     final DocumentSnapshot doc = await courseCollection.doc(id).get();
     if (doc.exists) {
       return CourseUserList.fromMap(doc).userIds!;
@@ -60,7 +60,7 @@ class ScheduleService {
 
   Future<String> addUser2Course(String course, String section, String user) async {
     String courseId = "$course-$section";
-    List<String> users = await getUserInfo(courseId);
+    List<String> users = await getCourseUserList(courseId);
     if (!users.contains(user)) {
       users.add(user);
     }
@@ -85,6 +85,20 @@ class ScheduleService {
     });
   }
 
+  Future<void> addProfileImg2User(String profileImgPath) async {
+    await userInfoDocument
+        .set({'profileImg': profileImgPath}, SetOptions(merge: true)).then((_) {
+      print("success adding profile image path to user");
+    });
+  }
+
+  Future<void> addContactInfo2User(String contactInfo) async {
+    await userInfoDocument
+        .set({'contactInfo': contactInfo}, SetOptions(merge: true)).then((_) {
+      print("success adding contact info to user");
+    });
+  }
+
   Future<void> addCoursesList2User(List<Map<String, dynamic>> courseList) async {
     await userInfoDocument
         .set({'userCourses': courseList}, SetOptions(merge: true)).then((_) {
@@ -92,7 +106,7 @@ class ScheduleService {
     });
   }
 
-  Future<UserInfo> getUserCourseList() async {
+  Future<UserInfo> getUserInfo() async {
     return await userInfoDocument
         .get()
         .then((value) => UserInfo.fromMap(value));
@@ -100,7 +114,7 @@ class ScheduleService {
 
   Future<List<Map<Course, dynamic>>> getUserSchedule() async {
 
-    UserInfo userInfo = await getUserCourseList();
+    UserInfo userInfo = await getUserInfo();
     List<Map<Course, dynamic>> userCourseList = [];
 
     List<Map<String, dynamic>>? courses = userInfo.userCourses;
@@ -121,9 +135,9 @@ class ScheduleService {
     }
     return userCourseList;
   }
-
+  
   Future<String> addCourse2User(String course, String section, MaterialColor color) async {
-    UserInfo userInfo = await getUserCourseList();
+    UserInfo userInfo = await getUserInfo();
     List<Map<String, dynamic>> courses = userInfo.userCourses!;
     String courseId = "$course-$section";
     if (!courses.any((element) => element['course'] == courseId)) {
@@ -141,7 +155,7 @@ class ScheduleService {
   }
 
   Future<void> removeCourseFromUser(String course, String section) async {
-    UserInfo userInfo = await getUserCourseList();
+    UserInfo userInfo = await getUserInfo();
     List<Map<String, dynamic>> courses = userInfo.userCourses!;
     String courseId = "$course-$section";
     courses.removeWhere((element) => element['course'] == courseId);
