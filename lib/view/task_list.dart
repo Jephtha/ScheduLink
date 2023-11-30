@@ -32,9 +32,9 @@ class _TaskListState extends State<TaskList> {
       body: SingleChildScrollView(
         child: Column(
         children: [
-          for (var i = 0; i < widget.userDeadlines.length; i++) ...[
-            checkDate(widget.userDeadlines[i]),
-            createTask(widget.userDeadlines[i]),
+          for (var i = 0; i < deadlines.length; i++) ...[
+            checkDate(deadlines[i]),
+            createTask(deadlines[i]),
             const Divider(height: 0),
           ]
         ],
@@ -119,12 +119,11 @@ class _TaskListState extends State<TaskList> {
 
   List<DeadlineTask> getDeadlines()  {
     List<DeadlineTask> deadlines = [];
-    print(widget.userDeadlines);
 
     for (var element in widget.userDeadlines) {
-      print("Deadline: ${element.course}");
       deadlines.add(element);
     }
+    deadlines.sort((a, b) => a.dueDate.compareTo(b.dueDate));
     return deadlines;
   }
 }
