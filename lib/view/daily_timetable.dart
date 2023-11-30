@@ -26,7 +26,7 @@ class _TimetableState extends State<Timetable> {
     return MaterialApp(
       home: Scaffold(
       appBar: AppBar(
-          title: const Text('Schedule'),
+          title: const Text('Today'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             tooltip: 'Back',
@@ -34,29 +34,29 @@ class _TimetableState extends State<Timetable> {
               Navigator.of(context).pop();
             },
           )),
+          
       body:
         TimePlanner(
           style: TimePlannerStyle(
-            cellHeight: 50,
+            cellHeight: 70,
             cellWidth: (MediaQuery.of(context).size.width ~/ 6)*5,
             showScrollBar: true
           ),
-          startHour: DateTime.now().hour, // time will be start at this hour on table
-          endHour: 23, // time will be end at this hour on table
+          startHour: 0, 
+          endHour: 23, 
           currentTimeAnimation: true,
           use24HourFormat: true,
-          headers: const [TimePlannerTitle(title: "TODAY")],
+          headers: [TimePlannerTitle(title: DateFormat.yMMMMd().format(DateTime.now()), date: DateFormat.jm().format(DateTime.now()))],
             tasks: tasks,
           ),
     ));
   }
 
   List<TimePlannerTask> getCourseInfo() {
+
     List<TimePlannerTask> listOfTasks = [];
-    print(widget.userCourses);
 
       for (var element in widget.userCourses) {
-        //print(element.keys);
         element.forEach((key, value) {
           String daysOfWeek = key.daysOfWeek;
           for(var i=0; i < daysOfWeek.length; i++){
@@ -81,13 +81,13 @@ class _TimetableState extends State<Timetable> {
 
     return TimePlannerTask(
       color: Color(value).withOpacity(1), // background color for task
-      dateTime: TimePlannerDateTime(day: day, hour: int.parse(startTime.toString().substring(0,2)), minutes: int.parse(startTime.toString().substring(2))),
+      dateTime: TimePlannerDateTime(day: day, hour: start.hour, minutes: start.minute),
       minutesDuration: duration, // Minutes duration of task
       //onTap: () {},
       child: Padding(
         padding: const EdgeInsets.all(1),
         child: Text(
-          "$name\n$location",
+          "$name\n$location\n ${DateFormat.jm().format(start)} - ${DateFormat.jm().format(end)}",
           style: const TextStyle(color: Colors.black, fontSize: 13),
           textAlign: TextAlign.center,
         ),
