@@ -46,7 +46,7 @@ class ScheduleService {
     return parsedCourses.map<Course>((json) => Course.fromJson(json)).toList();
   }
 
-  Future<List<String>> getCourseUserList(String id) async {
+  Future<List<String>> getUserInfo(String id) async {
     final DocumentSnapshot doc = await courseCollection.doc(id).get();
     if (doc.exists) {
       return CourseUserList.fromMap(doc).userIds!;
@@ -60,7 +60,7 @@ class ScheduleService {
 
   Future<String> addUser2Course(String course, String section, String user) async {
     String courseId = "$course-$section";
-    List<String> users = await getCourseUserList(courseId);
+    List<String> users = await getUserInfo(courseId);
     if (!users.contains(user)) {
       users.add(user);
     }
