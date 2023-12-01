@@ -28,7 +28,6 @@ class _ScheduleState extends State<Schedule> {
 
   late List<TimePlannerTask> tasks = getCourseInfo();
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -93,11 +92,9 @@ class _ScheduleState extends State<Schedule> {
   }
 
   List<TimePlannerTask> getCourseInfo() {
-    List<TimePlannerTask> listOfTasks = [];
-    print(widget.userCourses);
 
+    List<TimePlannerTask> listOfTasks = [];
       for (var element in widget.userCourses) {
-        //print(element.keys);
         element.forEach((key, value) {
           String daysOfWeek = key.daysOfWeek;
           for(var i=0; i < daysOfWeek.length; i++){

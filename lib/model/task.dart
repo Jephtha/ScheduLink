@@ -7,7 +7,7 @@ class DeadlineTask {
   final DateTime dueDate;
   final String description;
   final String priority;
-  final String status;
+  String status;
 
   DeadlineTask({
     this.id,
