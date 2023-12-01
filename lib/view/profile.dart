@@ -37,10 +37,11 @@ class _Profile extends State<Profile> {
           title: Text("User Profile"),
           centerTitle: true,
         ),
-        body: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
+        body: SingleChildScrollView(
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
               if (imgURL == null)
                 GestureDetector(
                   onTap: () {
@@ -86,26 +87,27 @@ class _Profile extends State<Profile> {
                         style: TextStyle(fontSize: 18)),
                   ]),
               if (contact == null)
-                Text("Please Enter Contact Information.",
-                    style: TextStyle(fontSize: 18)),
+                Container(
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.all(20),
+                    child: Text("Please Enter Contact Information.",
+                        style: TextStyle(fontSize: 18))),
               if (contact != null)
-                Text(contact!, style: TextStyle(fontSize: 18)),
-              Column(
-                children: <Widget>[
-                  Text("Courses: ", style: TextStyle(fontSize: 18)),
-                  for (var c in courses)
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => (Profile())),
-                          ).then((value) => setState(() {}));
-                        },
-                        child: Text(c, style: TextStyle(fontSize: 18))),
-                ],
-              )
-            ]));
+                Container(
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.all(20),
+                    child: Text(contact!, style: TextStyle(fontSize: 18))),
+              Text("Courses: ", style: TextStyle(fontSize: 18)),
+              for (var c in courses)
+                GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => (Profile())),
+                      ).then((value) => setState(() {}));
+                    },
+                    child: Text(c, style: TextStyle(fontSize: 18))),
+            ])));
   }
 }
 
@@ -146,6 +148,7 @@ class _ImageSet extends State<ImageSet> {
         service.addProfileImg2User(downloadURL);
         imgURL = downloadURL;
         print("Uploaded to: $downloadURL");
+        Navigator.pop(context);
       }
     } catch (e) {
       print("Failed to upload image: $e");
