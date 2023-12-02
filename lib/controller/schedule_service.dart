@@ -58,11 +58,11 @@ class ScheduleService {
      }
   }
 
-  Future<String> addUser2Course(String course, String section, String user) async {
-    String courseId = "$course-$section";
+  Future<String> addUser2Course(String courseId) async {
+    //String courseId = "$course-$section";
     List<String> users = await getCourseUserList(courseId);
-    if (!users.contains(user)) {
-      users.add(user);
+    if (!users.contains(currentUser!.uid)) {
+      users.add((currentUser!.uid));
     }
     else {
       return "failure";
