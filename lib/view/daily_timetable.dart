@@ -26,16 +26,44 @@ class _TimetableState extends State<Timetable> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-      appBar: AppBar(
-          title: const Text('Today'),
+        appBar: AppBar(
+          title: Text(DateFormat.yMMMMd().format(DateTime.now())),
+          centerTitle: true,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            tooltip: 'Back',
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
+            tooltip: 'Logout',
+            onPressed: () { /* logout */ Navigator.of(context).pop(); },
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.person),
+              tooltip: 'Profile',
+              onPressed: () { /* profile */ },
+            ),
+            IconButton(
+              icon: const Icon(Icons.add),
+              tooltip: 'Add Course/Deadline',
+              onPressed: () { /* profile */ },
+            ),
+          ],),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.blue,
+        child: Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.center, children: [
+          Expanded(child:TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 20, color: Colors.white)),
+            onPressed: () {},
+            child: const Text('Schedule', style: TextStyle(color: Colors.white)),
           )),
-          
+          Expanded(child: TextButton(
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 20),
+            ),
+            onPressed: () {},
+            child: const Text('Deadlines', style: TextStyle(color: Colors.white)),
+          ),),
+        ],)
+      ),
       body:
         TimePlanner(
           style: TimePlannerStyle(
@@ -47,7 +75,7 @@ class _TimetableState extends State<Timetable> {
           endHour: 23, 
           currentTimeAnimation: false,
           use24HourFormat: true,
-          headers: [TimePlannerTitle(title: DateFormat.yMMMMd().format(DateTime.now()), date: DateFormat.jm().format(DateTime.now()))],
+          headers: [TimePlannerTitle(title: "")],
             tasks: tasks,
           ),
     ));
