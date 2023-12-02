@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'temp_task.dart';
+import 'package:schedulink/view/add_deadline_view.dart';
+import '../controller/schedule_service.dart';
+import '../model/task.dart';
 
 class TaskList extends StatefulWidget {
-  const TaskList({super.key});
+  final List<DeadlineTask> userDeadlines;
+  const TaskList({super.key, required this.userDeadlines});
 
   @override
   State<TaskList> createState() => _TaskListState();
 }
 
 class _TaskListState extends State<TaskList> {
-  List<TempTask> tasksList = getTaskList();
+
+  final ScheduleService scheduleService = ScheduleService();
+  late List<DeadlineTask> deadlines = getDeadlines();
+
   int lastDate = 0;
 
   @override
@@ -21,15 +27,18 @@ class _TaskListState extends State<TaskList> {
           icon: const Icon(Icons.add),
           tooltip: 'Add Task',
           iconSize: 35.0,
-          onPressed: () {/* will direct to "Add Task" page */},
+          onPressed: () => Navigator.push(context,
+            MaterialPageRoute(
+              builder: (context) => const AddDeadlineView()),
+            ),
         ),
       ]),
       body: SingleChildScrollView(
-          child: Column(
+        child: Column(
         children: [
-          for (var i = 0; i < tasksList.length; i++) ...[
-            checkDate(tasksList[i]),
-            createTask(tasksList[i]),
+          for (var i = 0; i < deadlines.length; i++) ...[
+            checkDate(deadlines[i]),
+            createTask(deadlines[i]),
             const Divider(height: 0),
           ]
         ],
@@ -37,7 +46,7 @@ class _TaskListState extends State<TaskList> {
     );
   }
 
-  Container checkDate(TempTask task) {
+  Container checkDate(DeadlineTask task) {
     String date = DateFormat('MMddyyyy').format(task.dueDate);
     if (lastDate != int.parse(date)) {
       lastDate = int.parse(date);
@@ -56,47 +65,69 @@ class _TaskListState extends State<TaskList> {
     } // return empty container and move onto next task
   }
 
-  ListTile createTask(TempTask task) {
+  ListTile createTask(DeadlineTask task) {
     Color priorityColor = Colors.green;
     Color backgroundColor = Colors.white;
-    if (task.priority == 1) {
-      priorityColor = Colors.amber;
-    }
-    if (task.priority == 2) {
-      priorityColor = Colors.red;
-    }
-    if (task.isComplete) {
-      backgroundColor = Colors.grey.shade400;
+    if (task.priority == "medium" ) { priorityColor = Colors.amber; }
+    if (task.priority == "high") { priorityColor = Colors.red; }
+
+    if (task.status == "complete") { backgroundColor = Colors.grey.shade400; }
+
+    Text titleText = Text.rich(TextSpan(children: <TextSpan>[
+
+      // add flag for assignments due in < 24 hours
+      if (0 < task.dueDate.difference(DateTime.now()).inHours && task.dueDate.difference(DateTime.now()).inHours < 24 && !(task.status=="complete"))
+        TextSpan(text: "DUE SOON!\n", style: TextStyle(color: Colors.red)),
+      
+      // add flag for overdue assignments
+      if (task.dueDate.isBefore(DateTime.now()) && !(task.status=="complete"))
+        TextSpan(text: "LATE!\n", style: TextStyle(color: Colors.red)),
+
+      // task name and course 
+      TextSpan(text: "${task.name} - ${task.course}", style: TextStyle(fontWeight: FontWeight.bold))]
+    ),);
+
+    // the "body" text - includes task due date and descrption 
+    Text taskText = Text.rich(TextSpan(
+      children: <TextSpan>[
+        TextSpan(text: "Due: ${DateFormat.yMMMMd().format(task.dueDate)} at ${DateFormat.jm().format(task.dueDate)}"),
+        if (task.description.isNotEmpty) 
+          TextSpan(text: "\n${task.description}"),]
+    ));
+
+    // highlight missed deadlines/overdue tasks  
+    if (DateTime.now().isAfter(task.dueDate) && !(task.status=="complete")) {
+      backgroundColor = Colors.red.shade100;
     }
 
     return ListTile(
       tileColor: backgroundColor,
-      title: Text("${task.name} - ${task.courseName}"),
-      subtitle: Text(
-          "Due: ${DateFormat('LLLL').format(task.dueDate)} ${task.dueDate.day}, ${task.dueDate.year} at ${task.dueDate.hour}:${task.dueDate.minute}"),
-      trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-        Icon(Icons.warning, color: priorityColor),
+      title: titleText,
+      subtitle: taskText,
+      
+      leading: Icon(Icons.warning, color: priorityColor), // priority icon
+      
+      trailing: Row(mainAxisSize: MainAxisSize.min, children: [ // checkbox
         Checkbox(
-          value: task.isComplete,
+          value: (task.status=="complete"),
           onChanged: (bool? value) {
             setState(() {
-              task.isComplete = value!;
+              if(task.status=="complete"){ task.status = "incomplete";}
+              else {task.status = "complete";}
             });
           },
         )
       ]),
     );
   }
-}
 
-List<TempTask> getTaskList() {
-  final task1 = TempTask("Final Project", "CS1000", "Finish final project",
-      DateTime(2023, 12, 10, 23, 59), 3, false);
-  final task2 = TempTask("Review Notes", "Math1000", "Review notes for exam",
-      DateTime(2023, 12, 08, 11, 59), 1, false);
-  final task3 = TempTask("Online Quiz", "CS1001", "Do online quiz",
-      DateTime(2023, 12, 08, 23, 59), 2, false);
-  late List<TempTask> tasksList = [task1, task2, task3];
-  tasksList.sort((a, b) => a.dueDate.compareTo(b.dueDate));
-  return tasksList;
+  List<DeadlineTask> getDeadlines()  {
+    List<DeadlineTask> deadlines = [];
+
+    for (var element in widget.userDeadlines) {
+      deadlines.add(element);
+    }
+    deadlines.sort((a, b) => a.dueDate.compareTo(b.dueDate));
+    return deadlines;
+  }
 }

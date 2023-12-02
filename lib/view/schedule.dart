@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'temp_course.dart';
+import '../model/course.dart';
 import 'package:time_planner/time_planner.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -12,17 +12,21 @@ import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 
 class Schedule extends StatefulWidget {
-  const Schedule({super.key});
+  
+  final List<Map<Course, dynamic>> userCourses;
+  const Schedule({super.key,required this.userCourses});
 
   @override
   State<Schedule> createState() => _ScheduleState();
 }
 
 class _ScheduleState extends State<Schedule> {
+
   var pdf = pw.Document();
   final ExportDelegate exportDelegate = ExportDelegate();
-  late List<TimePlannerTask> tasks = getWeeklySlot();
   ScreenshotController screenshotController = ScreenshotController();
+
+  late List<TimePlannerTask> tasks = getCourseInfo();
 
   @override
   Widget build(BuildContext context) {
@@ -87,72 +91,45 @@ class _ScheduleState extends State<Schedule> {
     ));
   }
 
-  List<TimePlannerTask> getWeeklySlot() {
-    final course1 = TempCourse(
-        "CS1000",
-        001,
-        "Course 1 Description",
-        "ENG2004",
-        [
-          [13, 14, 0],
-          [13, 14, 2],
-          [09, 10, 4]
-        ],
-        Colors.blue);
-    final course2 = TempCourse(
-        "CS1001",
-        010,
-        "Course 2 Description",
-        "ENG2007",
-        [
-          [10, 12, 1],
-          [10, 12, 3]
-        ],
-        Colors.red);
-    final course3 = TempCourse(
-        "MATH1000",
-        100,
-        "Course 3 Description",
-        "C2000",
-        [
-          [09, 10, 0],
-          [09, 10, 3],
-          [11, 12, 4]
-        ],
-        Colors.orange);
-    List<TempCourse> coursesList = [course1, course2, course3];
+  List<TimePlannerTask> getCourseInfo() {
 
     List<TimePlannerTask> listOfTasks = [];
-    for (var i = 0; i < coursesList.length; i++) {
-      for (var x = 0; x < coursesList[i].classSections.length; x++) {
-        listOfTasks.add(getSlot(coursesList[i].classSections[x],
-            coursesList[i].name, coursesList[i].color));
-      }
+      for (var element in widget.userCourses) {
+        element.forEach((key, value) {
+          String daysOfWeek = key.daysOfWeek;
+          for(var i=0; i < daysOfWeek.length; i++){
+            listOfTasks.add(getSlot(key.course,int.parse(key.startTime),int.parse(key.endTime),key.location,daysOfWeek[i],value));
+          }
+        });
     }
     return listOfTasks;
   }
 
-  TimePlannerTask getSlot(List<int> courseSlot, String name, Color color) {
-    int startTime = courseSlot[0];
-    int finishTime = courseSlot[1];
-    int day = courseSlot[2];
-    return TimePlannerTask(
-        color: color, // background color for task
+  TimePlannerTask getSlot(String name, int startTime, int endTime, String location, String dayString, dynamic value) {
 
-        // day: index of header, monday-friday is 0-4
-        dateTime: TimePlannerDateTime(day: day, hour: startTime, minutes: 60),
-        // ^ need to add a check here, parse to see how many minutes past the hour the class starts (ex. 9 or 9:30)
-        minutesDuration:
-            (finishTime - startTime) * 60, // Minutes duration of task
-        onTap: () {},
-        child: Padding(
-          padding: const EdgeInsets.all(1),
-          child: Text(
-            name,
-            style: const TextStyle(color: Colors.black, fontSize: 13),
-            textAlign: TextAlign.center,
-          ),
-        ));
+    int day = 0;
+    if(dayString=="T") { day=1; }
+    if(dayString=="W") { day=2; }
+    if(dayString=="R") { day=3; }
+    if(dayString=="F") { day=4; }
+
+    DateTime start = DateTime(1,1,1,int.parse(startTime.toString().substring(0,2)),int.parse(startTime.toString().substring(2)));
+    DateTime end = DateTime(1,1,1,int.parse(endTime.toString().substring(0,2)),int.parse(endTime.toString().substring(2)));
+    int duration = end.difference(start).inMinutes;
+
+    return TimePlannerTask(
+      color: Color(value).withOpacity(1), // background color for task
+      dateTime: TimePlannerDateTime(day: day, hour: int.parse(startTime.toString().substring(0,2)), minutes: int.parse(startTime.toString().substring(2))),
+      minutesDuration: duration, // Minutes duration of task
+      //onTap: () {},
+      child: Padding(
+        padding: const EdgeInsets.all(1),
+        child: Text(
+          "$name\n$location",
+          style: const TextStyle(color: Colors.black, fontSize: 13),
+          textAlign: TextAlign.center,
+        ),
+      ));
   }
 
   createPDF(Uint8List img) async {

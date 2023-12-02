@@ -37,7 +37,6 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
   }
 
   Future<void> _addDeadline() async {
-    final FormState form = _formKey.currentState!;
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       final newDeadline = DeadlineTask(name: name, course: course, dueDate: dueDate,
@@ -62,6 +61,13 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
         appBar: AppBar(
           title: const Text(
             'Add Deadline',
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            tooltip: 'Back',
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
         ),
         body: Form(
