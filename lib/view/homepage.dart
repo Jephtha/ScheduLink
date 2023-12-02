@@ -54,7 +54,13 @@ class _HomePageState extends State<HomePage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute<ProfileScreen>(
-                        builder: (context) => const ProfileScreen(),
+                        builder: (context) =>  ProfileScreen(
+                          actions: [
+                            SignedOutAction((context) {
+                              Navigator.pushReplacementNamed(context, '/sign-in');
+                            }),
+                          ],
+                        ),
                       ),
                     );
                   }
