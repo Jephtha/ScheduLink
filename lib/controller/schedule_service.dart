@@ -112,6 +112,14 @@ class ScheduleService {
         .then((value) => UserInfo.fromMap(value));
   }
 
+  Future<UserInfo> getUserInfoFromId(String id) async {
+    return await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .get()
+        .then((value) => UserInfo.fromMap(value));
+  }
+
   Future<List<Map<Course, dynamic>>> getUserSchedule() async {
 
     UserInfo userInfo = await getUserInfo();
