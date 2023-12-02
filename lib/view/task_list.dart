@@ -33,16 +33,28 @@ class _TaskListState extends State<TaskList> {
             ),
         ),
       ]),
-      body: SingleChildScrollView(
-        child: Column(
-        children: [
-          for (var i = 0; i < deadlines.length; i++) ...[
-            checkDate(deadlines[i]),
-            createTask(deadlines[i]),
-            const Divider(height: 0),
-          ]
+      body: Center(child: SingleChildScrollView(
+        child: Column(children: [
+          if(deadlines.isEmpty)
+            Column(children: [
+              Text("No upcoming deadlines!"),
+              ElevatedButton(
+                onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(
+                  builder: (context) => const AddDeadlineView()),
+                ),
+                child: const Text('Add Task',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20)),
+              ),],)
+          else
+            for (var i = 0; i < deadlines.length; i++) ...[
+              checkDate(deadlines[i]),
+              createTask(deadlines[i]),
+              const Divider(height: 0),
+            ]
         ],
-      )),
+      ))),
     );
   }
 

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:schedulink/view/course_info.dart';
 import '../model/course.dart';
 import 'package:time_planner/time_planner.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -56,36 +57,23 @@ class _ScheduleState extends State<Schedule> {
               },
             )
           ]),
+
       body: Screenshot(
-          controller: screenshotController,
-          child: TimePlanner(
-            style: TimePlannerStyle(
-              cellWidth: (MediaQuery.of(context).size.width ~/ 6),
-              cellHeight: 50,
-              //showScrollBar: true
-            ),
-            startHour: 8, // time will be start at this hour on table
-            endHour: 21, // time will be end at this hour on table
-            currentTimeAnimation: false,
-            use24HourFormat: true,
-            headers: const [
-              // each header is a column and a day
-              TimePlannerTitle(
-                title: "MON",
-              ),
-              TimePlannerTitle(
-                title: "TUES",
-              ),
-              TimePlannerTitle(
-                title: "WED",
-              ),
-              TimePlannerTitle(
-                title: "THURS",
-              ),
-              TimePlannerTitle(
-                title: "FRI",
-              ),
-            ],
+        controller: screenshotController,
+        child: TimePlanner(
+          style: TimePlannerStyle(
+          cellWidth: (MediaQuery.of(context).size.width ~/ 6), cellHeight: 50,),
+          startHour: 8, // time will be start at this hour on table
+          endHour: 21, // time will be end at this hour on table
+          currentTimeAnimation: false,
+          use24HourFormat: true,
+          headers: const [
+            // each header is a column and a day
+            TimePlannerTitle(title: "MON",),
+            TimePlannerTitle(title: "TUES",),
+            TimePlannerTitle(title: "WED",),
+            TimePlannerTitle(title: "THURS",),
+            TimePlannerTitle(title: "FRI",)],
             tasks: tasks,
           )),
     ));
@@ -98,14 +86,14 @@ class _ScheduleState extends State<Schedule> {
         element.forEach((key, value) {
           String daysOfWeek = key.daysOfWeek;
           for(var i=0; i < daysOfWeek.length; i++){
-            listOfTasks.add(getSlot(key.course,int.parse(key.startTime),int.parse(key.endTime),key.location,daysOfWeek[i],value));
+            listOfTasks.add(getSlot(key,key.course,int.parse(key.startTime),int.parse(key.endTime),key.location,daysOfWeek[i],value,));
           }
         });
     }
     return listOfTasks;
   }
 
-  TimePlannerTask getSlot(String name, int startTime, int endTime, String location, String dayString, dynamic value) {
+  TimePlannerTask getSlot(Course course, String name, int startTime, int endTime, String location, String dayString, dynamic value) {
 
     int day = 0;
     if(dayString=="T") { day=1; }
@@ -121,7 +109,11 @@ class _ScheduleState extends State<Schedule> {
       color: Color(value).withOpacity(1), // background color for task
       dateTime: TimePlannerDateTime(day: day, hour: int.parse(startTime.toString().substring(0,2)), minutes: int.parse(startTime.toString().substring(2))),
       minutesDuration: duration, // Minutes duration of task
-      //onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) => CourseInfo(course: course)),
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.all(1),
         child: Text(

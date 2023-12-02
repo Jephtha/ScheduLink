@@ -5,6 +5,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:schedulink/view/course_info.dart';
 import '../model/course.dart';
 import 'package:time_planner/time_planner.dart';
 
@@ -53,27 +54,32 @@ class _TimetableState extends State<Timetable> {
   }
 
   List<TimePlannerTask> getCourseInfo() {
-
     List<TimePlannerTask> listOfTasks = [];
+
+    // get the current day of the week
+    String weekday = DateFormat('EEEE').format(DateTime.now());
+
+    // format current day of the week to match how it's stored in Course 
+    if(weekday=="Monday") { weekday = "M"; }
+    if(weekday=="Tuesday") { weekday = "T"; }
+    if(weekday=="Wednesday") { weekday = "W"; }
+    if(weekday=="Thursday") { weekday = "R"; }
+    if(weekday=="Friday") { weekday = "F"; }
 
       for (var element in widget.userCourses) {
         element.forEach((key, value) {
           String daysOfWeek = key.daysOfWeek;
           for(var i=0; i < daysOfWeek.length; i++){
-            listOfTasks.add(getSlot(key.course,int.parse(key.startTime),int.parse(key.endTime),key.location,daysOfWeek[i],value));
+            if(daysOfWeek[i] == weekday){
+              listOfTasks.add(getSlot(key,key.course,int.parse(key.startTime),int.parse(key.endTime),key.location,value));
+            }
           }
         });
     }
     return listOfTasks;
   }
 
-  TimePlannerTask getSlot(String name, int startTime, int endTime, String location, String dayString, dynamic value) {
-
-    int day = 0;
-    if(dayString=="T") { day=1; }
-    if(dayString=="W") { day=2; }
-    if(dayString=="R") { day=3; }
-    if(dayString=="F") { day=4; }
+  TimePlannerTask getSlot(Course course, String name, int startTime, int endTime, String location, dynamic value) {
 
     DateTime start = DateTime(1,1,1,int.parse(startTime.toString().substring(0,2)),int.parse(startTime.toString().substring(2)));
     DateTime end = DateTime(1,1,1,int.parse(endTime.toString().substring(0,2)),int.parse(endTime.toString().substring(2)));
@@ -81,9 +87,13 @@ class _TimetableState extends State<Timetable> {
 
     return TimePlannerTask(
       color: Color(value).withOpacity(1), // background color for task
-      dateTime: TimePlannerDateTime(day: day, hour: start.hour, minutes: start.minute),
+      dateTime: TimePlannerDateTime(day: 0, hour: start.hour, minutes: start.minute),
       minutesDuration: duration, // Minutes duration of task
-      //onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) => CourseInfo(course: course)),
+        );
+      },
       child: Padding(
         padding: const EdgeInsets.all(1),
         child: Text(
