@@ -39,10 +39,10 @@ class AuthGate extends StatelessWidget {
                 }),
                 AuthStateChangeAction<UserCreated>((context, state) {
                   getCourses().then((value) {
-                    Navigator.of(context).pushReplacement(
+                    Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
                           builder: (context) => AddCourseView(courses: value)
-                      ),
+                      ), (route) => false
                     );
                   });
                 }),

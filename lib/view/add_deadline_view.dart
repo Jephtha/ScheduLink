@@ -1,6 +1,8 @@
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:choice/choice.dart';
 import 'package:bottom_picker/bottom_picker.dart';
+import 'package:schedulink/view/homepage.dart';
 
 import '../model/task.dart';
 import '../controller/schedule_service.dart';
@@ -45,13 +47,61 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
 
       await scheduleService.addDeadline(newDeadline);
 
-      if (context.mounted) Navigator.of(context).pop();
+      if (context.mounted) {
+        if (!Navigator.canPop(context)) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+          );
+        }
+        else {
+          Navigator.of(context).pop();
+        }
+      }
 
     }
     else {
       print("Form is invalid");
     }
   }
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!Navigator.canPop(context)) {
+        showAlertDialog();
+      }
+    });
+  }
+
+  void showAlertDialog() {
+    showDialog(context: context, builder: (context) {
+      bool manuallyClosed = false;
+      Future.delayed(Duration(seconds: 10)).then((_) {
+        if (!manuallyClosed) {
+          Navigator.of(context).pop();
+        }
+      });
+      return AlertDialog(
+        title: Text("Welcome"),
+        content: Text("Welcome new user! Add the deadlines and due dates of your registered courses here to your schedule."),
+        actions: [
+          TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                manuallyClosed = true;
+                Navigator.of(context).pop();
+              }
+          ),
+        ],
+      );
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +116,7 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
             icon: const Icon(Icons.arrow_back),
             tooltip: 'Back',
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.pushReplacementNamed(context, '/homepage');
             },
           ),
         ),
@@ -241,7 +291,6 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                 child: ElevatedButton(
                   onPressed: () {
                     _addDeadline();
-                    //Navigator.of(context).pop();
                   },
                   child: Text('Save'),
                 ),

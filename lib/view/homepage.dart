@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:schedulink/model/task.dart';
 import 'package:schedulink/view/daily_timetable.dart';
@@ -44,14 +46,14 @@ class _HomePageState extends State<HomePage> {
                 icon: const Icon(Icons.logout),
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut();
-                  if (context.mounted) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<ProfileScreen>(
-                        builder: (context) => const ProfileScreen(),
-                      ),
-                    );
-                  }
+                  // if (context.mounted) {
+                  //   Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute<ProfileScreen>(
+                  //       builder: (context) => const ProfileScreen(),
+                  //     ),
+                  //   );
+                  // }
                 },
               ),
               actions: [
@@ -71,6 +73,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                     );
+
                   }
                 ),
               ]),

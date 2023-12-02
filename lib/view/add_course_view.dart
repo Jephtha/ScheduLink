@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:schedulink/view/add_deadline_view.dart';
 
 import '../model/course.dart';
 import '../controller/schedule_service.dart';
@@ -58,17 +59,58 @@ class _AddCourseViewState extends State<AddCourseView> {
 
   @override
   void initState() {
+    super.initState();
+
     setState(() {
       courseNos = widget.courses.map((course) => "${course.course}-${course.section} ${course.description}").toList();
     });
-    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!Navigator.canPop(context)) {
+        showAlertDialog();
+        // Future.delayed(const Duration(seconds: 5), () {
+        //   showAlertDialog();
+        // });
+      }
+    });
   }
+
+   void showAlertDialog() {
+     showDialog(context: context, builder: (context) {
+       bool manuallyClosed = false;
+       Future.delayed(Duration(seconds: 10)).then((_) {
+         if (!manuallyClosed) {
+           Navigator.of(context).pop();
+         }
+       });
+       return AlertDialog(
+         title: Text("Welcome"),
+         content: Text("Welcome new user! Add your registered courses here to your schedule."),
+         actions: [
+           TextButton(
+             child: Text("OK"),
+             onPressed: () {
+               manuallyClosed = true;
+               Navigator.of(context).pop();
+             }
+           ),
+         ],
+       );
+     });
+   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Add Courses to Calender'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          tooltip: 'Back',
+          onPressed: () {
+            Navigator.pushReplacementNamed(context, '/homepage');
+          },
+        ),
       ),
       body: Column(
         children: [
@@ -198,7 +240,16 @@ class _AddCourseViewState extends State<AddCourseView> {
           ElevatedButton(
             onPressed: () {
               scheduleService.addCoursesList2User(selectedCourses);
-              Navigator.of(context).pop();
+              if (!Navigator.canPop(context)) {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                      builder: (context) => AddDeadlineView(),
+                  ),
+                );
+              }
+              else {
+                Navigator.of(context).pop();
+              }
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.resolveWith((states) {
