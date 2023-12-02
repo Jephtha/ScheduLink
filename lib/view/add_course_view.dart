@@ -47,6 +47,25 @@ class _AddCourseViewState extends State<AddCourseView> {
     }
   }
 
+  Future<String> addUserToCourseUserList() async {
+    String response = '';
+    bool failed = false;
+    String failedString = 'Already registered for these courses: ';
+    for (var element in selectedCourses) {
+      response = await scheduleService.addUser2Course(element['course']);
+      if (response == "failure") {
+        failed = true;
+        failedString += element['course'];
+      }
+    }
+
+    if (failed) {
+      return failedString += ". Please remove duplicates";
+    }
+
+    return 'passed';
+  }
+
   String? selectedValue;
   final TextEditingController textEditingController = TextEditingController();
 
@@ -159,16 +178,21 @@ class _AddCourseViewState extends State<AddCourseView> {
                     if (updated == false) {
                       showDialog(
                           context: context,
-                          builder: (context) => AlertDialog(
-                            title: Text("Warning"),
-                            content: Text("Course already registered. Select a different course."),
-                            actions: [
-                              TextButton(
-                                child: Text("OK"),
-                                onPressed: () => Navigator.of(context).pop(),
-                              ),
-                            ],
-                          )
+                          builder: (context) {
+                            Future.delayed(Duration(seconds: 3), () {
+                              Navigator.of(context).pop(); // Close the dialog
+                            });
+                            return AlertDialog(
+                              title: Text("Warning"),
+                              content: Text("Course already selected. Select a different course."),
+                              actions: [
+                                TextButton(
+                                  child: Text("OK"),
+                                  onPressed: () => Navigator.of(context).pop(),
+                                ),
+                              ],
+                            );
+                          }
                       );
                     }
                   },
@@ -196,9 +220,35 @@ class _AddCourseViewState extends State<AddCourseView> {
           ),
           SizedBox(height: 20,),
           ElevatedButton(
-            onPressed: () {
+            onPressed: ()  async {
               scheduleService.addCoursesList2User(selectedCourses);
-              Navigator.of(context).pop();
+              String response = await addUserToCourseUserList();
+
+              if (context.mounted) {
+                if (response != "passed") {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        Future.delayed(Duration(seconds: 3), () {
+                          Navigator.of(context).pop(); // Close the dialog
+                        });
+                        return AlertDialog(
+                          title: Text("Warning"),
+                          content: Text(response),
+                          actions: [
+                            TextButton(
+                              child: Text("OK"),
+                              onPressed: () => Navigator.of(context).pop(),
+                            ),
+                          ],
+                        );
+                      }
+                  );
+                }
+                else {
+                  Navigator.of(context).pop();
+                }
+              }
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.resolveWith((states) {
