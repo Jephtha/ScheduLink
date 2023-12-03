@@ -34,11 +34,9 @@ class _Profile extends State<Profile> {
           }
           var courses = snapshot.data['userCourses'];
           var cName = [];
-          for (var i = 0; i < courses!.length; i++) {
-            for (var element in courses) {
-              String courseName = element['course'];
-              cName.add(courseName);
-            }
+          for (var element in courses) {
+            String courseName = element['course'];
+            cName.add(courseName);
           }
           return Scaffold(
               appBar: AppBar(
