@@ -85,7 +85,7 @@ class _TaskListState extends State<TaskList> {
       ));
     } else {
       return Container();
-    } // return empty container and move onto next task
+    } 
   }
 
   ListTile createTask(DeadlineTask task) {

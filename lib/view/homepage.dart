@@ -118,7 +118,8 @@ class _HomePageState extends State<HomePage> {
 
   List<TimePlannerTask> getCourseInfo() {
     // get the current day of the week
-    String weekday = "Monday"; //DateFormat('EEEE').format(DateTime.now());
+    String weekday = DateFormat('EEEE').format(DateTime.now()); 
+    // change weekday to "Monday" or "Wednesday", etc., if testing on a day with no tasks 
 
     // format current day of the week to match how it's stored in Course
     if (weekday == "Monday") { weekday = "M"; }

@@ -66,8 +66,8 @@ class _ScheduleState extends State<Schedule> {
         child: TimePlanner(
           style: TimePlannerStyle(
           cellWidth: (MediaQuery.of(context).size.width ~/ 6), cellHeight: 50,),
-          startHour: 8, // time will be start at this hour on table
-          endHour: 21, // time will be end at this hour on table
+          startHour: 8,
+          endHour: 21,
           currentTimeAnimation: false,
           use24HourFormat: true,
           headers: const [
