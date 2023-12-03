@@ -1,10 +1,10 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:schedulink/view/profile.dart';
 import 'package:time_planner/time_planner.dart';
 
 import 'schedule.dart';
 import 'task_list.dart';
-// ignore: unused_import
 import 'add_deadline_view.dart';
 import 'add_course_view.dart';
 import 'course_info.dart';
@@ -64,7 +64,10 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.person),
             tooltip: 'Profile',
-            onPressed: () {/* profile */},
+            onPressed: () { 
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Profile()));
+            },
           ),
 
           MenuAnchor(builder:
