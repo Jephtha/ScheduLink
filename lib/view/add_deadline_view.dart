@@ -27,17 +27,11 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
   String description = '';
 
   List<String> priorityTags = ['low', 'medium', 'high'];
-  List<String> statusTags = ['incomplete', 'in progress', 'complete'];
 
   String? selectedPriorityValue = 'low';
-  String? selectedStatusValue = 'incomplete';
 
   void setSelectedPriorityValue(String? value) {
     setState(() => selectedPriorityValue = value);
-  }
-
-  void setSelectedStatusValue(String? value) {
-    setState(() => selectedStatusValue = value);
   }
 
   Future<void> _addDeadline() async {
@@ -46,7 +40,7 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       final newDeadline = DeadlineTask(name: name, course: course, dueDate: dueDate,
-          description: description, priority: selectedPriorityValue!, status: selectedStatusValue!
+        description: description, priority: selectedPriorityValue!, isComplete: false,
       );
 
       await scheduleService.addDeadline(newDeadline);
@@ -145,35 +139,6 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                   Text('Due Date: ', style: TextStyle(fontSize: 16)),
                   SizedBox(width: 10,),
                   // date time picker widget
-                  // SizedBox(
-                  //   width: 70,
-                  //   height: 30,
-                  //   child: ElevatedButton(
-                  //     onPressed: () {
-                  //       BottomPicker.dateTime(
-                  //         title: 'Set the event exact time and date',
-                  //         titleStyle:  TextStyle(
-                  //           fontWeight:  FontWeight.bold,
-                  //           fontSize:  15,
-                  //           color:  Colors.black,
-                  //         ),
-                  //         onSubmit: (date) {
-                  //           setState(() {
-                  //             dueDate = date;
-                  //           });
-                  //           print(date);},
-                  //         onClose: () {
-                  //           print('Picker closed');},
-                  //         iconColor:  Colors.black,
-                  //         minDateTime:  DateTime(2024, 1, 1),
-                  //         maxDateTime:  DateTime(2024, 4, 30),
-                  //         initialDateTime:  DateTime(2024, 1, 15),
-                  //         gradientColors: [Color(0xfffdcbf1), Color(0xffe6dee9)],
-                  //       ).show(context);
-                  //     },
-                  //     child: Text('Date')//const Icon(Icons.date_range),'
-                  //   ),
-                  // ),
                   SizedBox(
                       width: 110,
                       height: 30,
@@ -196,7 +161,6 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                       },
                       child: Text(
                         DateFormat('EEE, MMM d').format(dueDate),
-                        //style: TextStyle(color: Colors.blue),
                       ),
                     ),
                   ),
@@ -208,7 +172,6 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                 children: [
                   SizedBox(width: 10,),
                   Text('Description: ', style: TextStyle(fontSize: 16)),
-                  SizedBox(width: 10,),
                   SizedBox(
                     height: 70,
                     width: 250,
@@ -236,34 +199,6 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                         selectedColor: Colors.blue,
                         onSelected: state.onSelected(priorityTags[i]),
                         label: Text(priorityTags[i]),
-                      );
-                    },
-                    listBuilder: ChoiceList.createScrollable(
-                      spacing: 10,
-                      runSpacing: 10,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 5,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  SizedBox(width: 10,),
-                  Text('Status: ', style: TextStyle(fontSize: 16)),
-                  InlineChoice<String>.single(
-                    clearable: true,
-                    value: selectedStatusValue,
-                    onChanged: setSelectedStatusValue,
-                    itemCount: statusTags.length,
-                    itemBuilder: (state, i) {
-                      return ChoiceChip(
-                        selected: state.selected(statusTags[i]),
-                        selectedColor: Colors.blue,
-                        onSelected: state.onSelected(statusTags[i]),
-                        label: Text(statusTags[i]),
                       );
                     },
                     listBuilder: ChoiceList.createScrollable(
