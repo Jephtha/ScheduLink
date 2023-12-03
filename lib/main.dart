@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
 import 'firebase_options.dart';
-import 'view/auth_gate.dart';
 
+import 'view/auth_gate.dart';
+import 'controller/notification_service.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,18 +14,11 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  // load course data before running App.
-  // getCourses().then((value) {
-  //   runApp(const MainApp());
-  // });
+  FirebaseNotification().initNotifications();
+  tz.initializeTimeZones();
 
   runApp(const MainApp());
 }
-
-// Future<List<Course>> getCourses() async{
-//   ScheduleService scheduleService = ScheduleService();
-//   return await scheduleService.fetchCourses();
-// }
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});

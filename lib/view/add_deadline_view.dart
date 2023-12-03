@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:choice/choice.dart';
-import 'package:bottom_picker/bottom_picker.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as date_time_picker;
+import 'package:intl/intl.dart';
 
+import '../controller/notification_service.dart';
 import '../model/task.dart';
 import '../controller/schedule_service.dart';
 
@@ -19,7 +21,8 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
 
   String name = '';
   String course = '';
-  DateTime dueDate = DateTime(2023, 1, 15);
+  DateTime dueDate = DateTime.now();
+  DateTime reminder = DateTime.now();
   String description = '';
 
   List<String> priorityTags = ['low', 'medium', 'high'];
@@ -40,6 +43,12 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
       );
 
       await scheduleService.addDeadline(newDeadline);
+
+      FirebaseNotification().scheduleNotification(
+          title: name,
+          body: '$name is due for $course by '
+              '${DateFormat('h:mm a').format(reminder)} on ${DateFormat('EEE, MMM d').format(reminder)}',
+          scheduledNotificationDateTime: reminder);
 
       // ignore: use_build_context_synchronously
       Navigator.of(context).pop();
@@ -78,6 +87,7 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                 children: [
                   SizedBox(width: 10,),
                   Text('Name: ', style: TextStyle(fontSize: 16)),
+                  SizedBox(width: 10,),
                   SizedBox(
                     height: 70,
                     width: 250,
@@ -102,6 +112,7 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                 children: [
                   SizedBox(width: 10,),
                   Text('Course: ', style: TextStyle(fontSize: 16)),
+                  SizedBox(width: 10,),
                   SizedBox(
                     height: 70,
                     width: 250,
@@ -125,39 +136,34 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                 children: [
                   SizedBox(width: 10,),
                   Text('Due Date: ', style: TextStyle(fontSize: 16)),
+                  SizedBox(width: 10,),
                   // date time picker widget
                   SizedBox(
-                    width: 70,
-                    height: 30,
+                      width: 110,
+                      height: 30,
                     child: ElevatedButton(
                       onPressed: () {
-                        BottomPicker.dateTime(
-                          title: 'Set the event exact time and date',
-                          titleStyle:  TextStyle(
-                            fontWeight:  FontWeight.bold,
-                            fontSize:  15,
-                            color:  Colors.black,
-                          ),
-                          onSubmit: (date) {
-                            //dueDate = date;
+                        date_time_picker.DatePicker.showDateTimePicker(
+                          context,
+                          showTitleActions: true,
+                          onChanged: (date) {
                             setState(() {
                               dueDate = date;
                             });
-                            print(date);},
-                          onClose: () {
-                            print('Picker closed');},
-                          iconColor:  Colors.black,
-                          minDateTime:  DateTime(2024, 1, 1),
-                          maxDateTime:  DateTime(2024, 4, 30),
-                          initialDateTime:  DateTime(2024, 1, 15),
-                          gradientColors: [Color(0xfffdcbf1), Color(0xffe6dee9)],
-                        ).show(context);
+                          },
+                          onConfirm: (date) {
+                            setState(() {
+                              dueDate = date;
+                            });
+                          },
+                        );
                       },
-                      child: Text('Date')//const Icon(Icons.date_range),'
+                      child: Text(
+                        DateFormat('EEE, MMM d').format(dueDate),
+                      ),
                     ),
                   ),
                   SizedBox(width: 10),
-                  Text(dueDate.toString(), style: TextStyle(fontSize: 16)),
                 ],
               ),
               SizedBox(height: 20,),
@@ -200,6 +206,39 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                       padding: const EdgeInsets.symmetric(
                         horizontal: 10,
                         vertical: 5,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10,),
+              Row(
+                children: [
+                  SizedBox(width: 10,),
+                  Text('Set Reminder: ', style: TextStyle(fontSize: 16)),
+                  SizedBox(width: 10,),
+                  SizedBox(
+                    width: 180,
+                    height: 30,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        date_time_picker.DatePicker.showDateTimePicker(
+                          context,
+                          showTitleActions: true,
+                          onChanged: (date) {
+                            setState(() {
+                              reminder = date;
+                            });
+                          },
+                          onConfirm: (date) {
+                            setState(() {
+                              reminder = date;
+                            });
+                          },
+                        );
+                      },
+                      child: Text(
+                        DateFormat('EEE, MMM d h:mm a').format(reminder),
                       ),
                     ),
                   ),
