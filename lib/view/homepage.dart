@@ -40,11 +40,6 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
               title: const Text("Schedulink"),
               centerTitle: true,
-              // ------- LOGOUT BUTTON
-              leading: IconButton(
-                icon: const Icon(Icons.logout),
-                onPressed: () {/* logout */},
-              ),
               actions: [
                 // ------- PROFILE BUTTON
                 IconButton(
