@@ -74,7 +74,13 @@ class _CourseInfoState extends State<CourseInfo> {
                 padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   for(var i=0;i<users!.length;i++)
-                    Text("- $text${users[i]}",style: TextStyle(fontSize: 20)),
+                    TextButton(
+                      style: TextButton.styleFrom(textStyle: TextStyle(color: Colors.black, fontSize: 20)),
+                      onPressed: () {
+                        // trigger popup with user info page
+                      },
+                      child: Text("- $text${users[i]}", style: TextStyle(color: Colors.grey.shade700)),
+                    ),
                 ])
               );
             }

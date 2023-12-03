@@ -99,7 +99,7 @@ class _TaskListState extends State<TaskList> {
     Text titleText = Text.rich(TextSpan(children: <TextSpan>[
 
       // add flag for assignments due in < 24 hours
-      if (0 < task.dueDate.difference(DateTime.now()).inHours && task.dueDate.difference(DateTime.now()).inHours < 24 && !(task.isComplete))
+      if (0 <= task.dueDate.difference(DateTime.now()).inHours && task.dueDate.difference(DateTime.now()).inHours < 24 && !(task.isComplete))
         TextSpan(text: "DUE SOON!\n", style: TextStyle(color: Colors.red)),
       
       // add flag for overdue assignments
