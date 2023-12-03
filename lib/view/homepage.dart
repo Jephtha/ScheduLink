@@ -37,16 +37,19 @@ class _HomePageState extends State<HomePage> {
 
   List<TimePlannerTask> tasks = [];
   List<Map<Course, dynamic>> userCourses = [];
+  List<DeadlineTask> userDeadlines = [];
   List<TimePlannerTask> listOfTasks = [];
 
   @override
   void initState() {
     super.initState();
-    getScheduleInfo().then((courses) {
+    getScheduleInfo().then((courses){
+    getDeadlineList().then((deadlines) {
       setState(() {
         userCourses = courses;
+        userDeadlines = deadlines;
       });
-    });
+    });});
   }
 
   @override
@@ -70,7 +73,7 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {
               getCourses().then((value) {
                 Navigator.push(context, 
-                  MaterialPageRoute(builder: (context) => AddCourseView(courses: value,)),
+                  MaterialPageRoute(builder: (context) => AddCourseView(courses: value)),
               );});
             },
           ),
@@ -127,17 +130,25 @@ class _HomePageState extends State<HomePage> {
     for (var element in userCourses) {
       element.forEach((key, value) {
         if (key.daysOfWeek.contains(weekday)) {
-          listOfTasks.add(getSlot(key, key.course, int.parse(key.startTime), int.parse(key.endTime), key.location, value));
+          listOfTasks.add(getClassSlot(key, value));
         }
       });
+    }
+
+    if(userDeadlines.isNotEmpty) {
+      for (DeadlineTask task in userDeadlines) {
+        if ((task.dueDate.day == DateTime.now().day && task.status != "complete")) {
+          listOfTasks.add(getDeadlineSlot(task));
+        }
+      }
     }
     return listOfTasks;
   }
 
-  TimePlannerTask getSlot(Course course, String name, int startTime, int endTime, String location, dynamic value) {
+  TimePlannerTask getClassSlot(Course course, dynamic value) {
 
-    DateTime start = DateTime(1,1,1,int.parse(startTime.toString().substring(0, 2)),int.parse(startTime.toString().substring(2)));
-    DateTime end = DateTime(1,1,1,int.parse(endTime.toString().substring(0, 2)),int.parse(endTime.toString().substring(2)));
+    DateTime start = DateTime(1,1,1,int.parse(course.startTime.toString().substring(0, 2)),int.parse(course.startTime.toString().substring(2)));
+    DateTime end = DateTime(1,1,1,int.parse(course.endTime.toString().substring(0, 2)),int.parse(course.endTime.toString().substring(2)));
     int duration = end.difference(start).inMinutes;
 
     return TimePlannerTask(
@@ -151,12 +162,36 @@ class _HomePageState extends State<HomePage> {
       child: Padding(
         padding: const EdgeInsets.all(1),
         child: Text(
-          "$name\n$location\n ${DateFormat.jm().format(start)} - ${DateFormat.jm().format(end)}",
+          "${course.course}\n${course.location}\n ${DateFormat.jm().format(start)} - ${DateFormat.jm().format(end)}",
           style: const TextStyle(color: Colors.black, fontSize: 13),
           textAlign: TextAlign.center,
         ),
       ));
   }
+
+  TimePlannerTask getDeadlineSlot(DeadlineTask task) {
+
+    return TimePlannerTask(
+      color: Colors.red.shade200, // background color for task
+      dateTime: TimePlannerDateTime(day: 0, hour: (task.dueDate.hour), minutes: 0),
+      minutesDuration: 60, // Minutes duration of task
+      onTap: () {
+        getDeadlineList().then((value) {
+          Navigator.push(context,
+            MaterialPageRoute(builder: (context) => TaskList(userDeadlines: value)),
+          );
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(1),
+        child: Text(
+          "${task.course} ${task.name} due at ${DateFormat.jm().format(task.dueDate)}!!",
+          style: const TextStyle(color: Colors.black, fontSize: 13),
+          textAlign: TextAlign.center,
+        ),
+      ));
+  }
+
 
   Widget getBody(){
     if(listOfTasks.isNotEmpty){
