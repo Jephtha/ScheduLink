@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:schedulink/view/homepage.dart';
 
 import '../model/course.dart';
 import '../controller/schedule_service.dart';
@@ -246,7 +247,9 @@ class _AddCourseViewState extends State<AddCourseView> {
                   );
                 }
                 else {
-                  Navigator.of(context).pop();
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => HomePage()),
+                  );
                 }
               }
             },

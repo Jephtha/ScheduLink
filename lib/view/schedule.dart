@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:schedulink/view/course_info.dart';
+import 'package:schedulink/view/homepage.dart';
 import '../model/course.dart';
 import 'package:time_planner/time_planner.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -39,7 +40,9 @@ class _ScheduleState extends State<Schedule> {
             icon: const Icon(Icons.arrow_back),
             tooltip: 'Back',
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => HomePage()),
+              );
             },
           ),
           actions: [

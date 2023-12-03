@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:schedulink/view/add_deadline_view.dart';
+import 'package:schedulink/view/homepage.dart';
 import '../controller/schedule_service.dart';
 import '../model/task.dart';
 
@@ -22,19 +23,29 @@ class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Upcoming Deadlines'), actions: <Widget>[
+      appBar: AppBar(title: const Text('Upcoming Deadlines'), 
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back),
+        tooltip: 'Back',
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context) => HomePage()),
+          );
+        },
+      ),
+      actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.add),
           tooltip: 'Add Task',
           iconSize: 35.0,
           onPressed: () => Navigator.push(context,
-            MaterialPageRoute(
-              builder: (context) => const AddDeadlineView()),
-            ),
+            MaterialPageRoute(builder: (context) => const AddDeadlineView()),
+          )
         ),
       ]),
-      body: Center(child: SingleChildScrollView(
-        child: Column(children: [
+
+      body: SingleChildScrollView(
+        child: Column(mainAxisAlignment: MainAxisAlignment.start, children:[
           if(deadlines.isEmpty)
             Column(children: [
               Text("No upcoming deadlines!"),
@@ -54,7 +65,7 @@ class _TaskListState extends State<TaskList> {
               const Divider(height: 0),
             ]
         ],
-      ))),
+      )),
     );
   }
 
@@ -124,7 +135,7 @@ class _TaskListState extends State<TaskList> {
           value: (task.status=="complete"),
           onChanged: (bool? value) {
             setState(() {
-              if(task.status=="complete"){ task.status = "incomplete";}
+              if(task.status=="complete"){ task.status = "incomplete"; setState(() {});}
               else {task.status = "complete";}
             });
           },
