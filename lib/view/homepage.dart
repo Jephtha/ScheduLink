@@ -67,16 +67,42 @@ class _HomePageState extends State<HomePage> {
             onPressed: () {/* profile */},
           ),
 
-          IconButton(
-            icon: const Icon(Icons.add),
-            tooltip: 'Add Course/Deadline',
-            onPressed: () {
-              getCourses().then((value) {
-                Navigator.push(context, 
-                  MaterialPageRoute(builder: (context) => AddCourseView(courses: value)),
-              );});
-            },
-          ),
+          MenuAnchor(builder:
+              (BuildContext context, MenuController controller, Widget? child) {
+              return IconButton(
+                onPressed: () {
+                  if (controller.isOpen) {
+                    controller.close();
+                  } else {
+                    controller.open();
+                  }
+                },
+                icon: const Icon(Icons.add),
+              tooltip: 'Add',
+            );
+          },
+          menuChildren: [
+            MenuItemButton(
+              onPressed: () {
+                getCourses().then((value) {
+                  Navigator.push(context, 
+                    MaterialPageRoute(builder: (context) => AddCourseView(courses: value,)),
+                  );});
+              },
+              child: Text('Add Course'),
+            ),
+
+            MenuItemButton(
+              onPressed: () {
+                Navigator.push(context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddDeadlineView()),
+                  );
+              },
+              child: Text('Add Deadline'),
+            ),
+          ],
+        ),
         ],
       ),
 
