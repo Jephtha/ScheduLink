@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:schedulink/view/course_info.dart';
+import 'package:schedulink/view/homepage.dart';
 import '../model/course.dart';
 import 'package:time_planner/time_planner.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -39,7 +40,9 @@ class _ScheduleState extends State<Schedule> {
             icon: const Icon(Icons.arrow_back),
             tooltip: 'Back',
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => HomePage()),
+              );
             },
           ),
           actions: [
@@ -63,8 +66,8 @@ class _ScheduleState extends State<Schedule> {
         child: TimePlanner(
           style: TimePlannerStyle(
           cellWidth: (MediaQuery.of(context).size.width ~/ 6), cellHeight: 50,),
-          startHour: 8, // time will be start at this hour on table
-          endHour: 21, // time will be end at this hour on table
+          startHour: 8,
+          endHour: 21,
           currentTimeAnimation: false,
           use24HourFormat: true,
           headers: const [
@@ -117,7 +120,7 @@ class _ScheduleState extends State<Schedule> {
       child: Padding(
         padding: const EdgeInsets.all(1),
         child: Text(
-          "$name\n$location",
+          "${name.substring(0,(name.length-4))}\n ${name.substring(name.length-4)}",
           style: const TextStyle(color: Colors.black, fontSize: 13),
           textAlign: TextAlign.center,
         ),
