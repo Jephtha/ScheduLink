@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:schedulink/view/add_deadline_view.dart';
+import 'package:schedulink/view/homepage.dart';
 import '../controller/schedule_service.dart';
 import '../model/task.dart';
 
@@ -22,19 +23,29 @@ class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Upcoming Deadlines'), actions: <Widget>[
+      appBar: AppBar(title: const Text('Upcoming Deadlines'), 
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back),
+        tooltip: 'Back',
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(
+            builder: (context) => HomePage()),
+          );
+        },
+      ),
+      actions: <Widget>[
         IconButton(
           icon: const Icon(Icons.add),
           tooltip: 'Add Task',
           iconSize: 35.0,
           onPressed: () => Navigator.push(context,
-            MaterialPageRoute(
-              builder: (context) => const AddDeadlineView()),
-            ),
+            MaterialPageRoute(builder: (context) => const AddDeadlineView()),
+          )
         ),
       ]),
-      body: Center(child: SingleChildScrollView(
-        child: Column(children: [
+
+      body: SingleChildScrollView(
+        child: Column(mainAxisAlignment: MainAxisAlignment.start, children:[
           if(deadlines.isEmpty)
             Column(children: [
               Text("No upcoming deadlines!"),
@@ -54,7 +65,7 @@ class _TaskListState extends State<TaskList> {
               const Divider(height: 0),
             ]
         ],
-      ))),
+      )),
     );
   }
 
@@ -74,7 +85,7 @@ class _TaskListState extends State<TaskList> {
       ));
     } else {
       return Container();
-    } // return empty container and move onto next task
+    } 
   }
 
   ListTile createTask(DeadlineTask task) {
@@ -83,16 +94,16 @@ class _TaskListState extends State<TaskList> {
     if (task.priority == "medium" ) { priorityColor = Colors.amber; }
     if (task.priority == "high") { priorityColor = Colors.red; }
 
-    if (task.status == "complete") { backgroundColor = Colors.grey.shade400; }
+    if (task.isComplete) { backgroundColor = Colors.grey.shade400; }
 
     Text titleText = Text.rich(TextSpan(children: <TextSpan>[
 
       // add flag for assignments due in < 24 hours
-      if (0 < task.dueDate.difference(DateTime.now()).inHours && task.dueDate.difference(DateTime.now()).inHours < 24 && !(task.status=="complete"))
+      if (0 <= task.dueDate.difference(DateTime.now()).inHours && task.dueDate.difference(DateTime.now()).inHours < 24 && !(task.isComplete))
         TextSpan(text: "DUE SOON!\n", style: TextStyle(color: Colors.red)),
       
       // add flag for overdue assignments
-      if (task.dueDate.isBefore(DateTime.now()) && !(task.status=="complete"))
+      if (task.dueDate.isBefore(DateTime.now()) && !(task.isComplete))
         TextSpan(text: "LATE!\n", style: TextStyle(color: Colors.red)),
 
       // task name and course 
@@ -108,7 +119,7 @@ class _TaskListState extends State<TaskList> {
     ));
 
     // highlight missed deadlines/overdue tasks  
-    if (DateTime.now().isAfter(task.dueDate) && !(task.status=="complete")) {
+    if (DateTime.now().isAfter(task.dueDate) && !(task.isComplete)) {
       backgroundColor = Colors.red.shade100;
     }
 
@@ -121,11 +132,10 @@ class _TaskListState extends State<TaskList> {
       
       trailing: Row(mainAxisSize: MainAxisSize.min, children: [ // checkbox
         Checkbox(
-          value: (task.status=="complete"),
+          value: (task.isComplete),
           onChanged: (bool? value) {
             setState(() {
-              if(task.status=="complete"){ task.status = "incomplete";}
-              else {task.status = "complete";}
+              scheduleService.updateTaskStatus(task);
             });
           },
         )

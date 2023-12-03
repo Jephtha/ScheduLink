@@ -194,6 +194,11 @@ class ScheduleService {
     return await deadlineCollection.doc(id).update(deadline.toMap());
   }
 
+  Future<void> updateTaskStatus(DeadlineTask deadline) async {
+    deadline.isComplete = !deadline.isComplete;
+    return await deadlineCollection.doc(deadline.id).update(deadline.toMap());
+  }
+
   Future<void> deleteDeadlineTask(DeadlineTask deadline) async {
     return await deadlineCollection.doc(deadline.id).delete();
   }
