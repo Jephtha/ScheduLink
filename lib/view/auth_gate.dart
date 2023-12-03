@@ -19,6 +19,7 @@ class AuthGate extends StatelessWidget {
           );
         }
         if (!snapshot.hasData) {
+          SignOutButton();
           return SignInScreen(
             providers: [
               EmailAuthProvider(),

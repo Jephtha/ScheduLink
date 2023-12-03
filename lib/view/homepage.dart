@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schedulink/model/task.dart';
 import 'package:schedulink/view/daily_timetable.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as date_time_picker;
 
 import 'schedule.dart';
 import 'task_list.dart';
@@ -9,10 +10,11 @@ import 'add_course_view.dart';
 
 import '../model/course.dart';
 import '../controller/schedule_service.dart';
+import '../controller/notification_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
-  
+  static const route = '/homepage';
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -33,8 +35,11 @@ class _HomePageState extends State<HomePage> {
     return await scheduleService.getDeadlineTaskList();
   }
 
+  DateTime scheduleTime = DateTime.now().add(Duration(minutes: 1));
+
   @override
   Widget build(BuildContext context) {
+    //final message = ModalRoute.of(context)!.settings.arguments;
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
@@ -133,6 +138,45 @@ class _HomePageState extends State<HomePage> {
                     child: const Text("Today's Timetable",
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 20)),
+                  ),
+                  ElevatedButton(
+                    child: const Text('Show notifications'),
+                    onPressed: () {
+                      FirebaseNotification()
+                          .showNotification(title: 'Sample title', body: 'It works!');
+                    },
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      date_time_picker.DatePicker.showDateTimePicker(
+                        context,
+                        showTitleActions: true,
+                        onChanged: (date) {
+                          setState(() {
+                            scheduleTime = date;
+                          });
+                        },
+                        onConfirm: (date) {
+                          setState(() {
+                            scheduleTime = date;
+                          });
+                        },
+                      );
+                    },
+                    child: const Text(
+                      'Select Date Time',
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                  ElevatedButton(
+                    child: const Text('Schedule notifications'),
+                    onPressed: () {
+                      debugPrint('Notification Scheduled for $scheduleTime');
+                      FirebaseNotification().scheduleNotification(
+                          title: 'Scheduled Notification',
+                          body: '$scheduleTime',
+                          scheduledNotificationDateTime: scheduleTime);
+                    },
                   ),
                 ]),
           )),
