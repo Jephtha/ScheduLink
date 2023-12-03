@@ -109,15 +109,7 @@ class _Profile extends State<Profile> {
                               Text(contact!, style: TextStyle(fontSize: 18))),
                     Text("Courses: ", style: TextStyle(fontSize: 18)),
                     for (var c in cName)
-                      GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => (Profile())),
-                            ).then((value) => setState(() {}));
-                          },
-                          child: Text(c, style: TextStyle(fontSize: 18))),
+                      Text(c, style: TextStyle(fontSize: 18)),
                   ])));
         });
   }
