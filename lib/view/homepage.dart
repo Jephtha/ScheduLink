@@ -137,7 +137,7 @@ class _HomePageState extends State<HomePage> {
 
     if(userDeadlines.isNotEmpty) {
       for (DeadlineTask task in userDeadlines) {
-        if ((task.dueDate.day == DateTime.now().day && task.status != "complete")) {
+        if ((task.dueDate.day == DateTime.now().day && !task.isComplete)) {
           listOfTasks.add(getDeadlineSlot(task));
         }
       }

@@ -94,16 +94,16 @@ class _TaskListState extends State<TaskList> {
     if (task.priority == "medium" ) { priorityColor = Colors.amber; }
     if (task.priority == "high") { priorityColor = Colors.red; }
 
-    if (task.status == "complete") { backgroundColor = Colors.grey.shade400; }
+    if (task.isComplete) { backgroundColor = Colors.grey.shade400; }
 
     Text titleText = Text.rich(TextSpan(children: <TextSpan>[
 
       // add flag for assignments due in < 24 hours
-      if (0 < task.dueDate.difference(DateTime.now()).inHours && task.dueDate.difference(DateTime.now()).inHours < 24 && !(task.status=="complete"))
+      if (0 < task.dueDate.difference(DateTime.now()).inHours && task.dueDate.difference(DateTime.now()).inHours < 24 && !(task.isComplete))
         TextSpan(text: "DUE SOON!\n", style: TextStyle(color: Colors.red)),
       
       // add flag for overdue assignments
-      if (task.dueDate.isBefore(DateTime.now()) && !(task.status=="complete"))
+      if (task.dueDate.isBefore(DateTime.now()) && !(task.isComplete))
         TextSpan(text: "LATE!\n", style: TextStyle(color: Colors.red)),
 
       // task name and course 
@@ -119,7 +119,7 @@ class _TaskListState extends State<TaskList> {
     ));
 
     // highlight missed deadlines/overdue tasks  
-    if (DateTime.now().isAfter(task.dueDate) && !(task.status=="complete")) {
+    if (DateTime.now().isAfter(task.dueDate) && !(task.isComplete)) {
       backgroundColor = Colors.red.shade100;
     }
 
@@ -132,11 +132,10 @@ class _TaskListState extends State<TaskList> {
       
       trailing: Row(mainAxisSize: MainAxisSize.min, children: [ // checkbox
         Checkbox(
-          value: (task.status=="complete"),
+          value: (task.isComplete),
           onChanged: (bool? value) {
             setState(() {
-              if(task.status=="complete"){ task.status = "incomplete"; setState(() {});}
-              else {task.status = "complete";}
+              scheduleService.updateTaskStatus(task);
             });
           },
         )
