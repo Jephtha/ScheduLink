@@ -117,7 +117,7 @@ class _ScheduleState extends State<Schedule> {
       child: Padding(
         padding: const EdgeInsets.all(1),
         child: Text(
-          "$name\n$location",
+          "${name.substring(0,(name.length-4))}\n ${name.substring(name.length-4)}",
           style: const TextStyle(color: Colors.black, fontSize: 13),
           textAlign: TextAlign.center,
         ),

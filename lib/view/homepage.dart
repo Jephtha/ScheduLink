@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
 
   List<TimePlannerTask> tasks = [];
   List<Map<Course, dynamic>> userCourses = [];
+  List<TimePlannerTask> listOfTasks = [];
 
   @override
   void initState() {
@@ -108,26 +109,13 @@ class _HomePageState extends State<HomePage> {
               ),
           ],)),
 
-      body: TimePlanner(
-        style: TimePlannerStyle(
-            cellHeight: 70,
-            cellWidth: (MediaQuery.of(context).size.width ~/ 6) * 5,
-            showScrollBar: true),
-        startHour: 0,
-        endHour: 23,
-        currentTimeAnimation: false,
-        use24HourFormat: true,
-        headers: [TimePlannerTitle(title: "")],
-        tasks: tasks,
-      ),
+      body: getBody(),
     ));
   }
 
   List<TimePlannerTask> getCourseInfo() {
-    List<TimePlannerTask> listOfTasks = [];
-
     // get the current day of the week
-    String weekday = DateFormat('EEEE').format(DateTime.now());
+    String weekday = "Monday"; //DateFormat('EEEE').format(DateTime.now());
 
     // format current day of the week to match how it's stored in Course
     if (weekday == "Monday") { weekday = "M"; }
@@ -168,5 +156,35 @@ class _HomePageState extends State<HomePage> {
           textAlign: TextAlign.center,
         ),
       ));
+  }
+
+  Widget getBody(){
+    if(listOfTasks.isNotEmpty){
+      return TimePlanner(
+        style: TimePlannerStyle(
+          cellHeight: 70,
+          cellWidth: (MediaQuery.of(context).size.width ~/ 6) * 5,
+          showScrollBar: true),
+        startHour: 0,
+        endHour: 23,
+        currentTimeAnimation: true,
+        use24HourFormat: true,
+        headers: [TimePlannerTitle(title: "")],
+        tasks: tasks,
+      );
+    }
+    else {
+      return Center(child: SingleChildScrollView(child: Column(children: [
+        Text("You have nothing scheduled for today! \nTake it easy, or ",textAlign: TextAlign.center,),
+        ElevatedButton(
+          onPressed: () => Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const AddDeadlineView()),
+          ),
+          child: const Text('Add Task',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontSize: 20)),
+        )
+      ])));
+    }
   }
 }
