@@ -1,12 +1,6 @@
-import 'dart:convert';
-
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
-
-import 'package:schedulink/main.dart';
-import 'package:schedulink/view/homepage.dart';
 
 
 class FirebaseNotification {
@@ -67,8 +61,8 @@ class FirebaseNotification {
           tz.local,
         ),
         await notificationDetails(),
-        androidAllowWhileIdle: true,
-        //androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        //androidAllowWhileIdle: true,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
         uiLocalNotificationDateInterpretation:
         UILocalNotificationDateInterpretation.absoluteTime);
   }

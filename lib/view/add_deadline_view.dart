@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:choice/choice.dart';
-import 'package:bottom_picker/bottom_picker.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as date_time_picker;
 import 'package:intl/intl.dart';
 
