@@ -26,8 +26,12 @@ class _Profile extends State<Profile> {
         stream: _usersStream,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) return CircularProgressIndicator();
-          imgURL = snapshot.data['profileImg'];
-          contact = snapshot.data['contactInfo'];
+          if (snapshot.data["profileImg"] != null) {
+            imgURL = snapshot.data['profileImg'];
+          }
+          if (snapshot.data["contactInfo"] != null) {
+            contact = snapshot.data['contactInfo'];
+          }
           var courses = snapshot.data['userCourses'];
           var cName = [];
           for (var i = 0; i < courses!.length; i++) {
