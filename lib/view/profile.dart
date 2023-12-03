@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:schedulink/controller/schedule_service.dart';
-import 'package:schedulink/model/user_info.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 String? contact, imgURL;
-var courses = ["Course 1", "Course 2", "Course 3", "Course 4"];
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -14,100 +14,112 @@ class Profile extends StatefulWidget {
   _Profile createState() => _Profile();
 }
 
-Future<UserInfo> userProfile() async {
-  final ScheduleService service = ScheduleService();
-  final userinfo = await service.getUserInfo();
-  contact = userinfo.contactInfo;
-  imgURL = userinfo.profileImg;
-  //courses = userinfo.userCourses;
-  return userinfo;
-}
-
 class _Profile extends State<Profile> {
-  //final user = userProfile();
+  final _usersStream = FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .snapshots();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              }),
-          title: Text("User Profile"),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-            child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-              if (imgURL == null)
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ImageSet()),
-                    ).then((value) => setState(() {}));
-                  },
-                  child: Container(
-                      alignment: Alignment.center,
-                      child: Image.network(
-                          "https://img.freepik.com/premium-vector/account-icon-user-icon-vector-graphics_292645-552.jpg")),
-                ),
-              if (imgURL != null)
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ImageSet()),
-                    ).then((value) => setState(() {}));
-                  },
-                  child: Container(
-                      alignment: Alignment.center,
-                      margin: EdgeInsets.all(20),
-                      height: 350,
-                      width: 350,
-                      child: Image.network(imgURL!)),
-                ),
-              Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    IconButton(
-                      icon: const Icon(Icons.edit),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => editContact()),
-                        ).then((value) => setState(() {}));
-                      },
-                    ),
-                    Text("Contact Information: ",
-                        style: TextStyle(fontSize: 18)),
-                  ]),
-              if (contact == null)
-                Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.all(20),
-                    child: Text("Please Enter Contact Information.",
-                        style: TextStyle(fontSize: 18))),
-              if (contact != null)
-                Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.all(20),
-                    child: Text(contact!, style: TextStyle(fontSize: 18))),
-              Text("Courses: ", style: TextStyle(fontSize: 18)),
-              for (var c in courses)
-                GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => (Profile())),
-                      ).then((value) => setState(() {}));
-                    },
-                    child: Text(c, style: TextStyle(fontSize: 18))),
-            ])));
+    return StreamBuilder(
+        stream: _usersStream,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (!snapshot.hasData) return CircularProgressIndicator();
+          imgURL = snapshot.data['profileImg'];
+          contact = snapshot.data['contactInfo'];
+          var courses = snapshot.data['userCourses'];
+          var cName = [];
+          for (var i = 0; i < courses!.length; i++) {
+            for (var element in courses) {
+              String courseName = element['course'];
+              cName.add(courseName);
+            }
+          }
+          return Scaffold(
+              appBar: AppBar(
+                leading: IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
+                title: Text("User Profile"),
+                centerTitle: true,
+              ),
+              body: SingleChildScrollView(
+                  child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                    if (imgURL == null)
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ImageSet()),
+                          ).then((value) => setState(() {}));
+                        },
+                        child: Container(
+                            alignment: Alignment.center,
+                            child: Image.network(
+                                "https://img.freepik.com/premium-vector/account-icon-user-icon-vector-graphics_292645-552.jpg")),
+                      ),
+                    if (imgURL != null)
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ImageSet()),
+                          ).then((value) => setState(() {}));
+                        },
+                        child: Container(
+                            alignment: Alignment.center,
+                            margin: EdgeInsets.all(20),
+                            height: 350,
+                            width: 350,
+                            child: Image.network(imgURL!)),
+                      ),
+                    Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => editContact()),
+                              ).then((value) => setState(() {}));
+                            },
+                          ),
+                          Text("Contact Information: ",
+                              style: TextStyle(fontSize: 18)),
+                        ]),
+                    if (contact == null)
+                      Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.all(20),
+                          child: Text("Please Enter Contact Information.",
+                              style: TextStyle(fontSize: 18))),
+                    if (contact != null)
+                      Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.all(20),
+                          child:
+                              Text(contact!, style: TextStyle(fontSize: 18))),
+                    Text("Courses: ", style: TextStyle(fontSize: 18)),
+                    for (var c in cName)
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => (Profile())),
+                            ).then((value) => setState(() {}));
+                          },
+                          child: Text(c, style: TextStyle(fontSize: 18))),
+                  ])));
+        });
   }
 }
 
