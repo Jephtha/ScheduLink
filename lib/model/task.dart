@@ -39,7 +39,7 @@ class DeadlineTask {
       dueDate: map['dueDate'].toDate() ?? DateTime.now(),
       description: map['description'] ?? '',
       priority: map['priority'] ?? 'low',
-      isComplete: map['isComplete'] ?? 'false',
+      isComplete: map['isComplete'] ?? false,
     );
   }
 }

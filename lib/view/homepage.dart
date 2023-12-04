@@ -15,6 +15,7 @@ import '../controller/schedule_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+  static const route = '/homepage';
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.person),
             tooltip: 'Profile',
-            onPressed: () { 
+            onPressed: () {
               Navigator.push(
                   context, MaterialPageRoute(builder: (context) => Profile()));
             },
@@ -88,7 +89,7 @@ class _HomePageState extends State<HomePage> {
             MenuItemButton(
               onPressed: () {
                 getCourses().then((value) {
-                  Navigator.push(context, 
+                  Navigator.push(context,
                     MaterialPageRoute(builder: (context) => AddCourseView(courses: value,)),
                   );});
               },
@@ -119,7 +120,7 @@ class _HomePageState extends State<HomePage> {
               style: TextButton.styleFrom(textStyle: const TextStyle(fontSize: 20, color: Colors.white)),
               onPressed: () {
                 getScheduleInfo().then((value) {
-                  Navigator.push(context, 
+                  Navigator.push(context,
                     MaterialPageRoute(builder: (context) => Schedule(userCourses: value)),
                   );
                 });
@@ -147,8 +148,8 @@ class _HomePageState extends State<HomePage> {
 
   List<TimePlannerTask> getCourseInfo() {
     // get the current day of the week
-    String weekday = DateFormat('EEEE').format(DateTime.now()); 
-    // change weekday to "Monday" or "Wednesday", etc., if testing on a day with no tasks 
+    String weekday = DateFormat('EEEE').format(DateTime.now());
+    // change weekday to "Monday" or "Wednesday", etc., if testing on a day with no tasks
 
     // format current day of the week to match how it's stored in Course
     if (weekday == "Monday") { weekday = "M"; }
@@ -241,11 +242,12 @@ class _HomePageState extends State<HomePage> {
     else {
       return Center(child: SingleChildScrollView(child: Column(children: [
         Text("You have nothing scheduled for today! \nTake it easy, or ",textAlign: TextAlign.center,),
+        SizedBox(height: 10,),
         ElevatedButton(
           onPressed: () => Navigator.push(context,
             MaterialPageRoute(builder: (context) => const AddDeadlineView()),
           ),
-          child: const Text('Add Task',
+          child: const Text('Add a Deadline',
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 20)),
         )
