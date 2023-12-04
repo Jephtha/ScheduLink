@@ -4,7 +4,6 @@ import 'package:time_planner/time_planner.dart';
 
 import 'schedule.dart';
 import 'task_list.dart';
-// ignore: unused_import
 import 'add_deadline_view.dart';
 import 'add_course_view.dart';
 import 'course_info.dart';
@@ -65,7 +64,16 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.person),
             tooltip: 'Profile',
-            onPressed: () {/* profile */},
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/profile');
+              // ProfileScreen(
+              //   actions: [
+              //     SignedOutAction((context) {
+              //       Navigator.pushReplacementNamed(context, '/sign-in');
+              //     }),
+              //   ],
+              // );
+            },
           ),
 
           MenuAnchor(builder:
