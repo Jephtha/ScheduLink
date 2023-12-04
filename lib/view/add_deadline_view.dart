@@ -3,6 +3,7 @@ import 'package:choice/choice.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as date_time_picker;
 import 'package:intl/intl.dart';
 
+import 'homepage.dart';
 import '../controller/notification_service.dart';
 import '../model/task.dart';
 import '../controller/schedule_service.dart';
@@ -34,8 +35,6 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
   }
 
   Future<void> _addDeadline() async {
-    // ignore: unused_local_variable
-    final FormState form = _formKey.currentState!;
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       final newDeadline = DeadlineTask(name: name, course: course, dueDate: dueDate,
@@ -50,14 +49,62 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
               '${DateFormat('h:mm a').format(reminder)} on ${DateFormat('EEE, MMM d').format(reminder)}',
           scheduledNotificationDateTime: reminder);
 
-      // ignore: use_build_context_synchronously
-      Navigator.of(context).pop();
+      //Navigator.of(context).pop();
+      if (context.mounted) {
+        if (!Navigator.canPop(context)) {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+          );
+        }
+        else {
+          Navigator.of(context).pop();
+        }
+      }
 
     }
     else {
       print("Form is invalid");
     }
   }
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if (!Navigator.canPop(context)) {
+        showAlertDialog();
+      }
+    });
+  }
+
+  void showAlertDialog() {
+    showDialog(context: context, builder: (context) {
+      bool manuallyClosed = false;
+      Future.delayed(Duration(seconds: 10)).then((_) {
+        if (!manuallyClosed) {
+          Navigator.of(context).pop();
+        }
+      });
+      return AlertDialog(
+        title: Text("Welcome"),
+        content: Text("Welcome new user! Add the deadlines and due dates of your registered courses here to your schedule."),
+        actions: [
+          TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                manuallyClosed = true;
+                Navigator.of(context).pop();
+              }
+          ),
+        ],
+      );
+    });
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +119,7 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
             icon: const Icon(Icons.arrow_back),
             tooltip: 'Back',
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.pushReplacementNamed(context, '/homepage');
             },
           ),
         ),
@@ -249,7 +296,6 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                 child: ElevatedButton(
                   onPressed: () {
                     _addDeadline();
-                    //Navigator.of(context).pop();
                   },
                   child: Text('Save'),
                 ),
