@@ -1,9 +1,8 @@
 import 'dart:io';
 import 'package:choice/choice.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide UserInfo;
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../controller/schedule_service.dart';
@@ -22,11 +21,6 @@ class _Profile extends State<Profile> {
   final ScheduleService scheduleService = ScheduleService();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  final _usersStream = FirebaseFirestore.instance
-      .collection('users')
-      .doc(FirebaseAuth.instance.currentUser!.uid)
-      .snapshots();
-
   String contact = '';
   String imgURL = '';
   String name = '';
@@ -40,20 +34,21 @@ class _Profile extends State<Profile> {
     setState(() => selectedContactOption = value);
   }
 
+  Future<void> _signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       UserInfo user = await scheduleService.getUserInfo();
-      print(user.name);
       setState(() {
         name = user.name;
         contact = user.contactInfo;
         imgURL = user.profileImg;
         courseInfo = user.userCourses!;
         List tempCourse = [];
-        //user.userCourses!.map((element) => tempCourse.add(element['course']));
 
         List<Map<String, dynamic>> c = user.userCourses!;
         for (var element in c) {
@@ -69,13 +64,12 @@ class _Profile extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    print(courses.length);
             return Scaffold(
                 appBar: AppBar(
                   leading: IconButton(
                       icon: const Icon(Icons.arrow_back),
                       onPressed: () {
-                        Navigator.pop(context);
+                        Navigator.pushReplacementNamed(context, '/homepage');
                       }),
                   title: Text("Profile"),
                   centerTitle: true,
@@ -126,7 +120,7 @@ class _Profile extends State<Profile> {
                                           backgroundColor: Theme.of(context).colorScheme.primaryContainer,
                                           foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
                                           child: Text(
-                                            name[0],
+                                            name == '' ? 'A' : name[0],
                                             style: Theme.of(context).textTheme.titleLarge,
                                           ),
                                         ),
@@ -232,14 +226,17 @@ class _Profile extends State<Profile> {
                               SizedBox(height: 50,),
                               ElevatedButton(
                                   onPressed: () {
-                                    // UserInfo user = UserInfo(name: name, profileImg: imgURL, contactInfo: contact);
-                                    // scheduleService.updateUserInfo(user);
-
                                     _addUserInfo();
                                   },
                                   child: Text('Submit'),
                               ),
-                                //Text(c, style: TextStyle(fontSize: 18)),
+                              ElevatedButton(
+                                  onPressed: () async {
+                                    await _signOut();
+                                    if (context.mounted) Navigator.pushReplacementNamed(context, '/sign-in');
+                                  },
+                                  child: Text('Sign Out'),
+                              ),
                             ]),
                       ),
                 )
@@ -253,7 +250,14 @@ class _Profile extends State<Profile> {
       print("$name $contact $imgURL");
       await scheduleService.updateUserInfo(userInfo);
 
-      //if(context.mounted) Navigator.of(context).pop();
+      if (context.mounted) {
+        if (!Navigator.canPop(context)) {
+          Navigator.pushReplacementNamed(context, '/homepage');
+        }
+        else {
+          //Navigator.of(context).pop();
+        }
+      }
     }
     else {
       print("Form is invalid");

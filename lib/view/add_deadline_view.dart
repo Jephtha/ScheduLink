@@ -52,11 +52,12 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
       //Navigator.of(context).pop();
       if (context.mounted) {
         if (!Navigator.canPop(context)) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
-          );
+          Navigator.pushReplacementNamed(context, '/profile');
+          // Navigator.of(context).pushReplacement(
+          //   MaterialPageRoute(
+          //     builder: (context) => HomePage(),
+          //   ),
+          // );
         }
         else {
           Navigator.of(context).pop();

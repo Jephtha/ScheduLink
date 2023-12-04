@@ -2,7 +2,6 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:time_planner/time_planner.dart';
 
-import 'profile.dart';
 import 'schedule.dart';
 import 'task_list.dart';
 import 'add_deadline_view.dart';
@@ -66,9 +65,7 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(Icons.person),
             tooltip: 'Profile',
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/profile');
-              // Navigator.push(
-              //     context, MaterialPageRoute(builder: (context) => Profile()));
+              Navigator.pushNamed(context, '/profile');
             },
           ),
 

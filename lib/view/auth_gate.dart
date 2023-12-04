@@ -50,15 +50,6 @@ class AuthGate extends StatelessWidget {
               ],
             );
           },
-          // '/profile': (context) {
-          //   return ProfileScreen(
-          //     actions: [
-          //       SignedOutAction((context) {
-          //         Navigator.pushReplacementNamed(context, '/sign-in');
-          //       }),
-          //     ],
-          //   );
-          // },
           '/profile': (context) {
             return Profile();
           },
