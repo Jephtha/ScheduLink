@@ -1,5 +1,7 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:schedulink/controller/theme_services.dart';
 import 'package:time_planner/time_planner.dart';
 
 import 'schedule.dart';
@@ -43,21 +45,37 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    getScheduleInfo().then((courses){
-    getDeadlineList().then((deadlines) {
-      setState(() {
-        userCourses = courses;
-        userDeadlines = deadlines;
+    getScheduleInfo().then((courses) {
+      getDeadlineList().then((deadlines) {
+        setState(() {
+          userCourses = courses;
+          userDeadlines = deadlines;
+        });
       });
-    });});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     tasks = getCourseInfo();
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+            icon: Icon(
+              Provider.of<ThemeProvider>(context, listen: false).isDarkMode ==
+                      false
+                  ? Icons.wb_sunny
+                  : Icons.nightlight_round,
+            )),
+        /*Switch(
+          value: Provider.of<ThemeProvider>(context).isDarkMode,
+          onChanged: (value) {
+            Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+          },
+        ),*/
         title: Text(DateFormat.yMMMMd().format(DateTime.now())),
         centerTitle: true,
         actions: [
@@ -68,9 +86,9 @@ class _HomePageState extends State<HomePage> {
               Navigator.pushNamed(context, '/profile');
             },
           ),
-
-          MenuAnchor(builder:
-              (BuildContext context, MenuController controller, Widget? child) {
+          MenuAnchor(
+            builder: (BuildContext context, MenuController controller,
+                Widget? child) {
               return IconButton(
                 onPressed: () {
                   if (controller.isOpen) {
@@ -80,68 +98,82 @@ class _HomePageState extends State<HomePage> {
                   }
                 },
                 icon: const Icon(Icons.add),
-              tooltip: 'Add',
-            );
-          },
-          menuChildren: [
-            MenuItemButton(
-              onPressed: () {
-                getCourses().then((value) {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AddCourseView(courses: value,)),
-                  );});
-              },
-              child: Text('Add Course'),
-            ),
-
-            MenuItemButton(
-              onPressed: () {
-                Navigator.push(context,
-                  MaterialPageRoute(
-                    builder: (context) => const AddDeadlineView()),
+                tooltip: 'Add',
+              );
+            },
+            menuChildren: [
+              MenuItemButton(
+                onPressed: () {
+                  getCourses().then((value) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AddCourseView(
+                                courses: value,
+                              )),
+                    );
+                  });
+                },
+                child: Text('Add Course'),
+              ),
+              MenuItemButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddDeadlineView()),
                   );
-              },
-              child: Text('Add Deadline'),
-            ),
-          ],
-        ),
+                },
+                child: Text('Add Deadline'),
+              ),
+            ],
+          ),
         ],
       ),
-
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blue,
-         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Expanded(child: TextButton(
-              style: TextButton.styleFrom(textStyle: const TextStyle(fontSize: 20, color: Colors.white)),
-              onPressed: () {
-                getScheduleInfo().then((value) {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Schedule(userCourses: value)),
-                  );
-                });
-              },
-              child: const Text('Schedule', style: TextStyle(color: Colors.white)),
-              )
-            ),
-
-            Expanded(child: TextButton(
-              style: TextButton.styleFrom(textStyle: const TextStyle(fontSize: 20)),
-              onPressed: () {
-                getDeadlineList().then((value) {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => TaskList(userDeadlines: value)),
-                  );
-                });
-              },
-              child: const Text('Deadlines', style: TextStyle(color: Colors.white))),
+          color: Colors.blue,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                  child: TextButton(
+                style: TextButton.styleFrom(
+                    textStyle:
+                        const TextStyle(fontSize: 20, color: Colors.white)),
+                onPressed: () {
+                  getScheduleInfo().then((value) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Schedule(userCourses: value)),
+                    );
+                  });
+                },
+                child: const Text('Schedule',
+                    style: TextStyle(color: Colors.white)),
+              )),
+              Expanded(
+                child: TextButton(
+                    style: TextButton.styleFrom(
+                        textStyle: const TextStyle(fontSize: 20)),
+                    onPressed: () {
+                      getDeadlineList().then((value) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  TaskList(userDeadlines: value)),
+                        );
+                      });
+                    },
+                    child: const Text('Deadlines',
+                        style: TextStyle(color: Colors.white))),
               ),
-          ],)),
-
+            ],
+          )),
       body: getBody(),
-    ));
+    );
   }
 
   List<TimePlannerTask> getCourseInfo() {
@@ -150,11 +182,21 @@ class _HomePageState extends State<HomePage> {
     // change weekday to "Monday" or "Wednesday", etc., if testing on a day with no tasks
 
     // format current day of the week to match how it's stored in Course
-    if (weekday == "Monday") { weekday = "M"; }
-    if (weekday == "Tuesday") { weekday = "T"; }
-    if (weekday == "Wednesday") { weekday = "W"; }
-    if (weekday == "Thursday") { weekday = "R"; }
-    if (weekday == "Friday") { weekday = "F"; }
+    if (weekday == "Monday") {
+      weekday = "M";
+    }
+    if (weekday == "Tuesday") {
+      weekday = "T";
+    }
+    if (weekday == "Wednesday") {
+      weekday = "W";
+    }
+    if (weekday == "Thursday") {
+      weekday = "R";
+    }
+    if (weekday == "Friday") {
+      weekday = "F";
+    }
 
     for (var element in userCourses) {
       element.forEach((key, value) {
@@ -164,7 +206,7 @@ class _HomePageState extends State<HomePage> {
       });
     }
 
-    if(userDeadlines.isNotEmpty) {
+    if (userDeadlines.isNotEmpty) {
       for (DeadlineTask task in userDeadlines) {
         if ((task.dueDate.day == DateTime.now().day && !task.isComplete)) {
           listOfTasks.add(getDeadlineSlot(task));
@@ -175,60 +217,73 @@ class _HomePageState extends State<HomePage> {
   }
 
   TimePlannerTask getClassSlot(Course course, dynamic value) {
-
-    DateTime start = DateTime(1,1,1,int.parse(course.startTime.toString().substring(0, 2)),int.parse(course.startTime.toString().substring(2)));
-    DateTime end = DateTime(1,1,1,int.parse(course.endTime.toString().substring(0, 2)),int.parse(course.endTime.toString().substring(2)));
+    DateTime start = DateTime(
+        1,
+        1,
+        1,
+        int.parse(course.startTime.toString().substring(0, 2)),
+        int.parse(course.startTime.toString().substring(2)));
+    DateTime end = DateTime(
+        1,
+        1,
+        1,
+        int.parse(course.endTime.toString().substring(0, 2)),
+        int.parse(course.endTime.toString().substring(2)));
     int duration = end.difference(start).inMinutes;
 
     return TimePlannerTask(
-      color: Color(value).withOpacity(1), // background color for task
-      dateTime: TimePlannerDateTime(day: 0, hour: start.hour, minutes: start.minute),
-      minutesDuration: duration, // Minutes duration of task
-      onTap: () {
-        Navigator.push(context,
-          MaterialPageRoute(builder: (context) => CourseInfo(course: course)));
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(1),
-        child: Text(
-          "${course.course}\n${course.location}\n ${DateFormat.jm().format(start)} - ${DateFormat.jm().format(end)}",
-          style: const TextStyle(color: Colors.black, fontSize: 13),
-          textAlign: TextAlign.center,
-        ),
-      ));
+        color: Color(value).withOpacity(1), // background color for task
+        dateTime: TimePlannerDateTime(
+            day: 0, hour: start.hour, minutes: start.minute),
+        minutesDuration: duration, // Minutes duration of task
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CourseInfo(course: course)));
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(1),
+          child: Text(
+            "${course.course}\n${course.location}\n ${DateFormat.jm().format(start)} - ${DateFormat.jm().format(end)}",
+            style: const TextStyle(color: Colors.black, fontSize: 13),
+            textAlign: TextAlign.center,
+          ),
+        ));
   }
 
   TimePlannerTask getDeadlineSlot(DeadlineTask task) {
-
     return TimePlannerTask(
-      color: Colors.red.shade200, // background color for task
-      dateTime: TimePlannerDateTime(day: 0, hour: (task.dueDate.hour), minutes: 0),
-      minutesDuration: 60, // Minutes duration of task
-      onTap: () {
-        getDeadlineList().then((value) {
-          Navigator.push(context,
-            MaterialPageRoute(builder: (context) => TaskList(userDeadlines: value)),
-          );
-        });
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(1),
-        child: Text(
-          "${task.course} ${task.name} due at ${DateFormat.jm().format(task.dueDate)}!!",
-          style: const TextStyle(color: Colors.black, fontSize: 13),
-          textAlign: TextAlign.center,
-        ),
-      ));
+        color: Colors.red.shade200, // background color for task
+        dateTime:
+            TimePlannerDateTime(day: 0, hour: (task.dueDate.hour), minutes: 0),
+        minutesDuration: 60, // Minutes duration of task
+        onTap: () {
+          getDeadlineList().then((value) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => TaskList(userDeadlines: value)),
+            );
+          });
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(1),
+          child: Text(
+            "${task.course} ${task.name} due at ${DateFormat.jm().format(task.dueDate)}!!",
+            style: const TextStyle(color: Colors.black, fontSize: 13),
+            textAlign: TextAlign.center,
+          ),
+        ));
   }
 
-
-  Widget getBody(){
-    if(listOfTasks.isNotEmpty){
+  Widget getBody() {
+    if (listOfTasks.isNotEmpty) {
       return TimePlanner(
         style: TimePlannerStyle(
-          cellHeight: 70,
-          cellWidth: (MediaQuery.of(context).size.width ~/ 6) * 5,
-          showScrollBar: true),
+            cellHeight: 70,
+            cellWidth: (MediaQuery.of(context).size.width ~/ 6) * 5,
+            showScrollBar: true),
         startHour: 0,
         endHour: 23,
         currentTimeAnimation: true,
@@ -236,18 +291,24 @@ class _HomePageState extends State<HomePage> {
         headers: [TimePlannerTitle(title: "")],
         tasks: tasks,
       );
-    }
-    else {
-      return Center(child: SingleChildScrollView(child: Column(children: [
-        Text("You have nothing scheduled for today! \nTake it easy, or ",textAlign: TextAlign.center,),
-        SizedBox(height: 10,),
+    } else {
+      return Center(
+          child: SingleChildScrollView(
+              child: Column(children: [
+        Text(
+          "You have nothing scheduled for today! \nTake it easy, or ",
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          height: 10,
+        ),
         ElevatedButton(
-          onPressed: () => Navigator.push(context,
+          onPressed: () => Navigator.push(
+            context,
             MaterialPageRoute(builder: (context) => const AddDeadlineView()),
           ),
           child: const Text('Add a Deadline',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20)),
+              textAlign: TextAlign.center, style: TextStyle(fontSize: 20)),
         )
       ])));
     }

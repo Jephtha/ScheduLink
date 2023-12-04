@@ -14,7 +14,6 @@ class TaskList extends StatefulWidget {
 }
 
 class _TaskListState extends State<TaskList> {
-
   final ScheduleService scheduleService = ScheduleService();
   late List<DeadlineTask> deadlines = getDeadlines();
 
@@ -23,41 +22,49 @@ class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Upcoming Deadlines'), 
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
-        tooltip: 'Back',
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(
-            builder: (context) => HomePage()),
-          );
-        },
-      ),
-      actions: <Widget>[
-        IconButton(
-          icon: const Icon(Icons.add),
-          tooltip: 'Add Task',
-          iconSize: 35.0,
-          onPressed: () => Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const AddDeadlineView()),
-          )
-        ),
-      ]),
-
+      appBar: AppBar(
+          title: const Text('Upcoming Deadlines'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            tooltip: 'Back',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+            },
+          ),
+          actions: <Widget>[
+            IconButton(
+                icon: const Icon(Icons.add),
+                tooltip: 'Add Task',
+                iconSize: 35.0,
+                onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AddDeadlineView()),
+                    )),
+          ]),
       body: SingleChildScrollView(
-        child: Column(mainAxisAlignment: MainAxisAlignment.start, children:[
-          if(deadlines.isEmpty)
-            Column(children: [
-              Text("No upcoming deadlines!"),
-              ElevatedButton(
-                onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(
-                  builder: (context) => const AddDeadlineView()),
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          if (deadlines.isEmpty)
+            Column(
+              children: [
+                Text("No upcoming deadlines!"),
+                ElevatedButton(
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const AddDeadlineView()),
+                  ),
+                  child: const Text('Add Task',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 20)),
                 ),
-                child: const Text('Add Task',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 20)),
-              ),],)
+              ],
+            )
           else
             for (var i = 0; i < deadlines.length; i++) ...[
               checkDate(deadlines[i]),
@@ -80,45 +87,61 @@ class _TaskListState extends State<TaskList> {
         title: Text(
           "${DateFormat('LLLL').format(task.dueDate)} ${task.dueDate.day}, ${task.dueDate.year}",
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+              fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
         ),
       ));
     } else {
       return Container();
-    } 
+    }
   }
 
   ListTile createTask(DeadlineTask task) {
     Color priorityColor = Colors.green;
     Color backgroundColor = Colors.white;
-    if (task.priority == "medium" ) { priorityColor = Colors.amber; }
-    if (task.priority == "high") { priorityColor = Colors.red; }
+    if (task.priority == "medium") {
+      priorityColor = Colors.amber;
+    }
+    if (task.priority == "high") {
+      priorityColor = Colors.red;
+    }
 
-    if (task.isComplete) { backgroundColor = Colors.grey.shade400; }
+    if (task.isComplete) {
+      backgroundColor = Colors.grey.shade400;
+    }
 
-    Text titleText = Text.rich(TextSpan(children: <TextSpan>[
+    Text titleText = Text.rich(
+      TextSpan(children: <TextSpan>[
+        // add flag for assignments due in < 24 hours
+        if (0 <= task.dueDate.difference(DateTime.now()).inHours &&
+            task.dueDate.difference(DateTime.now()).inHours < 24 &&
+            !(task.isComplete))
+          TextSpan(text: "DUE SOON!\n", style: TextStyle(color: Colors.red))
 
-      // add flag for assignments due in < 24 hours
-      if (0 <= task.dueDate.difference(DateTime.now()).inHours && task.dueDate.difference(DateTime.now()).inHours < 24 && !(task.isComplete))
-        TextSpan(text: "DUE SOON!\n", style: TextStyle(color: Colors.red))
-      
-      // add flag for overdue assignments
-      else if (task.dueDate.isBefore(DateTime.now()) && !(task.isComplete))
-        TextSpan(text: "LATE!\n", style: TextStyle(color: Colors.red)),
+        // add flag for overdue assignments
+        else if (task.dueDate.isBefore(DateTime.now()) && !(task.isComplete))
+          TextSpan(text: "LATE!\n", style: TextStyle(color: Colors.red)),
 
-      // task name and course 
-      TextSpan(text: "${task.name} - ${task.course}", style: TextStyle(fontWeight: FontWeight.bold))]
-    ),);
+        // task name and course
+        TextSpan(
+            text: "${task.name} - ${task.course}",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black))
+      ]),
+    );
 
-    // the "body" text - includes task due date and descrption 
-    Text taskText = Text.rich(TextSpan(
-      children: <TextSpan>[
-        TextSpan(text: "Due: ${DateFormat.yMMMMd().format(task.dueDate)} at ${DateFormat.jm().format(task.dueDate)}"),
-        if (task.description.isNotEmpty) 
-          TextSpan(text: "\n${task.description}"),]
-    ));
+    // the "body" text - includes task due date and descrption
+    Text taskText = Text.rich(TextSpan(children: <TextSpan>[
+      TextSpan(
+          text:
+              "Due: ${DateFormat.yMMMMd().format(task.dueDate)} at ${DateFormat.jm().format(task.dueDate)}",
+          style: TextStyle(color: Colors.black)),
+      if (task.description.isNotEmpty)
+        TextSpan(
+            text: "\n${task.description}",
+            style: TextStyle(color: Colors.black)),
+    ]));
 
-    // highlight missed deadlines/overdue tasks  
+    // highlight missed deadlines/overdue tasks
     if (DateTime.now().isAfter(task.dueDate) && !(task.isComplete)) {
       backgroundColor = Colors.red.shade100;
     }
@@ -127,10 +150,11 @@ class _TaskListState extends State<TaskList> {
       tileColor: backgroundColor,
       title: titleText,
       subtitle: taskText,
-      
+
       leading: Icon(Icons.warning, color: priorityColor), // priority icon
-      
-      trailing: Row(mainAxisSize: MainAxisSize.min, children: [ // checkbox
+
+      trailing: Row(mainAxisSize: MainAxisSize.min, children: [
+        // checkbox
         Checkbox(
           value: (task.isComplete),
           onChanged: (bool? value) {
@@ -143,7 +167,7 @@ class _TaskListState extends State<TaskList> {
     );
   }
 
-  List<DeadlineTask> getDeadlines()  {
+  List<DeadlineTask> getDeadlines() {
     List<DeadlineTask> deadlines = [];
 
     for (var element in widget.userDeadlines) {

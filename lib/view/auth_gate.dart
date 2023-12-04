@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:schedulink/controller/theme_services.dart';
 
 import 'homepage.dart';
 import 'profile.dart';
 import 'add_course_view.dart';
 import '../model/course.dart';
 import '../controller/schedule_service.dart';
-
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
@@ -23,11 +24,12 @@ class AuthGate extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Authentication Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        initialRoute:
-        FirebaseAuth.instance.currentUser == null ? '/sign-in' : '/homepage',
+        theme: Provider.of<ThemeProvider>(context).isDarkMode
+            ? ThemeData.dark()
+            : ThemeData.light(),
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? '/sign-in'
+            : '/homepage',
         routes: {
           '/sign-in': (context) {
             return SignInScreen(
@@ -41,10 +43,10 @@ class AuthGate extends StatelessWidget {
                 AuthStateChangeAction<UserCreated>((context, state) {
                   getCourses().then((value) {
                     Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (context) => AddCourseView(courses: value)
-                      ), (route) => false
-                    );
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                AddCourseView(courses: value)),
+                        (route) => false);
                   });
                 }),
               ],
@@ -56,7 +58,6 @@ class AuthGate extends StatelessWidget {
           '/homepage': (context) {
             return HomePage();
           },
-
         });
   }
 }

@@ -14,16 +14,14 @@ import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 
 class Schedule extends StatefulWidget {
-  
   final List<Map<Course, dynamic>> userCourses;
-  const Schedule({super.key,required this.userCourses});
+  const Schedule({super.key, required this.userCourses});
 
   @override
   State<Schedule> createState() => _ScheduleState();
 }
 
 class _ScheduleState extends State<Schedule> {
-
   var pdf = pw.Document();
   final ExportDelegate exportDelegate = ExportDelegate();
   ScreenshotController screenshotController = ScreenshotController();
@@ -32,16 +30,16 @@ class _ScheduleState extends State<Schedule> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
       appBar: AppBar(
           title: const Text('Schedule'),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             tooltip: 'Back',
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(
-                builder: (context) => HomePage()),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
               );
             },
           ),
@@ -60,71 +58,112 @@ class _ScheduleState extends State<Schedule> {
               },
             )
           ]),
-
       body: Screenshot(
-        controller: screenshotController,
-        child: TimePlanner(
-          style: TimePlannerStyle(
-          cellWidth: (MediaQuery.of(context).size.width ~/ 6), cellHeight: 50,),
-          startHour: 8,
-          endHour: 21,
-          currentTimeAnimation: false,
-          use24HourFormat: true,
-          headers: const [
-            // each header is a column and a day
-            TimePlannerTitle(title: "MON",),
-            TimePlannerTitle(title: "TUES",),
-            TimePlannerTitle(title: "WED",),
-            TimePlannerTitle(title: "THURS",),
-            TimePlannerTitle(title: "FRI",)],
+          controller: screenshotController,
+          child: TimePlanner(
+            style: TimePlannerStyle(
+              cellWidth: (MediaQuery.of(context).size.width ~/ 6),
+              cellHeight: 50,
+            ),
+            startHour: 8,
+            endHour: 21,
+            currentTimeAnimation: false,
+            use24HourFormat: true,
+            headers: const [
+              // each header is a column and a day
+              TimePlannerTitle(
+                title: "MON",
+              ),
+              TimePlannerTitle(
+                title: "TUES",
+              ),
+              TimePlannerTitle(
+                title: "WED",
+              ),
+              TimePlannerTitle(
+                title: "THURS",
+              ),
+              TimePlannerTitle(
+                title: "FRI",
+              )
+            ],
             tasks: tasks,
           )),
-    ));
+    );
   }
 
   List<TimePlannerTask> getCourseInfo() {
-
     List<TimePlannerTask> listOfTasks = [];
-      for (var element in widget.userCourses) {
-        element.forEach((key, value) {
-          String daysOfWeek = key.daysOfWeek;
-          for(var i=0; i < daysOfWeek.length; i++){
-            listOfTasks.add(getSlot(key,key.course,int.parse(key.startTime),int.parse(key.endTime),key.location,daysOfWeek[i],value,));
-          }
-        });
+    for (var element in widget.userCourses) {
+      element.forEach((key, value) {
+        String daysOfWeek = key.daysOfWeek;
+        for (var i = 0; i < daysOfWeek.length; i++) {
+          listOfTasks.add(getSlot(
+            key,
+            key.course,
+            int.parse(key.startTime),
+            int.parse(key.endTime),
+            key.location,
+            daysOfWeek[i],
+            value,
+          ));
+        }
+      });
     }
     return listOfTasks;
   }
 
-  TimePlannerTask getSlot(Course course, String name, int startTime, int endTime, String location, String dayString, dynamic value) {
-
+  TimePlannerTask getSlot(Course course, String name, int startTime,
+      int endTime, String location, String dayString, dynamic value) {
     int day = 0;
-    if(dayString=="T") { day=1; }
-    if(dayString=="W") { day=2; }
-    if(dayString=="R") { day=3; }
-    if(dayString=="F") { day=4; }
+    if (dayString == "T") {
+      day = 1;
+    }
+    if (dayString == "W") {
+      day = 2;
+    }
+    if (dayString == "R") {
+      day = 3;
+    }
+    if (dayString == "F") {
+      day = 4;
+    }
 
-    DateTime start = DateTime(1,1,1,int.parse(startTime.toString().substring(0,2)),int.parse(startTime.toString().substring(2)));
-    DateTime end = DateTime(1,1,1,int.parse(endTime.toString().substring(0,2)),int.parse(endTime.toString().substring(2)));
+    DateTime start = DateTime(
+        1,
+        1,
+        1,
+        int.parse(startTime.toString().substring(0, 2)),
+        int.parse(startTime.toString().substring(2)));
+    DateTime end = DateTime(
+        1,
+        1,
+        1,
+        int.parse(endTime.toString().substring(0, 2)),
+        int.parse(endTime.toString().substring(2)));
     int duration = end.difference(start).inMinutes;
 
     return TimePlannerTask(
-      color: Color(value).withOpacity(1), // background color for task
-      dateTime: TimePlannerDateTime(day: day, hour: int.parse(startTime.toString().substring(0,2)), minutes: int.parse(startTime.toString().substring(2))),
-      minutesDuration: duration, // Minutes duration of task
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => CourseInfo(course: course)),
-        );
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(1),
-        child: Text(
-          "${name.substring(0,(name.length-4))}\n ${name.substring(name.length-4)}",
-          style: const TextStyle(color: Colors.black, fontSize: 13),
-          textAlign: TextAlign.center,
-        ),
-      ));
+        color: Color(value).withOpacity(1), // background color for task
+        dateTime: TimePlannerDateTime(
+            day: day,
+            hour: int.parse(startTime.toString().substring(0, 2)),
+            minutes: int.parse(startTime.toString().substring(2))),
+        minutesDuration: duration, // Minutes duration of task
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CourseInfo(course: course)),
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(1),
+          child: Text(
+            "${name.substring(0, (name.length - 4))}\n ${name.substring(name.length - 4)}",
+            style: const TextStyle(color: Colors.black, fontSize: 13),
+            textAlign: TextAlign.center,
+          ),
+        ));
   }
 
   createPDF(Uint8List img) async {
