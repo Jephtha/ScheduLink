@@ -56,10 +56,8 @@ class _Profile extends State<Profile> {
         //user.userCourses!.map((element) => tempCourse.add(element['course']));
 
         List<Map<String, dynamic>> c = user.userCourses!;
-        for(var i=0; i < c.length; i++){
-          for (var element in c) {
-            tempCourse.add(element['course']);
-          }
+        for (var element in c) {
+          tempCourse.add(element['course']);
         }
 
         courses = tempCourse;
