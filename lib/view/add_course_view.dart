@@ -282,16 +282,7 @@ class _AddCourseViewState extends State<AddCourseView> {
                             TextButton(
                               child: Text("OK"),
                               onPressed: () {
-                                if (!Navigator.canPop(context)) {
-                                  Navigator.of(context).pushReplacement(
-                                    MaterialPageRoute(
-                                      builder: (context) => AddDeadlineView(),
-                                    ),
-                                  );
-                                }
-                                else {
-                                  Navigator.of(context).pop();
-                                }
+                                Navigator.of(context).pop();
                               },
                             ),
                           ],
@@ -300,9 +291,19 @@ class _AddCourseViewState extends State<AddCourseView> {
                   );
                 }
                 else {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => HomePage()),
-                  );
+                  if (!Navigator.canPop(context)) {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => AddDeadlineView(),
+                      ),
+                    );
+                  }
+                  else {
+                    Navigator.of(context).pop();
+                  }
+                  // Navigator.push(context, MaterialPageRoute(
+                  //   builder: (context) => HomePage()),
+                  // );
                 }
               }
             },

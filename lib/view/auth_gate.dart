@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
-import 'package:schedulink/view/add_course_view.dart';
-import 'package:schedulink/view/schedule.dart';
 
-import '../controller/schedule_service.dart';
-import '../model/course.dart';
 import 'homepage.dart';
+import 'add_course_view.dart';
+import '../model/course.dart';
+import '../controller/schedule_service.dart';
 
 
 class AuthGate extends StatelessWidget {

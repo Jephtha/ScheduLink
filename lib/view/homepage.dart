@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:time_planner/time_planner.dart';
 
 import 'schedule.dart';
@@ -64,7 +65,16 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.person),
             tooltip: 'Profile',
-            onPressed: () {/* profile */},
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/profile');
+              // ProfileScreen(
+              //   actions: [
+              //     SignedOutAction((context) {
+              //       Navigator.pushReplacementNamed(context, '/sign-in');
+              //     }),
+              //   ],
+              // );
+            },
           ),
 
           MenuAnchor(builder:

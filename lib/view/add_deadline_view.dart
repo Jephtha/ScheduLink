@@ -50,7 +50,7 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
               '${DateFormat('h:mm a').format(reminder)} on ${DateFormat('EEE, MMM d').format(reminder)}',
           scheduledNotificationDateTime: reminder);
 
-      Navigator.of(context).pop();
+      //Navigator.of(context).pop();
       if (context.mounted) {
         if (!Navigator.canPop(context)) {
           Navigator.of(context).pushReplacement(
