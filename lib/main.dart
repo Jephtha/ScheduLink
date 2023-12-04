@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'package:schedulink/controller/theme_services.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'firebase_options.dart';
 
@@ -17,15 +19,21 @@ Future<void> main() async {
   FirebaseNotification().initNotifications();
   tz.initializeTimeZones();
 
-  runApp(const MainApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+      child: MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: AuthGate(),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        theme: Provider.of<ThemeProvider>(context).isDarkMode
+            ? ThemeData.dark()
+            : ThemeData.light(),
+        home: AuthGate(),
+      );
 }
