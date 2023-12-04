@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
-import 'homepage.dart';
 import 'add_deadline_view.dart';
 import '../model/course.dart';
 import '../controller/schedule_service.dart';
