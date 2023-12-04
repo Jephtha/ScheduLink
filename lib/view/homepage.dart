@@ -65,14 +65,7 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(Icons.person),
             tooltip: 'Profile',
             onPressed: () {
-              Navigator.pushReplacementNamed(context, '/profile');
-              // ProfileScreen(
-              //   actions: [
-              //     SignedOutAction((context) {
-              //       Navigator.pushReplacementNamed(context, '/sign-in');
-              //     }),
-              //   ],
-              // );
+              Navigator.pushNamed(context, '/profile');
             },
           ),
 
@@ -247,7 +240,7 @@ class _HomePageState extends State<HomePage> {
     else {
       return Center(child: SingleChildScrollView(child: Column(children: [
         Text("You have nothing scheduled for today! \nTake it easy, or ",textAlign: TextAlign.center,),
-        SizedBox(height: 20,),
+        SizedBox(height: 10,),
         ElevatedButton(
           onPressed: () => Navigator.push(context,
             MaterialPageRoute(builder: (context) => const AddDeadlineView()),

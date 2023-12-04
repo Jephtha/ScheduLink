@@ -3,7 +3,6 @@ import 'package:choice/choice.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as date_time_picker;
 import 'package:intl/intl.dart';
 
-import 'homepage.dart';
 import '../controller/notification_service.dart';
 import '../model/task.dart';
 import '../controller/schedule_service.dart';
@@ -52,11 +51,12 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
       //Navigator.of(context).pop();
       if (context.mounted) {
         if (!Navigator.canPop(context)) {
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
-          );
+          Navigator.pushReplacementNamed(context, '/profile');
+          // Navigator.of(context).pushReplacement(
+          //   MaterialPageRoute(
+          //     builder: (context) => HomePage(),
+          //   ),
+          // );
         }
         else {
           Navigator.of(context).pop();

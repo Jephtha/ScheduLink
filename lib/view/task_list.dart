@@ -100,10 +100,10 @@ class _TaskListState extends State<TaskList> {
 
       // add flag for assignments due in < 24 hours
       if (0 <= task.dueDate.difference(DateTime.now()).inHours && task.dueDate.difference(DateTime.now()).inHours < 24 && !(task.isComplete))
-        TextSpan(text: "DUE SOON!\n", style: TextStyle(color: Colors.red)),
+        TextSpan(text: "DUE SOON!\n", style: TextStyle(color: Colors.red))
       
       // add flag for overdue assignments
-      if (task.dueDate.isBefore(DateTime.now()) && !(task.isComplete))
+      else if (task.dueDate.isBefore(DateTime.now()) && !(task.isComplete))
         TextSpan(text: "LATE!\n", style: TextStyle(color: Colors.red)),
 
       // task name and course 
