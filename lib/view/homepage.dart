@@ -67,7 +67,6 @@ class _HomePageState extends State<HomePage> {
             tooltip: 'Profile',
             onPressed: () {
               Navigator.pushReplacementNamed(context, '/profile');
-
               // Navigator.push(
               //     context, MaterialPageRoute(builder: (context) => Profile()));
             },

@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart' hide EmailAuthProvider;
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 
 import 'homepage.dart';
+import 'profile.dart';
 import 'add_course_view.dart';
 import '../model/course.dart';
 import '../controller/schedule_service.dart';
@@ -46,24 +47,20 @@ class AuthGate extends StatelessWidget {
                     );
                   });
                 }),
-                // AuthStateChangeAction<SignedIn>((context, state) {
-                //   Navigator.of(context).pushReplacement(
-                //       MaterialPageRoute(
-                //           builder: (context) => HomePage()
-                //       ),
-                //   );
-                // }),
               ],
             );
           },
+          // '/profile': (context) {
+          //   return ProfileScreen(
+          //     actions: [
+          //       SignedOutAction((context) {
+          //         Navigator.pushReplacementNamed(context, '/sign-in');
+          //       }),
+          //     ],
+          //   );
+          // },
           '/profile': (context) {
-            return ProfileScreen(
-              actions: [
-                SignedOutAction((context) {
-                  Navigator.pushReplacementNamed(context, '/sign-in');
-                }),
-              ],
-            );
+            return Profile();
           },
           '/homepage': (context) {
             return HomePage();
