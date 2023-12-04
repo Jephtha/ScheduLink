@@ -87,15 +87,16 @@ class _Profile extends State<Profile> {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Padding(padding: EdgeInsets.fromLTRB(0, 60, 0, 0)),
+                              Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width / 2,
+                                    Padding(padding: EdgeInsets.fromLTRB(0, 0, 140, 0)),
+                                    Expanded(
                                       child: TextFormField(
                                         initialValue: name,
                                         decoration: InputDecoration(
+                                          labelText: "Name:",
                                           border: InputBorder.none,
                                           hintText: 'Your Name',
                                           icon: const Icon(Icons.edit),
@@ -188,35 +189,38 @@ class _Profile extends State<Profile> {
                                             ),
                                           ),
                                       ),
-                                      SizedBox(
-                                        width: MediaQuery.of(context).size.width / 2,
-                                        child: TextFormField(
-                                          initialValue: contact,
-                                          decoration: InputDecoration(
-                                            border: InputBorder.none,
-                                            hintText: 'Enter your contact info',
-                                            icon: const Icon(Icons.edit),
-                                          ),
-                                          validator: (value) {
-                                            if (value == null || value.isEmpty) {
-                                              return 'Please enter your contact Info';
-                                            }
-                                            return null;
-                                          },
-                                          onSaved: (value) {
-                                            setState(() {
-                                              if (selectedContactOption != '') {
-                                                contact = "${selectedContactOption!}- ";
-                                              }
-                                              contact += value!;
 
-                                              print(contact);
-                                            });
-                                          },
-                                        ),
+                                      SizedBox(
+                                        width: MediaQuery.of(context).size.width,
+                                        child: Row(children: [
+                                          Padding(padding: EdgeInsets.fromLTRB(0, 0, 115, 0)),
+                                          Expanded(child: TextFormField(
+                                            initialValue: contact,
+                                            decoration: InputDecoration(
+                                              labelText: "Contact: ",
+                                              border: InputBorder.none,
+                                              hintText: 'Enter your contact info',
+                                              icon: const Icon(Icons.edit),
+                                            ),
+                                            validator: (value) {
+                                              if (value == null || value.isEmpty) {
+                                                return 'Please enter your contact Info';
+                                              }
+                                              return null;
+                                            },
+                                            onSaved: (value) {
+                                              setState(() {
+                                                contact = "";
+                                                if (selectedContactOption != '') {
+                                                  contact = "${selectedContactOption!}- ";
+                                                }
+                                                contact = contact + value.toString();
+                                                scheduleService.addContactInfo2User(contact);
+                                                print(contact);
+                                              });
+                                            },
+                                          ),)] )
                                       ),
-                                      Text("Contact: $contact",
-                                          style: TextStyle(fontSize: 18)),
                                     ]
                                 ),
                               SizedBox(height: 20,),
