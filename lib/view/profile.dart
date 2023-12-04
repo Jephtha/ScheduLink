@@ -234,8 +234,9 @@ class _Profile extends State<Profile> {
                   ElevatedButton(
                     onPressed: () async {
                       await _signOut();
-                      if (context.mounted)
+                      if (context.mounted) {
                         Navigator.pushReplacementNamed(context, '/sign-in');
+                      }
                     },
                     child: Text('Sign Out'),
                   ),
