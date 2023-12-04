@@ -58,11 +58,11 @@ class ScheduleService {
      }
   }
 
-  Future<String> addUser2Course(String course, String section, String user) async {
-    String courseId = "$course-$section";
+  Future<String> addUser2Course(String courseId) async {
+    //String courseId = "$course-$section";
     List<String> users = await getCourseUserList(courseId);
-    if (!users.contains(user)) {
-      users.add(user);
+    if (!users.contains(currentUser!.uid)) {
+      users.add((currentUser!.uid));
     }
     else {
       return "failure";
@@ -108,6 +108,14 @@ class ScheduleService {
 
   Future<UserInfo> getUserInfo() async {
     return await userInfoDocument
+        .get()
+        .then((value) => UserInfo.fromMap(value));
+  }
+
+  Future<UserInfo> getUserInfoFromId(String id) async {
+    return await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
         .get()
         .then((value) => UserInfo.fromMap(value));
   }
@@ -184,6 +192,11 @@ class ScheduleService {
 
   Future<void> updateDeadlineTask(DeadlineTask deadline, String id) async {
     return await deadlineCollection.doc(id).update(deadline.toMap());
+  }
+
+  Future<void> updateTaskStatus(DeadlineTask deadline) async {
+    deadline.isComplete = !deadline.isComplete;
+    return await deadlineCollection.doc(deadline.id).update(deadline.toMap());
   }
 
   Future<void> deleteDeadlineTask(DeadlineTask deadline) async {

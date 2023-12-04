@@ -7,7 +7,7 @@ class DeadlineTask {
   final DateTime dueDate;
   final String description;
   final String priority;
-  String status;
+  bool isComplete;
 
   DeadlineTask({
     this.id,
@@ -16,7 +16,7 @@ class DeadlineTask {
     required this.dueDate,
     required this.description,
     required this.priority,
-    required this.status,
+    required this.isComplete,
   });
 
   Map<String, dynamic> toMap() {
@@ -26,7 +26,7 @@ class DeadlineTask {
       'dueDate': dueDate,
       'description': description,
       'priority': priority,
-      'status': status,
+      'isComplete': isComplete,
     };
   }
 
@@ -39,7 +39,7 @@ class DeadlineTask {
       dueDate: map['dueDate'].toDate() ?? DateTime.now(),
       description: map['description'] ?? '',
       priority: map['priority'] ?? 'low',
-      status: map['status'] ?? 'incomplete',
+      isComplete: map['isComplete'] ?? false,
     );
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:schedulink/view/add_deadline_view.dart';
 
+import 'homepage.dart';
+import 'add_deadline_view.dart';
 import '../model/course.dart';
 import '../controller/schedule_service.dart';
 
@@ -46,6 +47,25 @@ class _AddCourseViewState extends State<AddCourseView> {
     else {
       return false;
     }
+  }
+
+  Future<String> addUserToCourseUserList() async {
+    String response = '';
+    bool failed = false;
+    String failedString = 'Already registered for these courses: ';
+    for (var element in selectedCourses) {
+      response = await scheduleService.addUser2Course(element['course']);
+      if (response == "failure") {
+        failed = true;
+        failedString += element['course'];
+      }
+    }
+
+    if (failed) {
+      return failedString += ". Please remove duplicates";
+    }
+
+    return 'passed';
   }
 
   String? selectedValue;
@@ -201,16 +221,21 @@ class _AddCourseViewState extends State<AddCourseView> {
                     if (updated == false) {
                       showDialog(
                           context: context,
-                          builder: (context) => AlertDialog(
-                            title: Text("Warning"),
-                            content: Text("Course already registered. Select a different course."),
-                            actions: [
-                              TextButton(
-                                child: Text("OK"),
-                                onPressed: () => Navigator.of(context).pop(),
-                              ),
-                            ],
-                          )
+                          builder: (context) {
+                            Future.delayed(Duration(seconds: 3), () {
+                              Navigator.of(context).pop(); // Close the dialog
+                            });
+                            return AlertDialog(
+                              title: Text("Warning"),
+                              content: Text("Course already selected. Select a different course."),
+                              actions: [
+                                TextButton(
+                                  child: Text("OK"),
+                                  onPressed: () => Navigator.of(context).pop(),
+                                ),
+                              ],
+                            );
+                          }
                       );
                     }
                   },
@@ -238,17 +263,47 @@ class _AddCourseViewState extends State<AddCourseView> {
           ),
           SizedBox(height: 20,),
           ElevatedButton(
-            onPressed: () {
+            onPressed: ()  async {
               scheduleService.addCoursesList2User(selectedCourses);
-              if (!Navigator.canPop(context)) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                      builder: (context) => AddDeadlineView(),
-                  ),
-                );
-              }
-              else {
-                Navigator.of(context).pop();
+              String response = await addUserToCourseUserList();
+
+              if (context.mounted) {
+                if (response != "passed") {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        Future.delayed(Duration(seconds: 3), () {
+                          Navigator.of(context).pop(); // Close the dialog
+                        });
+                        return AlertDialog(
+                          title: Text("Warning"),
+                          content: Text(response),
+                          actions: [
+                            TextButton(
+                              child: Text("OK"),
+                              onPressed: () {
+                                if (!Navigator.canPop(context)) {
+                                  Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                      builder: (context) => AddDeadlineView(),
+                                    ),
+                                  );
+                                }
+                                else {
+                                  Navigator.of(context).pop();
+                                }
+                              },
+                            ),
+                          ],
+                        );
+                      }
+                  );
+                }
+                else {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => HomePage()),
+                  );
+                }
               }
             },
             style: ButtonStyle(

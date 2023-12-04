@@ -1,9 +1,11 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:choice/choice.dart';
-import 'package:bottom_picker/bottom_picker.dart';
-import 'package:schedulink/view/homepage.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as date_time_picker;
+import 'package:intl/intl.dart';
 
+import 'homepage.dart';
+import '../controller/notification_service.dart';
 import '../model/task.dart';
 import '../controller/schedule_service.dart';
 
@@ -21,32 +23,34 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
 
   String name = '';
   String course = '';
-  DateTime dueDate = DateTime(2023, 1, 15);
+  DateTime dueDate = DateTime.now();
+  DateTime reminder = DateTime.now();
   String description = '';
 
   List<String> priorityTags = ['low', 'medium', 'high'];
-  List<String> statusTags = ['incomplete', 'in progress', 'complete'];
 
   String? selectedPriorityValue = 'low';
-  String? selectedStatusValue = 'incomplete';
 
   void setSelectedPriorityValue(String? value) {
     setState(() => selectedPriorityValue = value);
-  }
-
-  void setSelectedStatusValue(String? value) {
-    setState(() => selectedStatusValue = value);
   }
 
   Future<void> _addDeadline() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       final newDeadline = DeadlineTask(name: name, course: course, dueDate: dueDate,
-          description: description, priority: selectedPriorityValue!, status: selectedStatusValue!
+        description: description, priority: selectedPriorityValue!, isComplete: false,
       );
 
       await scheduleService.addDeadline(newDeadline);
 
+      FirebaseNotification().scheduleNotification(
+          title: name,
+          body: '$name is due for $course by '
+              '${DateFormat('h:mm a').format(reminder)} on ${DateFormat('EEE, MMM d').format(reminder)}',
+          scheduledNotificationDateTime: reminder);
+
+      Navigator.of(context).pop();
       if (context.mounted) {
         if (!Navigator.canPop(context)) {
           Navigator.of(context).pushReplacement(
@@ -131,6 +135,7 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                 children: [
                   SizedBox(width: 10,),
                   Text('Name: ', style: TextStyle(fontSize: 16)),
+                  SizedBox(width: 10,),
                   SizedBox(
                     height: 70,
                     width: 250,
@@ -155,6 +160,7 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                 children: [
                   SizedBox(width: 10,),
                   Text('Course: ', style: TextStyle(fontSize: 16)),
+                  SizedBox(width: 10,),
                   SizedBox(
                     height: 70,
                     width: 250,
@@ -178,39 +184,34 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                 children: [
                   SizedBox(width: 10,),
                   Text('Due Date: ', style: TextStyle(fontSize: 16)),
+                  SizedBox(width: 10,),
                   // date time picker widget
                   SizedBox(
-                    width: 70,
-                    height: 30,
+                      width: 110,
+                      height: 30,
                     child: ElevatedButton(
                       onPressed: () {
-                        BottomPicker.dateTime(
-                          title: 'Set the event exact time and date',
-                          titleStyle:  TextStyle(
-                            fontWeight:  FontWeight.bold,
-                            fontSize:  15,
-                            color:  Colors.black,
-                          ),
-                          onSubmit: (date) {
-                            //dueDate = date;
+                        date_time_picker.DatePicker.showDateTimePicker(
+                          context,
+                          showTitleActions: true,
+                          onChanged: (date) {
                             setState(() {
                               dueDate = date;
                             });
-                            print(date);},
-                          onClose: () {
-                            print('Picker closed');},
-                          iconColor:  Colors.black,
-                          minDateTime:  DateTime(2024, 1, 1),
-                          maxDateTime:  DateTime(2024, 4, 30),
-                          initialDateTime:  DateTime(2024, 1, 15),
-                          gradientColors: [Color(0xfffdcbf1), Color(0xffe6dee9)],
-                        ).show(context);
+                          },
+                          onConfirm: (date) {
+                            setState(() {
+                              dueDate = date;
+                            });
+                          },
+                        );
                       },
-                      child: Text('Date')//const Icon(Icons.date_range),'
+                      child: Text(
+                        DateFormat('EEE, MMM d').format(dueDate),
+                      ),
                     ),
                   ),
                   SizedBox(width: 10),
-                  Text(dueDate.toString(), style: TextStyle(fontSize: 16)),
                 ],
               ),
               SizedBox(height: 20,),
@@ -258,29 +259,34 @@ class _AddDeadlineViewState extends State<AddDeadlineView> {
                   ),
                 ],
               ),
+              SizedBox(height: 10,),
               Row(
                 children: [
                   SizedBox(width: 10,),
-                  Text('Status: ', style: TextStyle(fontSize: 16)),
-                  InlineChoice<String>.single(
-                    clearable: true,
-                    value: selectedStatusValue,
-                    onChanged: setSelectedStatusValue,
-                    itemCount: statusTags.length,
-                    itemBuilder: (state, i) {
-                      return ChoiceChip(
-                        selected: state.selected(statusTags[i]),
-                        selectedColor: Colors.blue,
-                        onSelected: state.onSelected(statusTags[i]),
-                        label: Text(statusTags[i]),
-                      );
-                    },
-                    listBuilder: ChoiceList.createScrollable(
-                      spacing: 10,
-                      runSpacing: 10,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 5,
+                  Text('Set Reminder: ', style: TextStyle(fontSize: 16)),
+                  SizedBox(width: 10,),
+                  SizedBox(
+                    width: 180,
+                    height: 30,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        date_time_picker.DatePicker.showDateTimePicker(
+                          context,
+                          showTitleActions: true,
+                          onChanged: (date) {
+                            setState(() {
+                              reminder = date;
+                            });
+                          },
+                          onConfirm: (date) {
+                            setState(() {
+                              reminder = date;
+                            });
+                          },
+                        );
+                      },
+                      child: Text(
+                        DateFormat('EEE, MMM d h:mm a').format(reminder),
                       ),
                     ),
                   ),

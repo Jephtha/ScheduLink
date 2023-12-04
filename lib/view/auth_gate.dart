@@ -8,6 +8,7 @@ import '../controller/schedule_service.dart';
 import '../model/course.dart';
 import 'homepage.dart';
 
+
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
 
