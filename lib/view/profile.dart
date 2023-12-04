@@ -1,157 +1,306 @@
-// ignore_for_file: use_build_context_synchronously, library_private_types_in_public_api, unused_import
-
-import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:choice/choice.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:schedulink/controller/schedule_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:schedulink/view/course_info.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide UserInfo;
+import 'package:image_picker/image_picker.dart';
 
-String? contact, imgURL, name;
+import '../controller/schedule_service.dart';
+import '../model/user_info.dart';
+
+
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
+
   @override
-  _Profile createState() => _Profile();
+  State<Profile> createState() => _Profile();
 }
 
 class _Profile extends State<Profile> {
+  final ScheduleService scheduleService = ScheduleService();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   final _usersStream = FirebaseFirestore.instance
       .collection('users')
       .doc(FirebaseAuth.instance.currentUser!.uid)
       .snapshots();
 
+  String contact = '';
+  String imgURL = '';
+  String name = '';
+  List courses = [];
+  List<Map<String, dynamic>> courseInfo = [];
+
+  List<String> contactOptions = ['email', 'phone number', 'instagram', 'snapchat','twitter'];
+  String? selectedContactOption = '';
+
+  void setSelectedContactOption(String? value) {
+    setState(() => selectedContactOption = value);
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      UserInfo user = await scheduleService.getUserInfo();
+      print(user.name);
+      setState(() {
+        name = user.name;
+        contact = user.contactInfo;
+        imgURL = user.profileImg;
+        courseInfo = user.userCourses!;
+        List tempCourse = [];
+        //user.userCourses!.map((element) => tempCourse.add(element['course']));
+
+        List<Map<String, dynamic>> c = user.userCourses!;
+        for(var i=0; i < c.length; i++){
+          for (var element in c) {
+            tempCourse.add(element['course']);
+          }
+        }
+
+        courses = tempCourse;
+
+      });
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-        stream: _usersStream,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (!snapshot.hasData) return CircularProgressIndicator();
-          if (snapshot.data["profileImg"] != null) {
-            imgURL = snapshot.data['profileImg'];
-          }
-          if (snapshot.data["contactInfo"] != null) {
-            contact = snapshot.data['contactInfo'];
-          }
-          if (snapshot.data["name"] != null) {
-            name = snapshot.data['name'];
-          }
-          var courses = snapshot.data['userCourses'];
+    print(courses.length);
+            return Scaffold(
+                appBar: AppBar(
+                  leading: IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      }),
+                  title: Text("Profile"),
+                  centerTitle: true,
+                ),
+                body: Form(
+                  key: _formKey,
+                      child: SingleChildScrollView(
+                        child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(padding: EdgeInsets.fromLTRB(0, 60, 0, 0)),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width / 2,
+                                      child: TextFormField(
+                                        initialValue: name,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintText: 'Your Name',
+                                          icon: const Icon(Icons.edit),
+                                        ),
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Please enter your Name';
+                                          }
+                                          return null;
+                                        },
+                                        onSaved: (value) {
+                                          setState(() => name = value!);
+                                        },
+                                      ),
+                                    ),
+                                    //Text(name!,style: TextStyle(fontSize: 20)),
+                                  ],
+                                ),
 
-          var cName = [];
-          for (var element in courses) {
-            String courseName = element['course'];
-            cName.add(courseName);
-          }
-          return Scaffold(
-              appBar: AppBar(
-                leading: IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    }),
-                title: Text("Profile"),
-                centerTitle: true,
+                              SizedBox(height: 20,),
+                              if (imgURL == '')
+                                Container(
+                                    constraints: const BoxConstraints(maxWidth: 250),
+                                    child: Center(
+                                        child: CircleAvatar(
+                                          radius: 50,
+                                          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+                                          foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+                                          child: Text(
+                                            name[0],
+                                            style: Theme.of(context).textTheme.titleLarge,
+                                          ),
+                                        ),
+                                            //CircleAvatar(child: Image.network("https://img.freepik.com/premium-vector/account-icon-user-icon-vector-graphics_292645-552.jpg",width: 250,height: 250)),
+                                    ),
+                                ),
+
+
+                              if (imgURL != '')
+                                Container(
+                                  constraints: const BoxConstraints(maxWidth: 250),
+                                    child: Center(
+                                      child: CircleAvatar(
+                                        backgroundImage: NetworkImage(imgURL),
+                                        radius: 70,
+                                      ),
+                                            //Image.network(imgURL!),
+                                    ),
+                                ),
+                                SizedBox(height: 10,),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => ImageSet()),
+                                      ).then((value) => setState(() {
+                                        imgURL = value;
+                                      }));
+                                    },
+                                    child: Text('Change Profile Image'),
+                                ),
+
+                                SizedBox(height: 20,),
+                                Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Text('Please pick one of the available options for Contact Info'),
+                                      SingleChildScrollView(
+                                        child:
+                                          InlineChoice<String>.single(
+                                            clearable: true,
+                                            value: selectedContactOption,
+                                            onChanged: setSelectedContactOption,
+                                            itemCount: contactOptions.length,
+                                            itemBuilder: (state, i) {
+                                              return ChoiceChip(
+                                                selected: state.selected(contactOptions[i]),
+                                                selectedColor: Colors.blue,
+                                                onSelected: state.onSelected(contactOptions[i]),
+                                                label: Text(contactOptions[i]),
+                                              );
+                                            },
+                                            listBuilder: ChoiceList.createScrollable(
+                                              spacing: 10,
+                                              runSpacing: 10,
+                                              padding: const EdgeInsets.symmetric(
+                                                horizontal: 10,
+                                                vertical: 5,
+                                              ),
+                                            ),
+                                          ),
+                                      ),
+                                      SizedBox(
+                                        width: MediaQuery.of(context).size.width / 2,
+                                        child: TextFormField(
+                                          initialValue: contact,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintText: 'Enter your contact info',
+                                            icon: const Icon(Icons.edit),
+                                          ),
+                                          validator: (value) {
+                                            if (value == null || value.isEmpty) {
+                                              return 'Please enter your contact Info';
+                                            }
+                                            return null;
+                                          },
+                                          onSaved: (value) {
+                                            setState(() {
+                                              if (selectedContactOption != '') {
+                                                contact = "${selectedContactOption!}- ";
+                                              }
+                                              contact += value!;
+
+                                              print(contact);
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                      Text("Contact: $contact",
+                                          style: TextStyle(fontSize: 18)),
+                                    ]
+                                ),
+                              SizedBox(height: 20,),
+                              Text("Courses: ", style: TextStyle(fontSize: 18)),
+                              SizedBox(height: 10,),
+                              for (var i in courses)
+                                courseButton(i),
+
+                              SizedBox(height: 50,),
+                              ElevatedButton(
+                                  onPressed: () {
+                                    // UserInfo user = UserInfo(name: name, profileImg: imgURL, contactInfo: contact);
+                                    // scheduleService.updateUserInfo(user);
+
+                                    _addUserInfo();
+                                  },
+                                  child: Text('Submit'),
+                              ),
+                                //Text(c, style: TextStyle(fontSize: 18)),
+                            ]),
+                      ),
+                )
+            );
+  }
+
+  Future<void> _addUserInfo() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      final userInfo = UserInfo(name: name, profileImg: imgURL, contactInfo: contact, userCourses: courseInfo);
+      print("$name $contact $imgURL");
+      await scheduleService.updateUserInfo(userInfo);
+
+      //if(context.mounted) Navigator.of(context).pop();
+    }
+    else {
+      print("Form is invalid");
+    }
+  }
+
+  Widget courseButton(String courseNo) {
+    return Column(
+      children: [
+        ElevatedButton(
+          style: ButtonStyle(
+              padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(15)),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent),
+              shadowColor: MaterialStateProperty.all<Color>(Colors.grey),
+              elevation: MaterialStateProperty.resolveWith<double>(
+                    (Set<MaterialState> states) {
+                  if (states.contains(MaterialState.pressed)) return 10;
+                  return 5; // default elevation
+                },
               ),
-              body: SingleChildScrollView(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(padding: EdgeInsets.fromLTRB(0, 60, 0, 0)),
-                    if (name != null)
-                      Row(mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(name!,style: TextStyle(fontSize: 20)), 
-                          IconButton(
-                            icon: const Icon(Icons.edit),
-                            onPressed: () {
-                              /* edit name */
-                            },
-                          ),
-                      ],),
-
-                    if (imgURL == null)
-                      Container(
-                        constraints: const BoxConstraints(maxWidth: 250),
-                        child: Center(child: Stack(children: [
-                        IconButton.filledTonal(
-                          icon: const Icon(Icons.edit),
-                          tooltip: ("Add image"),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => ImageSet()),
-                            ).then((value) => setState(() {}));
-                          },
-                        ),
-                        CircleAvatar(child: Image.network("https://img.freepik.com/premium-vector/account-icon-user-icon-vector-graphics_292645-552.jpg",width: 250,height: 250)),
-                      ],))),
-    
-                    if (imgURL != null)
-                      Container(
-                        constraints: const BoxConstraints(maxWidth: 250),
-                        child: Center(child: Stack(children: [
-                        Image.network(imgURL!),
-                        IconButton.filledTonal(
-                          color: Colors.black,
-                          iconSize: 20,
-                          icon: const Icon(Icons.edit),
-                          tooltip: ("Edit image"),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => ImageSet()),
-                            ).then((value) => setState(() {}));
-                          },
-                        ),
-                      ],))),
-
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text("Contact: ",
-                              style: TextStyle(fontSize: 18)),
-                          if (contact != null)
-                            Container(
-                                alignment: Alignment.center,
-                                child: Text(contact!, style: TextStyle(fontSize: 18))),
-                          IconButton(
-                            icon: const Icon(Icons.edit),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => EditContact()),
-                              ).then((value) => setState(() {}));
-                            },
-                          ),
-                        ]),
-                    if (contact == null)
-                      Container(
-                          alignment: Alignment.center,
-                          margin: EdgeInsets.all(20),
-                          child: Text("Please Enter Contact Information.",
-                              style: TextStyle(fontSize: 18))),
-                    Text("Courses: ", style: TextStyle(fontSize: 18)),
-                    for (var c in cName)
-                      Text(c, style: TextStyle(fontSize: 18))
-                  ])));
-        });
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25),
+                ),
+              ),
+              animationDuration: Duration(milliseconds: 200)
+          ),
+          onPressed: () => {},
+          child: Text(
+              courseNo
+          ),
+        ),
+        SizedBox(height: 10,),
+      ],
+    );
   }
 }
 
 class ImageSet extends StatefulWidget {
   const ImageSet({super.key});
   @override
-  _ImageSet createState() => _ImageSet();
+  State<ImageSet> createState() => _ImageSet();
 }
 
 class _ImageSet extends State<ImageSet> {
   final ImagePicker _picker = ImagePicker();
   XFile? _image;
+  String imgURL = '';
+
   Future<void> _pickImageFromGallery() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     setState(() {
@@ -180,7 +329,7 @@ class _ImageSet extends State<ImageSet> {
         service.addProfileImg2User(downloadURL);
         imgURL = downloadURL;
         print("Uploaded to: $downloadURL");
-        Navigator.pop(context);
+        if (context.mounted) Navigator.pop(context, imgURL);
       }
     } catch (e) {
       print("Failed to upload image: $e");
@@ -222,7 +371,7 @@ class _ImageSet extends State<ImageSet> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pop(context, imgURL);
                 },
                 child: Text('Go Back'),
               ),
@@ -231,60 +380,5 @@ class _ImageSet extends State<ImageSet> {
         ),
       ),
     );
-  }
-}
-
-class EditContact extends StatefulWidget {
-  @override
-  _EditContact createState() => _EditContact();
-}
-
-class _EditContact extends State<EditContact> {
-  final _formKey = GlobalKey<FormState>();
-  final ScheduleService service = ScheduleService();
-  void _saveContact() {
-    if (_formKey.currentState!.validate()) {
-      // Saves the form's current state.
-      _formKey.currentState!.save();
-
-      Navigator.pop(context);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-        title: Text('Change Contact Information'),
-        content: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'contact information'),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter contact information';
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    service.addContactInfo2User(value!);
-                    contact = value;
-                  },
-                ),
-              ],
-            )),
-        actions: [
-          ElevatedButton(
-            onPressed: _saveContact,
-            child: Text('edit'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('Cancel'),
-          )
-        ]);
   }
 }
