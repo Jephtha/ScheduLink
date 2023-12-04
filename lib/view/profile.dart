@@ -56,7 +56,6 @@ class _Profile extends State<Profile> {
         }
 
         courses = tempCourse;
-
       });
     });
   }
@@ -64,6 +63,8 @@ class _Profile extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+        TextEditingController nameController = TextEditingController(text: name);
+        TextEditingController contactController = TextEditingController(text: contact);
             return Scaffold(
                 appBar: AppBar(
                   leading: IconButton(
@@ -82,33 +83,26 @@ class _Profile extends State<Profile> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(padding: EdgeInsets.fromLTRB(0, 0, 140, 0)),
-                                    Expanded(
-                                      child: TextFormField(
-                                        initialValue: name,
-                                        decoration: InputDecoration(
-                                          labelText: "Name:",
-                                          border: InputBorder.none,
-                                          hintText: 'Your Name',
-                                          icon: const Icon(Icons.edit),
-                                        ),
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Please enter your Name';
-                                          }
-                                          return null;
-                                        },
-                                        onSaved: (value) {
-                                          setState(() => name = value!);
-                                        },
-                                      ),
-                                    ),
-                                    //Text(name!,style: TextStyle(fontSize: 20)),
-                                  ],
+                              IntrinsicWidth(child: 
+                                TextFormField(
+                                  textAlign: TextAlign.center,
+                                  controller: nameController,
+                                  decoration: InputDecoration(
+                                    labelText: "Name: ",
+                                    border: InputBorder.none,
+                                    suffixIcon: const Icon(Icons.edit),
+                                  ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter your Name';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    setState(() => name = value!);
+                                  }, 
                                 ),
+                              ),
 
                               SizedBox(height: 20,),
                               if (imgURL == '')
@@ -184,12 +178,9 @@ class _Profile extends State<Profile> {
                                           ),
                                       ),
 
-                                      SizedBox(
-                                        width: MediaQuery.of(context).size.width,
-                                        child: Row(children: [
-                                          Padding(padding: EdgeInsets.fromLTRB(0, 0, 115, 0)),
-                                          Expanded(child: TextFormField(
-                                            initialValue: contact,
+                                      IntrinsicWidth(child: 
+                                        TextFormField(
+                                            controller: contactController,
                                             decoration: InputDecoration(
                                               labelText: "Contact: ",
                                               border: InputBorder.none,
@@ -213,8 +204,7 @@ class _Profile extends State<Profile> {
                                                 print(contact);
                                               });
                                             },
-                                          ),)] )
-                                      ),
+                                          ),)
                                     ]
                                 ),
                               SizedBox(height: 20,),
@@ -228,7 +218,7 @@ class _Profile extends State<Profile> {
                                   onPressed: () {
                                     _addUserInfo();
                                   },
-                                  child: Text('Submit'),
+                                  child: Text('Save Changes'),
                               ),
                               ElevatedButton(
                                   onPressed: () async {
