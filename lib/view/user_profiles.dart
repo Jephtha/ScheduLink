@@ -113,8 +113,7 @@ class _CoursesInfoState extends State<CoursesInfo> {
                                     child: Text(
                                       userInfo!.name,
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black),
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ),
                                 );

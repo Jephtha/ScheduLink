@@ -60,12 +60,22 @@ class _HomePageState extends State<HomePage> {
     tasks = getCourseInfo();
     return Scaffold(
       appBar: AppBar(
-        leading: Switch(
+        leading: IconButton(
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+            },
+            icon: Icon(
+              Provider.of<ThemeProvider>(context, listen: false).isDarkMode ==
+                      false
+                  ? Icons.wb_sunny
+                  : Icons.nightlight_round,
+            )),
+        /*Switch(
           value: Provider.of<ThemeProvider>(context).isDarkMode,
           onChanged: (value) {
             Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
           },
-        ),
+        ),*/
         title: Text(DateFormat.yMMMMd().format(DateTime.now())),
         centerTitle: true,
         actions: [

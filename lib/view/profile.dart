@@ -8,8 +8,6 @@ import 'package:image_picker/image_picker.dart';
 import '../controller/schedule_service.dart';
 import '../model/user_info.dart';
 
-
-
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
@@ -27,7 +25,13 @@ class _Profile extends State<Profile> {
   List courses = [];
   List<Map<String, dynamic>> courseInfo = [];
 
-  List<String> contactOptions = ['email', 'phone number', 'instagram', 'snapchat','twitter'];
+  List<String> contactOptions = [
+    'email',
+    'phone number',
+    'instagram',
+    'snapchat',
+    'twitter'
+  ];
   String? selectedContactOption = '';
 
   void setSelectedContactOption(String? value) {
@@ -56,210 +60,220 @@ class _Profile extends State<Profile> {
         }
 
         courses = tempCourse;
-
       });
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
-            return Scaffold(
-                appBar: AppBar(
-                  leading: IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/homepage');
-                      }),
-                  title: Text("Profile"),
-                  centerTitle: true,
-                ),
-                body: Form(
-                  key: _formKey,
-                      child: SingleChildScrollView(
-                        child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(padding: EdgeInsets.fromLTRB(0, 0, 140, 0)),
-                                    Expanded(
-                                      child: TextFormField(
-                                        initialValue: name,
-                                        decoration: InputDecoration(
-                                          labelText: "Name:",
-                                          border: InputBorder.none,
-                                          hintText: 'Your Name',
-                                          icon: const Icon(Icons.edit),
-                                        ),
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return 'Please enter your Name';
-                                          }
-                                          return null;
-                                        },
-                                        onSaved: (value) {
-                                          setState(() => name = value!);
-                                        },
-                                      ),
-                                    ),
-                                    //Text(name!,style: TextStyle(fontSize: 20)),
-                                  ],
-                                ),
-
-                              SizedBox(height: 20,),
-                              if (imgURL == '')
-                                Container(
-                                    constraints: const BoxConstraints(maxWidth: 250),
-                                    child: Center(
-                                        child: CircleAvatar(
-                                          radius: 50,
-                                          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                                          foregroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
-                                          child: Text(
-                                            name == '' ? 'A' : name[0],
-                                            style: Theme.of(context).textTheme.titleLarge,
-                                          ),
-                                        ),
-                                            //CircleAvatar(child: Image.network("https://img.freepik.com/premium-vector/account-icon-user-icon-vector-graphics_292645-552.jpg",width: 250,height: 250)),
-                                    ),
-                                ),
-
-
-                              if (imgURL != '')
-                                Container(
-                                  constraints: const BoxConstraints(maxWidth: 250),
-                                    child: Center(
-                                      child: CircleAvatar(
-                                        backgroundImage: NetworkImage(imgURL),
-                                        radius: 70,
-                                      ),
-                                            //Image.network(imgURL!),
-                                    ),
-                                ),
-                                SizedBox(height: 10,),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => ImageSet()),
-                                      ).then((value) => setState(() {
-                                        imgURL = value;
-                                      }));
-                                    },
-                                    child: Text('Change Profile Image'),
-                                ),
-
-                                SizedBox(height: 20,),
-                                Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: <Widget>[
-                                      Text('Please pick one of the available options for Contact Info'),
-                                      SingleChildScrollView(
-                                        child:
-                                          InlineChoice<String>.single(
-                                            clearable: true,
-                                            value: selectedContactOption,
-                                            onChanged: setSelectedContactOption,
-                                            itemCount: contactOptions.length,
-                                            itemBuilder: (state, i) {
-                                              return ChoiceChip(
-                                                selected: state.selected(contactOptions[i]),
-                                                selectedColor: Colors.blue,
-                                                onSelected: state.onSelected(contactOptions[i]),
-                                                label: Text(contactOptions[i]),
-                                              );
-                                            },
-                                            listBuilder: ChoiceList.createScrollable(
-                                              spacing: 10,
-                                              runSpacing: 10,
-                                              padding: const EdgeInsets.symmetric(
-                                                horizontal: 10,
-                                                vertical: 5,
-                                              ),
-                                            ),
-                                          ),
-                                      ),
-
-                                      SizedBox(
-                                        width: MediaQuery.of(context).size.width,
-                                        child: Row(children: [
-                                          Padding(padding: EdgeInsets.fromLTRB(0, 0, 115, 0)),
-                                          Expanded(child: TextFormField(
-                                            initialValue: contact,
-                                            decoration: InputDecoration(
-                                              labelText: "Contact: ",
-                                              border: InputBorder.none,
-                                              hintText: 'Enter your contact info',
-                                              icon: const Icon(Icons.edit),
-                                            ),
-                                            validator: (value) {
-                                              if (value == null || value.isEmpty) {
-                                                return 'Please enter your contact Info';
-                                              }
-                                              return null;
-                                            },
-                                            onSaved: (value) {
-                                              setState(() {
-                                                contact = "";
-                                                if (selectedContactOption != '') {
-                                                  contact = "${selectedContactOption!}- ";
-                                                }
-                                                contact = contact + value.toString();
-                                                scheduleService.addContactInfo2User(contact);
-                                                print(contact);
-                                              });
-                                            },
-                                          ),)] )
-                                      ),
-                                    ]
-                                ),
-                              SizedBox(height: 20,),
-                              Text("Courses: ", style: TextStyle(fontSize: 18)),
-                              SizedBox(height: 10,),
-                              for (var i in courses)
-                                courseButton(i),
-
-                              SizedBox(height: 50,),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    _addUserInfo();
-                                  },
-                                  child: Text('Submit'),
-                              ),
-                              ElevatedButton(
-                                  onPressed: () async {
-                                    await _signOut();
-                                    if (context.mounted) Navigator.pushReplacementNamed(context, '/sign-in');
-                                  },
-                                  child: Text('Sign Out'),
-                              ),
-                            ]),
+    return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/homepage');
+              }),
+          title: Text("Profile"),
+          centerTitle: true,
+        ),
+        body: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(padding: EdgeInsets.fromLTRB(0, 0, 140, 0)),
+                      Expanded(
+                        child: TextFormField(
+                          initialValue: name,
+                          decoration: InputDecoration(
+                            labelText: "Name:",
+                            border: InputBorder.none,
+                            hintText: 'Your Name',
+                            icon: const Icon(Icons.edit),
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your Name';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            setState(() => name = value!);
+                          },
+                        ),
                       ),
-                )
-            );
+                      //Text(name!,style: TextStyle(fontSize: 20)),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  if (imgURL == '')
+                    Container(
+                      constraints: const BoxConstraints(maxWidth: 250),
+                      child: Center(
+                        child: CircleAvatar(
+                          radius: 50,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primaryContainer,
+                          foregroundColor:
+                              Theme.of(context).colorScheme.onPrimaryContainer,
+                          child: Text(
+                            name == '' ? 'A' : name[0],
+                            style: Theme.of(context).textTheme.titleLarge,
+                          ),
+                        ),
+                        //CircleAvatar(child: Image.network("https://img.freepik.com/premium-vector/account-icon-user-icon-vector-graphics_292645-552.jpg",width: 250,height: 250)),
+                      ),
+                    ),
+                  if (imgURL != '')
+                    Container(
+                      constraints: const BoxConstraints(maxWidth: 250),
+                      child: Center(
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(imgURL),
+                          radius: 70,
+                        ),
+                        //Image.network(imgURL!),
+                      ),
+                    ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ImageSet()),
+                      ).then((value) => setState(() {
+                            imgURL = value;
+                          }));
+                    },
+                    child: Text('Change Profile Image'),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                            'Please pick one of the available options for Contact Info'),
+                        SingleChildScrollView(
+                          child: InlineChoice<String>.single(
+                            clearable: true,
+                            value: selectedContactOption,
+                            onChanged: setSelectedContactOption,
+                            itemCount: contactOptions.length,
+                            itemBuilder: (state, i) {
+                              return ChoiceChip(
+                                selected: state.selected(contactOptions[i]),
+                                selectedColor: Colors.blue,
+                                onSelected: state.onSelected(contactOptions[i]),
+                                label: Text(contactOptions[i]),
+                              );
+                            },
+                            listBuilder: ChoiceList.createScrollable(
+                              spacing: 10,
+                              runSpacing: 10,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 5,
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: Row(children: [
+                              Padding(
+                                  padding: EdgeInsets.fromLTRB(0, 0, 115, 0)),
+                              Expanded(
+                                child: TextFormField(
+                                  initialValue: contact,
+                                  decoration: InputDecoration(
+                                    labelText: "Contact: ",
+                                    border: InputBorder.none,
+                                    hintText: 'Enter your contact info',
+                                    icon: const Icon(Icons.edit),
+                                  ),
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please enter your contact Info';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (value) {
+                                    setState(() {
+                                      contact = "";
+                                      if (selectedContactOption != '') {
+                                        contact = "${selectedContactOption!}- ";
+                                      }
+                                      contact = contact + value.toString();
+                                      scheduleService
+                                          .addContactInfo2User(contact);
+                                      print(contact);
+                                    });
+                                  },
+                                ),
+                              )
+                            ])),
+                      ]),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text("Courses: ", style: TextStyle(fontSize: 18)),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  for (var i in courses) courseButton(i),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _addUserInfo();
+                    },
+                    child: Text('Submit'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await _signOut();
+                      if (context.mounted)
+                        Navigator.pushReplacementNamed(context, '/sign-in');
+                    },
+                    child: Text('Sign Out'),
+                  ),
+                ]),
+          ),
+        ));
   }
 
   Future<void> _addUserInfo() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      final userInfo = UserInfo(name: name, profileImg: imgURL, contactInfo: contact, userCourses: courseInfo);
+      final userInfo = UserInfo(
+          name: name,
+          profileImg: imgURL,
+          contactInfo: contact,
+          userCourses: courseInfo);
       print("$name $contact $imgURL");
       await scheduleService.updateUserInfo(userInfo);
 
       if (context.mounted) {
         if (!Navigator.canPop(context)) {
           Navigator.pushReplacementNamed(context, '/homepage');
-        }
-        else {
+        } else {
           //Navigator.of(context).pop();
         }
       }
-    }
-    else {
+    } else {
       print("Form is invalid");
     }
   }
@@ -269,11 +283,13 @@ class _Profile extends State<Profile> {
       children: [
         ElevatedButton(
           style: ButtonStyle(
-              padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(15)),
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent),
+              padding:
+                  MaterialStateProperty.all<EdgeInsets>(EdgeInsets.all(15)),
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(Colors.greenAccent),
               shadowColor: MaterialStateProperty.all<Color>(Colors.grey),
               elevation: MaterialStateProperty.resolveWith<double>(
-                    (Set<MaterialState> states) {
+                (Set<MaterialState> states) {
                   if (states.contains(MaterialState.pressed)) return 10;
                   return 5; // default elevation
                 },
@@ -283,14 +299,16 @@ class _Profile extends State<Profile> {
                   borderRadius: BorderRadius.circular(25),
                 ),
               ),
-              animationDuration: Duration(milliseconds: 200)
-          ),
+              animationDuration: Duration(milliseconds: 200)),
           onPressed: () => {},
           child: Text(
-              courseNo
+            courseNo,
+            style: TextStyle(color: Colors.black),
           ),
         ),
-        SizedBox(height: 10,),
+        SizedBox(
+          height: 10,
+        ),
       ],
     );
   }

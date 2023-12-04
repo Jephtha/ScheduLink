@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart' hide UserInfo;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:schedulink/view/courses_info.dart';
+import 'package:schedulink/view/user_profiles.dart';
 
 import '../model/course.dart';
 import '../model/user_info.dart';
@@ -114,7 +114,10 @@ class _CourseInfoState extends State<CourseInfo> {
                 height: 10,
               ),
               IconButton(
-                icon: Icon(Icons.people),
+                icon: Icon(
+                  Icons.people,
+                  color: Colors.black,
+                ),
                 onPressed: () {
                   // Navigate to the new page when the icon is clicked
                   Navigator.push(
