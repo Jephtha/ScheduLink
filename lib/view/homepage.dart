@@ -60,11 +60,14 @@ class _HomePageState extends State<HomePage> {
     tasks = getCourseInfo();
     return Scaffold(
       appBar: AppBar(
-        leading: Switch(
-          value: Provider.of<ThemeProvider>(context).isDarkMode,
-          onChanged: (value) {
+        leading: IconButton(
+          onPressed: () {
             Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
           },
+          icon: Icon(
+              Provider.of<ThemeProvider>(context).isDarkMode ?
+              Icons.light_mode : Icons.dark_mode,
+          ),
         ),
         title: Text(DateFormat.yMMMMd().format(DateTime.now())),
         centerTitle: true,

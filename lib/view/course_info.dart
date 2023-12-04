@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart' hide UserInfo;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:schedulink/view/courses_info.dart';
 
+import 'user_profiles.dart';
 import '../model/course.dart';
 import '../model/user_info.dart';
 import '../controller/schedule_service.dart';
