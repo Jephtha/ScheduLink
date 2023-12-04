@@ -97,7 +97,7 @@ class _AddCourseViewState extends State<AddCourseView> {
    void showAlertDialog() {
      showDialog(context: context, builder: (context) {
        bool manuallyClosed = false;
-       Future.delayed(Duration(seconds: 10)).then((_) {
+       Future.delayed(Duration(seconds: 3)).then((_) {
          if (!manuallyClosed) {
            Navigator.of(context).pop();
          }
