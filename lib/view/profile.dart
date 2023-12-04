@@ -66,6 +66,9 @@ class _Profile extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController nameController = TextEditingController(text: name);
+    TextEditingController contactController =
+        TextEditingController(text: contact);
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -84,32 +87,25 @@ class _Profile extends State<Profile> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Padding(padding: EdgeInsets.fromLTRB(0, 20, 0, 0)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(padding: EdgeInsets.fromLTRB(0, 0, 140, 0)),
-                      Expanded(
-                        child: TextFormField(
-                          initialValue: name,
-                          decoration: InputDecoration(
-                            labelText: "Name:",
-                            border: InputBorder.none,
-                            hintText: 'Your Name',
-                            icon: const Icon(Icons.edit),
-                          ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your Name';
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            setState(() => name = value!);
-                          },
-                        ),
+                  IntrinsicWidth(
+                    child: TextFormField(
+                      textAlign: TextAlign.center,
+                      controller: nameController,
+                      decoration: InputDecoration(
+                        labelText: "Name: ",
+                        border: InputBorder.none,
+                        suffixIcon: const Icon(Icons.edit),
                       ),
-                      //Text(name!,style: TextStyle(fontSize: 20)),
-                    ],
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter your Name';
+                        }
+                        return null;
+                      },
+                      onSaved: (value) {
+                        setState(() => name = value!);
+                      },
+                    ),
                   ),
                   SizedBox(
                     height: 20,
@@ -189,41 +185,34 @@ class _Profile extends State<Profile> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            child: Row(children: [
-                              Padding(
-                                  padding: EdgeInsets.fromLTRB(0, 0, 115, 0)),
-                              Expanded(
-                                child: TextFormField(
-                                  initialValue: contact,
-                                  decoration: InputDecoration(
-                                    labelText: "Contact: ",
-                                    border: InputBorder.none,
-                                    hintText: 'Enter your contact info',
-                                    icon: const Icon(Icons.edit),
-                                  ),
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return 'Please enter your contact Info';
-                                    }
-                                    return null;
-                                  },
-                                  onSaved: (value) {
-                                    setState(() {
-                                      contact = "";
-                                      if (selectedContactOption != '') {
-                                        contact = "${selectedContactOption!}- ";
-                                      }
-                                      contact = contact + value.toString();
-                                      scheduleService
-                                          .addContactInfo2User(contact);
-                                      print(contact);
-                                    });
-                                  },
-                                ),
-                              )
-                            ])),
+                        IntrinsicWidth(
+                          child: TextFormField(
+                            controller: contactController,
+                            decoration: InputDecoration(
+                              labelText: "Contact: ",
+                              border: InputBorder.none,
+                              hintText: 'Enter your contact info',
+                              icon: const Icon(Icons.edit),
+                            ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter your contact Info';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+                              setState(() {
+                                contact = "";
+                                if (selectedContactOption != '') {
+                                  contact = "${selectedContactOption!}- ";
+                                }
+                                contact = contact + value.toString();
+                                scheduleService.addContactInfo2User(contact);
+                                print(contact);
+                              });
+                            },
+                          ),
+                        )
                       ]),
                   SizedBox(
                     height: 20,
@@ -240,7 +229,7 @@ class _Profile extends State<Profile> {
                     onPressed: () {
                       _addUserInfo();
                     },
-                    child: Text('Submit'),
+                    child: Text('Save Changes'),
                   ),
                   ElevatedButton(
                     onPressed: () async {
